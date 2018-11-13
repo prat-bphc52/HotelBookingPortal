@@ -1,0 +1,162 @@
+JFDML JFormDesigner: "6.0.4.1.172" Java: "1.8.0_152-release" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+			"$horizontalGroup": "par l {seq {space :p:16:p, par l {seq l {space :p:10:p, par t {seq l {comp cityLabel:::p:96:p, space :p:16:p, comp cityChooser:::p:125:p}, seq l {comp checkinLabel:::p:96:p, space :p:16:p, comp checkin:::p:125:p, space :::p, comp errorCheckIn:::p::p}, seq l {comp checkoutLabel:::p:96:p, space :p:16:p, comp checkout:::p:125:p, space :::p, comp errorCheckOut:::p::p}, seq l {comp checkoutLabel2:::p:96:p, space s:::p, par l {comp panel1:::p::p, comp button1:::p:80:p}}}}, comp label1:::p::p}, space ::56:x, comp panel2:::p::p, space :::p, comp panel3:::p::p, space :::p}}"
+			"$verticalGroup": "par l {seq l {space :p:24:p, par l {seq {comp label1:::p:36:p, space :p:36:p, par b {comp cityLabel::b:p:24:p, comp cityChooser::b:p:24:p}, space s:::p, par t {seq {par t {par l {comp checkinLabel:::p:24:p, comp checkin:::p:24:p}, comp errorCheckIn:::p::p}, space :::p, par l {comp checkoutLabel:::p:24:p, comp checkout:::p:24:p}}, comp errorCheckOut:::p::p}, space s:::p, par l {comp checkoutLabel2:::p:24:p, comp panel1:::p::p}, space s:::p, comp button1:::p:30:p}, par t:l::p {comp panel2::l:::x, comp panel3::l:::x}}, space ::19:x}}"
+		} ) {
+			name: "this"
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "cityLabel"
+				"text": "Select City          :"
+				auxiliary() {
+					"JavaCodeGenerator.variableName": "cityLabel"
+				}
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "checkinLabel"
+				"text": "Checkin Date     :"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "checkin"
+				"icon": new com.jformdesigner.model.SwingIcon( 0, "/bits/oops/project/calendar_icon.png" )
+				"border": &EtchedBorder0 new javax.swing.border.EtchedBorder( 1, null, null )
+				addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "datecheckin", true ) )
+			} )
+			add( new FormComponent( "javax.swing.JComboBox" ) {
+				name: "cityChooser"
+				"editable": true
+				"model": new javax.swing.DefaultComboBoxModel {
+					selectedItem: "Hyderabad"
+					addElement( "Hyderabad" )
+					addElement( "Mumbai" )
+					addElement( "Delhi" )
+					addElement( "Kolkata" )
+					addElement( "Bangalore" )
+				}
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "checkoutLabel"
+				"text": "Checkout Date   :"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label1"
+				"text": "  Hotel Booking Portal"
+				"font": new java.awt.Font( "Swis721 BlkOul BT", 0, 20 )
+				"icon": new com.jformdesigner.model.SwingIcon( 0, "/bits/oops/project/hotel_icon.png" )
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "checkoutLabel2"
+				"text": "Guests                 :"
+			} )
+			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+				"$horizontalGroup": "par l {seq {par l {seq {comp label2:::p:60:p, space :::p, comp comboBox1:::p:40:p, space :::p, comp label4:::p::p, space :0:0:x}, seq l {comp label3:::p:60:p, space :::p, comp comboBox2:::p:40:p, space :::x, comp label5:::p::p}}, space :::x}}"
+				"$verticalGroup": "par l {seq l {space :0:0:p, par l {comp comboBox1:::p:25:p, comp label2:::p:25:p, comp label4::t:p:25:p}, space :::p, par t {par b {comp label3::b:p:25:p, comp comboBox2::b:p:25:p}, comp label5:::p:25:p}, space ::12:x}}"
+			} ) {
+				name: "panel1"
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label2"
+					"text": "Adults"
+				} )
+				add( new FormComponent( "javax.swing.JComboBox" ) {
+					name: "comboBox1"
+					"model": &DefaultComboBoxModel0 new javax.swing.DefaultComboBoxModel {
+						selectedItem: "1"
+						addElement( "1" )
+						addElement( "2" )
+						addElement( "3" )
+						addElement( "4" )
+					}
+					"editable": true
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label3"
+					"text": "Child(<18)"
+				} )
+				add( new FormComponent( "javax.swing.JComboBox" ) {
+					name: "comboBox2"
+					"model": #DefaultComboBoxModel0
+					"editable": true
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label4"
+					"icon": new com.jformdesigner.model.SwingIcon( 1, "C:\\Users\\pratd\\IdeaProjects\\HotelBookingPortal\\src\\bits\\oops\\project\\adult_icon.png" )
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label5"
+					"icon": new com.jformdesigner.model.SwingIcon( 1, "C:\\Users\\pratd\\IdeaProjects\\HotelBookingPortal\\src\\bits\\oops\\project\\child_icon.png" )
+				} )
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "checkout"
+				"icon": new com.jformdesigner.model.SwingIcon( 0, "/bits/oops/project/calendar_icon.png" )
+				"border": #EtchedBorder0
+				addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "datecheckout", true ) )
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "button1"
+				"text": "SEARCH"
+				"border": #EtchedBorder0
+				"background": new java.awt.Color( 102, 102, 255, 255 )
+				"font": new java.awt.Font( "Segoe UI Semilight", 1, 12 )
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "submit", true ) )
+			} )
+			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+				"$horizontalGroup": "par l {seq {space :::p, par l {seq l {comp label6:::p::p, space :0:0:x}, comp userName::l::119:x, seq t {space :0:42:x, comp button3:::p::p}}, space :::p}}"
+				"$verticalGroup": "par l {seq l {space :::p, comp label6:::p::p, space :::p, comp userName:::p:28:p, space ::34:x, comp button3:::p::p, space :::p}}"
+			} ) {
+				name: "panel2"
+				"border": &LineBorder0 new javax.swing.border.LineBorder( sfield java.awt.Color black, 1, false )
+				auxiliary() {
+					"JavaCodeGenerator.variableName": "loggedInPanel"
+				}
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label6"
+					"text": "Welcome,"
+					"font": new java.awt.Font( "Segoe UI", 1, 12 )
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "userName"
+					"text": "<html>Prateek Agarwal</html>"
+					"font": new java.awt.Font( "Segoe UI", 1, 12 )
+				} )
+				add( new FormComponent( "javax.swing.JButton" ) {
+					name: "button3"
+					"text": "LOGOUT"
+				} )
+			} )
+			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+				"$horizontalGroup": "par l {seq l {space :::p, comp label7:::p:141:p, space :::x}, seq t {space :::x, comp button2:::p::p, space :::p}}"
+				"$verticalGroup": "par l {seq l {space :::p, comp label7:::p::p, space ::52:x, comp button2:::p::p, space :::p}}"
+			} ) {
+				name: "panel3"
+				"border": #LineBorder0
+				auxiliary() {
+					"JavaCodeGenerator.variableName": "loggedOutPanel"
+				}
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label7"
+					"text": "<html>Kindly LOGIN in order to gain access to the portal!</html>"
+					"font": new java.awt.Font( "Segoe UI", 1, 12 )
+				} )
+				add( new FormComponent( "javax.swing.JButton" ) {
+					name: "button2"
+					"text": "LOGIN"
+				} )
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "errorCheckIn"
+				"icon": &SwingIcon0 new com.jformdesigner.model.SwingIcon( 2, "TextField.darcula.clear.icon" )
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "errorCheckOut"
+				"icon": #SwingIcon0
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 15, 0 )
+			"size": new java.awt.Dimension( 650, 345 )
+		} )
+	}
+}
