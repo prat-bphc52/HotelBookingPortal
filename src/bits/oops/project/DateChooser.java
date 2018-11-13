@@ -38,14 +38,33 @@ public class DateChooser extends JDialog {
         }
         daysButtons = new JButton[35];
         for(int i=0;i<35;i++) {
+            final int x=i;
             daysButtons[i] = new JButton();
             daysButtons[i].setPreferredSize(new Dimension(30,30));
             daysButtons[i].setBorder(null);
             daysGrid.add(daysButtons[i], new GridBagConstraints(i%7, i/7+1, 1, 1, 0.0, 0.0,
                     GridBagConstraints.CENTER, GridBagConstraints.NONE,
                     new Insets(5, 0, 0, 5), 0, 0));
+            daysButtons[i].addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    dateOnClick(x);
+                }
+            });
         }
         setupdays();
+    }
+    private void dateOnClick(int pos){
+        int m = month.getSelectedIndex();
+        Calendar cal = Calendar.getInstance();
+        cal.set(Integer.parseInt((String)year.getSelectedItem()),m,1);
+        int start = cal.get(Calendar.DAY_OF_WEEK) - 1;
+        if(last!=null)
+            last.setBorder(null);
+        last = daysButtons[pos];
+        daysButtons[pos].setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
+        date = ((pos-start+1)<10?"0"+(pos-start+1):(pos-start+1))+"/"+(((m+1)<10)?"0"+(m+1):(m+1))+"/"+((String) year.getSelectedItem()).substring(2);
+        System.out.print("\n Clicked "+date);
     }
 
     private void setupdays(){
@@ -74,23 +93,11 @@ public class DateChooser extends JDialog {
         }
         for(int x=0;x<35;x++) {
             final int i = x;
-            if (i < start || i > end){
-                daysButtons[i].setVisible(false);
-                daysButtons[i].addActionListener(null);
-            }
+            daysButtons[i].removeAll();
+            if (i < start || i > end) daysButtons[i].setVisible(false);
             else {
                 daysButtons[i].setVisible(true);
                 daysButtons[i].setText("" + (i - start + 1));
-                daysButtons[i].addActionListener(new ActionListener() {
-                    @Override
-                    public void actionPerformed(ActionEvent e) {
-                        if(last!=null)
-                            last.setBorder(null);
-                        last = daysButtons[i];
-                        daysButtons[i].setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
-                        date = ((i-start+1)<10?"0"+(i-start+1):(i-start+1))+"/"+(((m+1)<10)?"0"+(m+1):(m+1))+"/"+((String) year.getSelectedItem()).substring(2);
-                    }
-                });
             }
         }
     }

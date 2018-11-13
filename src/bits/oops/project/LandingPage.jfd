@@ -4,8 +4,8 @@ new FormModel {
 	contentType: "form/swing"
 	root: new FormRoot {
 		add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-			"$horizontalGroup": "par l {seq {space :p:16:p, par l {seq l {space :p:10:p, par t {seq l {comp cityLabel:::p:96:p, space :p:16:p, comp cityChooser:::p:125:p}, seq l {comp checkinLabel:::p:96:p, space :p:16:p, comp checkin:::p:125:p, space :::p, comp errorCheckIn:::p::p}, seq l {comp checkoutLabel:::p:96:p, space :p:16:p, comp checkout:::p:125:p, space :::p, comp errorCheckOut:::p::p}, seq l {comp checkoutLabel2:::p:96:p, space s:::p, par l {comp panel1:::p::p, comp button1:::p:80:p}}}}, comp label1:::p::p}, space ::56:x, comp panel2:::p::p, space :::p, comp panel3:::p::p, space :::p}}"
-			"$verticalGroup": "par l {seq l {space :p:24:p, par l {seq {comp label1:::p:36:p, space :p:36:p, par b {comp cityLabel::b:p:24:p, comp cityChooser::b:p:24:p}, space s:::p, par t {seq {par t {par l {comp checkinLabel:::p:24:p, comp checkin:::p:24:p}, comp errorCheckIn:::p::p}, space :::p, par l {comp checkoutLabel:::p:24:p, comp checkout:::p:24:p}}, comp errorCheckOut:::p::p}, space s:::p, par l {comp checkoutLabel2:::p:24:p, comp panel1:::p::p}, space s:::p, comp button1:::p:30:p}, par t:l::p {comp panel2::l:::x, comp panel3::l:::x}}, space ::19:x}}"
+			"$horizontalGroup": "par l {seq {space :p:16:p, par l {seq l {space :p:10:p, par t {seq l {comp cityLabel:::p:96:p, space :p:16:p, comp cityChooser:::p:125:p}, seq l {comp checkinLabel:::p:96:p, space :p:16:p, comp checkin:::p:125:p, space :::p, comp errorCheckIn:::p:124:p}, seq l {comp checkoutLabel:::p:96:p, space :p:16:p, comp checkout:::p:125:p, space :::p, comp errorCheckOut:::p:124:p}, seq l {comp guestsLabel:::p:96:p, space s:::p, par l {comp panel1:::p::p, comp button1:::p:80:p}}}}, comp label1:::p::p}, space :::x, comp panel2:::p::p, space :::p, comp panel3:::p::p, space :::p}}"
+			"$verticalGroup": "par l {seq l {space :p:24:p, par l {seq {comp label1:::p:36:p, space :p:36:p, par b {comp cityLabel::b:p:24:p, comp cityChooser::b:p:24:p}, space s:::p, par l {comp checkinLabel:::p:24:p, comp checkin:::p:24:p, comp errorCheckIn::l:p::p}, space :::p, par l {seq {par l {comp checkoutLabel:::p:24:p, comp checkout:::p:24:p}, space s:::p, par l {comp guestsLabel:::p:24:p, comp panel1:::p::p}, space s:::p, comp button1:::p:30:p}, comp errorCheckOut:::p::p}}, par t:l::p {comp panel2::l:::x, comp panel3::l:::x}}, space ::19:x}}"
 		} ) {
 			name: "this"
 			add( new FormComponent( "javax.swing.JLabel" ) {
@@ -48,7 +48,7 @@ new FormModel {
 				"icon": new com.jformdesigner.model.SwingIcon( 0, "/bits/oops/project/hotel_icon.png" )
 			} )
 			add( new FormComponent( "javax.swing.JLabel" ) {
-				name: "checkoutLabel2"
+				name: "guestsLabel"
 				"text": "Guests                 :"
 			} )
 			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
@@ -62,7 +62,7 @@ new FormModel {
 				} )
 				add( new FormComponent( "javax.swing.JComboBox" ) {
 					name: "comboBox1"
-					"model": &DefaultComboBoxModel0 new javax.swing.DefaultComboBoxModel {
+					"model": new javax.swing.DefaultComboBoxModel {
 						selectedItem: "1"
 						addElement( "1" )
 						addElement( "2" )
@@ -77,7 +77,14 @@ new FormModel {
 				} )
 				add( new FormComponent( "javax.swing.JComboBox" ) {
 					name: "comboBox2"
-					"model": #DefaultComboBoxModel0
+					"model": new javax.swing.DefaultComboBoxModel {
+						selectedItem: "0"
+						addElement( "0" )
+						addElement( "1" )
+						addElement( "2" )
+						addElement( "3" )
+						addElement( "4" )
+					}
 					"editable": true
 				} )
 				add( new FormComponent( "javax.swing.JLabel" ) {
@@ -149,6 +156,7 @@ new FormModel {
 			add( new FormComponent( "javax.swing.JLabel" ) {
 				name: "errorCheckIn"
 				"icon": &SwingIcon0 new com.jformdesigner.model.SwingIcon( 2, "TextField.darcula.clear.icon" )
+				"text": "Date cannot be ahead of current date"
 			} )
 			add( new FormComponent( "javax.swing.JLabel" ) {
 				name: "errorCheckOut"
