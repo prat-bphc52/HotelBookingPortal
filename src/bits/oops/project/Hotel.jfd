@@ -1,0 +1,57 @@
+JFDML JFormDesigner: "6.0.4.1.172" Java: "1.8.0_152-release" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+			"$horizontalGroup": "par l {seq t {par t {seq t {space :::p, comp label5:::::p, space :0:0:x}, seq {space :p:6:p, par l {comp label10::::514:x, seq l {par l:::p {comp label9::::259:x, comp label8::::259:x}, space :::p, par l {comp label6:::::x, seq {par l {comp label4:::p:73:p, comp label3:::p:73:p}, space :0:176:x}, comp label11::l::249:x}}}}}, space :::p, comp label2:::p::p, space :p:66:p}}"
+			"$verticalGroup": "par l {seq l {par l {seq t {space :::p, comp label5:::p:51:p, space u:::p}, seq l {space :p:15:p, comp label2:::p::p, space :p:43:p}}, par l {seq {comp label3:::p:25:p, space :p:4:p, comp label6::::20:x, space :p:10:p, comp label4:::p:25:p, space :::p, comp label11:::p:34:p, space :p:10:p}, comp label8::::134:x}, space u:::p, comp label9:::p:28:p, space :::p, comp label10:::p:52:p, space ::100:x}}"
+		} ) {
+			name: "this"
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label2"
+				"text": "REVIEWS : 4.5/5"
+				"font": new java.awt.Font( "Open Sans", 0, 14 )
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label3"
+				"text": "Location"
+				"font": new com.jformdesigner.model.SwingDerivedFont( null, 0, 2, false )
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label4"
+				"text": "Amenities"
+				"font": new com.jformdesigner.model.SwingDerivedFont( null, 0, 2, false )
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label5"
+				"text": "#hotelName (temp)"
+				"font": new java.awt.Font( "PlainBlackWide", 0, 20 )
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label6"
+				"text": "#yahan location aayega (temp)"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label8"
+				"text": "photo if possible"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label9"
+				"text": "Description"
+				"font": new com.jformdesigner.model.SwingDerivedFont( null, 0, 2, false )
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label10"
+				"text": "#yahan description aayega"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label11"
+				"text": "text"
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 10, 10 )
+			"size": new java.awt.Dimension( 695, 410 )
+		} )
+	}
+}
