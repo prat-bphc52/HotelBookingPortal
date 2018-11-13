@@ -4,24 +4,24 @@ new FormModel {
 	contentType: "form/swing"
 	root: new FormRoot {
 		add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-			"$horizontalGroup": "par l {seq t {par t {seq t {space :::p, comp label5:::::p, space :0:0:x}, seq {space :p:6:p, par l {comp label10::::514:x, seq l {par l:::p {comp label9::::259:x, comp label8::::259:x}, space :::p, par l {comp label6:::::x, seq {par l {comp label4:::p:73:p, comp label3:::p:73:p}, space :0:176:x}, comp label11::l::249:x}}}}}, space :::p, comp label2:::p::p, space :p:66:p}}"
-			"$verticalGroup": "par l {seq l {par l {seq t {space :::p, comp label5:::p:51:p, space u:::p}, seq l {space :p:15:p, comp label2:::p::p, space :p:43:p}}, par l {seq {comp label3:::p:25:p, space :p:4:p, comp label6::::20:x, space :p:10:p, comp label4:::p:25:p, space :::p, comp label11:::p:34:p, space :p:10:p}, comp label8::::134:x}, space u:::p, comp label9:::p:28:p, space :::p, comp label10:::p:52:p, space ::100:x}}"
+			"$horizontalGroup": "par l {seq {space :::p, par l {seq t {space :p:6:p, comp label8:::p:259:p, space :::p, par l {comp label6:::::x, seq {par l {comp label4:::p:73:p, comp label3:::p:73:p}, space :0:118:x}, comp label11::l::191:x}}, comp label10::l::462:x, seq {par l {comp label5::l:::p, comp label9::l:p:259:p}, space :0:203:x}}, space :::p, par l {comp label2:::p::p, comp label1::l:p::p, comp label7::l:p::p, comp label13::l:p::p, comp label12::l:p::p, comp label14::l:p::p, comp scrollPane1:::p:215:p}, space :::p}}"
+			"$verticalGroup": "par l {seq l {space :p:15:p, par t {comp label5:::p:51:p, comp label2:::p::p}, space u:::p, par l {seq {comp label8::::57:x, space :p:140:p}, seq l {par l {comp label3:::p:25:p, comp label1::l:p:27:p}, space :::p, par b {comp label6::b::31:x, comp label7::b:p:27:p}, space :::p, par b {comp label4::b:p:25:p, comp label12::b:p:27:p}, space :::p, par b {comp label11::b:p:34:p, comp label13::b:p:27:p}, space :::p, comp label14:::p:27:p, space :p:27:p}}, par l {seq {comp label9:::p:28:p, space ::19:x, comp label10:::p:76:p, space :::x}, seq {comp scrollPane1:::p:123:p, space ::12:x}}}}"
 		} ) {
 			name: "this"
 			add( new FormComponent( "javax.swing.JLabel" ) {
 				name: "label2"
 				"text": "REVIEWS : 4.5/5"
-				"font": new java.awt.Font( "Open Sans", 0, 14 )
+				"font": new java.awt.Font( "Open Sans", 1, 19 )
 			} )
 			add( new FormComponent( "javax.swing.JLabel" ) {
 				name: "label3"
 				"text": "Location"
-				"font": new com.jformdesigner.model.SwingDerivedFont( null, 0, 2, false )
+				"font": new com.jformdesigner.model.SwingDerivedFont( null, 1, 2, false )
 			} )
 			add( new FormComponent( "javax.swing.JLabel" ) {
 				name: "label4"
 				"text": "Amenities"
-				"font": new com.jformdesigner.model.SwingDerivedFont( null, 0, 2, false )
+				"font": new com.jformdesigner.model.SwingDerivedFont( null, 1, 2, false )
 			} )
 			add( new FormComponent( "javax.swing.JLabel" ) {
 				name: "label5"
@@ -39,7 +39,7 @@ new FormModel {
 			add( new FormComponent( "javax.swing.JLabel" ) {
 				name: "label9"
 				"text": "Description"
-				"font": new com.jformdesigner.model.SwingDerivedFont( null, 0, 2, false )
+				"font": new com.jformdesigner.model.SwingDerivedFont( null, 1, 2, false )
 			} )
 			add( new FormComponent( "javax.swing.JLabel" ) {
 				name: "label10"
@@ -49,8 +49,41 @@ new FormModel {
 				name: "label11"
 				"text": "text"
 			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label1"
+				"text": "5 -> 50%"
+				"font": new com.jformdesigner.model.SwingDerivedFont( null, 0, 3, false )
+				"icon": new com.jformdesigner.model.SwingIcon( 0, "bits/oops/project/star_icon.png" )
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label7"
+				"text": "4 -> 50%"
+				"icon": new com.jformdesigner.model.SwingIcon( 1, "/home/euge/Downloads/star_icon.png" )
+				"font": new com.jformdesigner.model.SwingDerivedFont( null, 0, 3, false )
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label12"
+				"text": "3 -> 0%"
+				"icon": new com.jformdesigner.model.SwingIcon( 1, "/home/euge/Downloads/star_icon.png" )
+				"font": new com.jformdesigner.model.SwingDerivedFont( null, 0, 3, false )
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label13"
+				"text": "2 -> 0%"
+				"icon": new com.jformdesigner.model.SwingIcon( 1, "/home/euge/Downloads/star_icon.png" )
+				"font": new com.jformdesigner.model.SwingDerivedFont( null, 0, 3, false )
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label14"
+				"text": "1 -> 0%"
+				"icon": new com.jformdesigner.model.SwingIcon( 1, "/home/euge/Downloads/star_icon.png" )
+				"font": new com.jformdesigner.model.SwingDerivedFont( null, 0, 3, false )
+			} )
+			add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+				name: "scrollPane1"
+			} )
 		}, new FormLayoutConstraints( null ) {
-			"location": new java.awt.Point( 10, 10 )
+			"location": new java.awt.Point( 0, 0 )
 			"size": new java.awt.Dimension( 695, 410 )
 		} )
 	}
