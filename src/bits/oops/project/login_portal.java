@@ -5,9 +5,16 @@
 package bits.oops.project;
 
 import java.awt.*;
+import java.awt.event.*;
+import java.beans.*;
 import javax.swing.*;
 import javax.swing.GroupLayout;
+import javax.swing.plaf.basic.BasicBorders;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 /*import com.jgoodies.forms.factories.*;
+import com.jgoodies.forms.factories.*;
+import com.jgoodies.forms.factories.*;
 import javax.swing.border.*;
 import com.jgoodies.forms.factories.*;
 import info.clearthought.layout.*;
@@ -20,6 +27,91 @@ public class login_portal extends JPanel {
     public login_portal() {
         initComponents();
     }
+
+    private void RegisterActionPerformed(ActionEvent e) {
+        // TODO add your code here
+         boolean flag=false;
+        if(nametext.getText().equals("")) {
+                flag=true;
+                nameerror.setVisible(true);
+            }
+        else nameerror.setVisible(false);
+        if(emailidtext.getText().equals("")) {
+            flag=true;
+            emailerror.setVisible(true);
+            emailidtextActionPerformed(emailidtext);
+        }
+        else emailerror.setVisible(false);
+        if(usernametext.getText().equals("")) {
+            flag=true;
+            usernameerror.setVisible(true);
+        }
+        else usernameerror.setVisible(false);
+        if(passwordField1.getText().equals("")) {
+            flag=true;
+            passworderror.setVisible(true);
+            passwordtextActionPerformed(passwordField1);
+        }
+        else passworderror.setVisible(false);
+        if(contacttext.getText().equals("")) {
+            flag=true;
+            contacterror.setVisible(true);
+        }
+        else contacterror.setVisible(false);
+
+        if(flag)
+            return;
+        //call Rashi's function
+
+    }
+
+
+    private boolean emailidtextActionPerformed(JFormattedTextField emailidtext) {
+
+        // TODO add your code here
+        String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\."+
+                "[a-zA-Z0-9_+&*-]+)*@" +
+                "(?:[a-zA-Z0-9-]+\\.)+[a-z" +
+                "A-Z]{2,7}$";
+
+        Pattern p = Pattern.compile(emailRegex);
+        if (emailidtext == null) {
+            emailerror.setVisible(true);
+            return false;
+        }
+
+        return p.matcher(emailidtext.getText()).matches();
+    }
+
+    private boolean passwordtextActionPerformed(JPasswordField passwordField1) {
+        // TODO add your code here
+        String pattern = "(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{8,}";
+        /*(?=.*[0-9]) a digit must occur at least once
+(?=.*[a-z]) a lower case letter must occur at least once
+(?=.*[A-Z]) an upper case letter must occur at least once
+(?=.*[@#$%^&+=]) a special character must occur at least once
+(?=\\S+$) no whitespace allowed in the entire string
+.{8,} at least 8 character*/
+        Pattern pat= Pattern.compile(pattern);
+        if (passwordField1 == null) {
+            passworderror.setVisible(true);
+            return false;
+        }
+
+        return pat.matcher(passwordField1.getText()).matches();
+    }
+
+    private void emailidtextActionPerformed(ActionEvent e) {
+        // TODO add your code here
+    }
+
+
+
+
+
+
+
+
 
 
 
@@ -40,10 +132,15 @@ public class login_portal extends JPanel {
         Address = new JLabel();
         addresstext = new JFormattedTextField();
         Register = new JButton();
+        nameerror = new JLabel();
+        emailerror = new JLabel();
+        usernameerror = new JLabel();
+        passworderror = new JLabel();
+        contacterror = new JLabel();
 
         //======== this ========
         setBackground(Color.white);
-        setBorder(Borders.DLU21);
+        setBorder(null);
         setForeground(Color.black);
 
         // JFormDesigner evaluation mark
@@ -95,6 +192,7 @@ public class login_portal extends JPanel {
         //---- emailidtext ----
         emailidtext.setBackground(Color.white);
         emailidtext.setForeground(Color.black);
+        emailidtext.addActionListener(e -> emailidtextActionPerformed(e));
 
         //---- usernametext ----
         usernametext.setBackground(Color.white);
@@ -130,6 +228,43 @@ public class login_portal extends JPanel {
         Register.setBackground(new Color(0, 51, 102));
         Register.setFont(Register.getFont().deriveFont(Register.getFont().getStyle() | Font.BOLD, Register.getFont().getSize() + 2f));
         Register.setForeground(Color.white);
+        Register.addActionListener(e -> {
+			RegisterActionPerformed(e);
+			RegisterActionPerformed(e);
+		});
+
+        //---- nameerror ----
+        nameerror.setText("Please enter name");
+        nameerror.setBackground(Color.white);
+        nameerror.setForeground(Color.red);
+        nameerror.setFont(nameerror.getFont().deriveFont(nameerror.getFont().getStyle() | Font.BOLD, nameerror.getFont().getSize() + 1f));
+        nameerror.setIcon(new ImageIcon("C:\\Users\\shreya\\HotelBookingPortal\\src\\bits\\oops\\project\\error.png"));
+
+        //---- emailerror ----
+        emailerror.setText("Please enter valid E-mail address.");
+        emailerror.setFont(emailerror.getFont().deriveFont(emailerror.getFont().getStyle() | Font.BOLD, emailerror.getFont().getSize() + 1f));
+        emailerror.setForeground(Color.red);
+        emailerror.setIcon(new ImageIcon("C:\\Users\\shreya\\HotelBookingPortal\\src\\bits\\oops\\project\\error.png"));
+
+        //---- usernameerror ----
+        usernameerror.setText("Please enter username.");
+        usernameerror.setFont(usernameerror.getFont().deriveFont(usernameerror.getFont().getStyle() | Font.BOLD, usernameerror.getFont().getSize() + 1f));
+        usernameerror.setBackground(Color.white);
+        usernameerror.setForeground(Color.red);
+        usernameerror.setIcon(new ImageIcon("C:\\Users\\shreya\\HotelBookingPortal\\src\\bits\\oops\\project\\error.png"));
+
+        //---- passworderror ----
+        passworderror.setText("Please enter valid password");
+        passworderror.setIcon(new ImageIcon("C:\\Users\\shreya\\HotelBookingPortal\\src\\bits\\oops\\project\\error.png"));
+        passworderror.setForeground(Color.red);
+        passworderror.setFont(passworderror.getFont().deriveFont(passworderror.getFont().getStyle() | Font.BOLD, passworderror.getFont().getSize() + 1f));
+
+        //---- contacterror ----
+        contacterror.setText("Please enter valid contact number.");
+        contacterror.setBackground(Color.blue);
+        contacterror.setForeground(Color.red);
+        contacterror.setIcon(new ImageIcon("C:\\Users\\shreya\\HotelBookingPortal\\src\\bits\\oops\\project\\error.png"));
+        contacterror.setFont(contacterror.getFont().deriveFont(contacterror.getFont().getStyle() | Font.BOLD, contacterror.getFont().getSize() + 1f));
 
         GroupLayout layout = new GroupLayout(this);
         setLayout(layout);
@@ -137,6 +272,11 @@ public class login_portal extends JPanel {
             layout.createParallelGroup()
                 .addGroup(layout.createSequentialGroup()
                     .addGroup(layout.createParallelGroup()
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(31, 31, 31)
+                            .addComponent(Name, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(nametext, GroupLayout.PREFERRED_SIZE, 242, GroupLayout.PREFERRED_SIZE))
                         .addGroup(layout.createSequentialGroup()
                             .addGroup(layout.createParallelGroup()
                                 .addGroup(layout.createSequentialGroup()
@@ -159,13 +299,18 @@ public class login_portal extends JPanel {
                                 .addComponent(addresstext, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 250, GroupLayout.PREFERRED_SIZE)))
                         .addGroup(layout.createSequentialGroup()
                             .addGap(37, 37, 37)
-                            .addComponent(RegistrationPortal, GroupLayout.PREFERRED_SIZE, 286, GroupLayout.PREFERRED_SIZE))
+                            .addComponent(RegistrationPortal, GroupLayout.PREFERRED_SIZE, 286, GroupLayout.PREFERRED_SIZE)))
+                    .addGap(44, 44, 44)
+                    .addGroup(layout.createParallelGroup()
+                        .addComponent(nameerror, GroupLayout.DEFAULT_SIZE, 141, Short.MAX_VALUE)
+                        .addComponent(emailerror, GroupLayout.DEFAULT_SIZE, 141, Short.MAX_VALUE)
+                        .addComponent(usernameerror, GroupLayout.DEFAULT_SIZE, 141, Short.MAX_VALUE)
                         .addGroup(layout.createSequentialGroup()
-                            .addGap(31, 31, 31)
-                            .addComponent(Name, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(nametext, GroupLayout.PREFERRED_SIZE, 242, GroupLayout.PREFERRED_SIZE)))
-                    .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(passworderror, GroupLayout.PREFERRED_SIZE, 141, GroupLayout.PREFERRED_SIZE)
+                            .addGap(0, 0, Short.MAX_VALUE))
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(contacterror, GroupLayout.DEFAULT_SIZE, 135, Short.MAX_VALUE)
+                            .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup()
@@ -175,23 +320,29 @@ public class login_portal extends JPanel {
                     .addGap(19, 19, 19)
                     .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                         .addComponent(nametext, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                        .addComponent(Name, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE))
+                        .addComponent(Name, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE)
+                        .addComponent(nameerror))
                     .addGap(15, 15, 15)
                     .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                         .addComponent(emailidtext, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                        .addComponent(Email, GroupLayout.PREFERRED_SIZE, 28, GroupLayout.PREFERRED_SIZE))
+                        .addComponent(Email, GroupLayout.PREFERRED_SIZE, 28, GroupLayout.PREFERRED_SIZE)
+                        .addComponent(emailerror))
                     .addGap(14, 14, 14)
                     .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                         .addComponent(Username, GroupLayout.PREFERRED_SIZE, 28, GroupLayout.PREFERRED_SIZE)
-                        .addComponent(usernametext, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                        .addComponent(usernametext, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                        .addComponent(usernameerror))
                     .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
                     .addGroup(layout.createParallelGroup()
                         .addComponent(Password, GroupLayout.PREFERRED_SIZE, 28, GroupLayout.PREFERRED_SIZE)
-                        .addComponent(passwordField1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                            .addComponent(passwordField1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                            .addComponent(passworderror)))
                     .addGap(18, 18, 18)
                     .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                         .addComponent(Contact, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE)
-                        .addComponent(contacttext, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                        .addComponent(contacttext, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                        .addComponent(contacterror))
                     .addGap(18, 18, 18)
                     .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                         .addComponent(Address, GroupLayout.PREFERRED_SIZE, 26, GroupLayout.PREFERRED_SIZE)
@@ -218,11 +369,11 @@ public class login_portal extends JPanel {
     private JLabel Address;
     private JFormattedTextField addresstext;
     private JButton Register;
-
-    //public void check(){
-
-    //    if(nametext.)
- //   }
+    private JLabel nameerror;
+    private JLabel emailerror;
+    private JLabel usernameerror;
+    private JLabel passworderror;
+    private JLabel contacterror;
     // JFormDesigner - End of variables declaration  //GEN-END:variables
 
   //  public static void main(String[] args) {
