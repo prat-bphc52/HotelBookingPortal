@@ -17,21 +17,21 @@ public class Hotel extends JPanel {
 
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
-        // Generated using JFormDesigner Evaluation license - Utkarsh grover
-        label2 = new JLabel();
-        label3 = new JLabel();
-        label4 = new JLabel();
-        label5 = new JLabel();
-        label6 = new JLabel();
-        label8 = new JLabel();
-        label9 = new JLabel();
-        label10 = new JLabel();
-        label11 = new JLabel();
-        label1 = new JLabel();
-        label7 = new JLabel();
-        label12 = new JLabel();
-        label13 = new JLabel();
-        label14 = new JLabel();
+        // Generated using JFormDesigner Evaluation license - Prateek Agarwal
+        rating_label = new JLabel();
+        location_label = new JLabel();
+        amenities_label = new JLabel();
+        hotel_name = new JLabel();
+        location_field = new JLabel();
+        hotel_img = new JLabel();
+        desc_label = new JLabel();
+        desc_field = new JLabel();
+        amenities_field = new JLabel();
+        rating5 = new JLabel();
+        rating4 = new JLabel();
+        rating3 = new JLabel();
+        rating2 = new JLabel();
+        rating1 = new JLabel();
         scrollPane1 = new JScrollPane();
 
         //======== this ========
@@ -44,62 +44,62 @@ public class Hotel extends JPanel {
                 java.awt.Color.red), getBorder())); addPropertyChangeListener(new java.beans.PropertyChangeListener(){public void propertyChange(java.beans.PropertyChangeEvent e){if("border".equals(e.getPropertyName()))throw new RuntimeException();}});
 
 
-        //---- label2 ----
-        label2.setText("REVIEWS : 4.5/5");
-        label2.setFont(new Font("Open Sans", Font.BOLD, 19));
+        //---- rating_label ----
+        rating_label.setText("Rating : 5.0 / 5.0");
+        rating_label.setFont(new Font("Open Sans", Font.BOLD, 19));
 
-        //---- label3 ----
-        label3.setText("Location");
-        label3.setFont(label3.getFont().deriveFont(label3.getFont().getStyle() | Font.BOLD, label3.getFont().getSize() + 2f));
+        //---- location_label ----
+        location_label.setText("Location");
+        location_label.setFont(location_label.getFont().deriveFont(location_label.getFont().getStyle() | Font.BOLD, location_label.getFont().getSize() + 2f));
 
-        //---- label4 ----
-        label4.setText("Amenities");
-        label4.setFont(label4.getFont().deriveFont(label4.getFont().getStyle() | Font.BOLD, label4.getFont().getSize() + 2f));
+        //---- amenities_label ----
+        amenities_label.setText("Amenities");
+        amenities_label.setFont(amenities_label.getFont().deriveFont(amenities_label.getFont().getStyle() | Font.BOLD, amenities_label.getFont().getSize() + 2f));
 
-        //---- label5 ----
-        label5.setText("#hotelName (temp)");
-        label5.setFont(new Font("PlainBlackWide", Font.PLAIN, 20));
+        //---- hotel_name ----
+        hotel_name.setText("Taj Mahal Mumbai");
+        hotel_name.setFont(new Font("PlainBlackWide", Font.PLAIN, 20));
 
-        //---- label6 ----
-        label6.setText("#yahan location aayega (temp)");
+        //---- location_field ----
+        location_field.setText("Mumbai");
 
-        //---- label8 ----
-        label8.setText("photo if possible");
+        //---- hotel_img ----
+        hotel_img.setText("Image");
 
-        //---- label9 ----
-        label9.setText("Description");
-        label9.setFont(label9.getFont().deriveFont(label9.getFont().getStyle() | Font.BOLD, label9.getFont().getSize() + 2f));
+        //---- desc_label ----
+        desc_label.setText("Description");
+        desc_label.setFont(desc_label.getFont().deriveFont(desc_label.getFont().getStyle() | Font.BOLD, desc_label.getFont().getSize() + 2f));
 
-        //---- label10 ----
-        label10.setText("#yahan description aayega");
+        //---- desc_field ----
+        desc_field.setText("Luxurious Hotel in Mumbai");
 
-        //---- label11 ----
-        label11.setText("text");
+        //---- amenities_field ----
+        amenities_field.setText("GYM, Swimming Pool, Valet Parking, ....");
 
-        //---- label1 ----
-        label1.setText("5 -> 50%");
-        label1.setFont(label1.getFont().deriveFont(label1.getFont().getSize() + 3f));
-        label1.setIcon(new ImageIcon(getClass().getResource("bits/oops/project/star_icon.png")));
+        //---- rating5 ----
+        rating5.setText("5 -> 50%");
+        rating5.setFont(rating5.getFont().deriveFont(rating5.getFont().getSize() + 3f));
+        rating5.setIcon(new ImageIcon(getClass().getResource("bits/oops/project/star_icon.png")));
 
-        //---- label7 ----
-        label7.setText("4 -> 50%");
-        label7.setIcon(new ImageIcon("/home/euge/Downloads/star_icon.png"));
-        label7.setFont(label7.getFont().deriveFont(label7.getFont().getSize() + 3f));
+        //---- rating4 ----
+        rating4.setText("4 -> 50%");
+        rating4.setIcon(new ImageIcon("/home/euge/Downloads/star_icon.png"));
+        rating4.setFont(rating4.getFont().deriveFont(rating4.getFont().getSize() + 3f));
 
-        //---- label12 ----
-        label12.setText("3 -> 0%");
-        label12.setIcon(new ImageIcon("/home/euge/Downloads/star_icon.png"));
-        label12.setFont(label12.getFont().deriveFont(label12.getFont().getSize() + 3f));
+        //---- rating3 ----
+        rating3.setText("3 -> 0%");
+        rating3.setIcon(new ImageIcon("/home/euge/Downloads/star_icon.png"));
+        rating3.setFont(rating3.getFont().deriveFont(rating3.getFont().getSize() + 3f));
 
-        //---- label13 ----
-        label13.setText("2 -> 0%");
-        label13.setIcon(new ImageIcon("/home/euge/Downloads/star_icon.png"));
-        label13.setFont(label13.getFont().deriveFont(label13.getFont().getSize() + 3f));
+        //---- rating2 ----
+        rating2.setText("2 -> 0%");
+        rating2.setIcon(new ImageIcon("/home/euge/Downloads/star_icon.png"));
+        rating2.setFont(rating2.getFont().deriveFont(rating2.getFont().getSize() + 3f));
 
-        //---- label14 ----
-        label14.setText("1 -> 0%");
-        label14.setIcon(new ImageIcon("/home/euge/Downloads/star_icon.png"));
-        label14.setFont(label14.getFont().deriveFont(label14.getFont().getSize() + 3f));
+        //---- rating1 ----
+        rating1.setText("1 -> 0%");
+        rating1.setIcon(new ImageIcon("/home/euge/Downloads/star_icon.png"));
+        rating1.setFont(rating1.getFont().deriveFont(rating1.getFont().getSize() + 3f));
 
         GroupLayout layout = new GroupLayout(this);
         setLayout(layout);
@@ -110,30 +110,30 @@ public class Hotel extends JPanel {
                     .addGroup(layout.createParallelGroup()
                         .addGroup(GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                             .addGap(6, 6, 6)
-                            .addComponent(label8, GroupLayout.PREFERRED_SIZE, 259, GroupLayout.PREFERRED_SIZE)
+                            .addComponent(hotel_img, GroupLayout.PREFERRED_SIZE, 259, GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                             .addGroup(layout.createParallelGroup()
-                                .addComponent(label6, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(location_field, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(layout.createSequentialGroup()
                                     .addGroup(layout.createParallelGroup()
-                                        .addComponent(label4, GroupLayout.PREFERRED_SIZE, 73, GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(label3, GroupLayout.PREFERRED_SIZE, 73, GroupLayout.PREFERRED_SIZE))
-                                    .addGap(0, 118, Short.MAX_VALUE))
-                                .addComponent(label11, GroupLayout.DEFAULT_SIZE, 191, Short.MAX_VALUE)))
-                        .addComponent(label10, GroupLayout.DEFAULT_SIZE, 462, Short.MAX_VALUE)
+                                        .addComponent(amenities_label, GroupLayout.PREFERRED_SIZE, 73, GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(location_label, GroupLayout.PREFERRED_SIZE, 73, GroupLayout.PREFERRED_SIZE))
+                                    .addGap(0, 0, Short.MAX_VALUE))
+                                .addComponent(amenities_field, GroupLayout.Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                         .addGroup(layout.createSequentialGroup()
                             .addGroup(layout.createParallelGroup()
-                                .addComponent(label5)
-                                .addComponent(label9, GroupLayout.PREFERRED_SIZE, 259, GroupLayout.PREFERRED_SIZE))
-                            .addGap(0, 203, Short.MAX_VALUE)))
+                                .addComponent(hotel_name)
+                                .addComponent(desc_label, GroupLayout.PREFERRED_SIZE, 259, GroupLayout.PREFERRED_SIZE))
+                            .addGap(0, 0, Short.MAX_VALUE))
+                        .addComponent(desc_field, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                     .addGroup(layout.createParallelGroup()
-                        .addComponent(label2)
-                        .addComponent(label1)
-                        .addComponent(label7)
-                        .addComponent(label13)
-                        .addComponent(label12)
-                        .addComponent(label14)
+                        .addComponent(rating_label)
+                        .addComponent(rating5)
+                        .addComponent(rating4)
+                        .addComponent(rating2)
+                        .addComponent(rating3)
+                        .addComponent(rating1)
                         .addComponent(scrollPane1, GroupLayout.PREFERRED_SIZE, 215, GroupLayout.PREFERRED_SIZE))
                     .addContainerGap())
         );
@@ -142,61 +142,59 @@ public class Hotel extends JPanel {
                 .addGroup(layout.createSequentialGroup()
                     .addGap(15, 15, 15)
                     .addGroup(layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
-                        .addComponent(label5, GroupLayout.PREFERRED_SIZE, 51, GroupLayout.PREFERRED_SIZE)
-                        .addComponent(label2))
+                        .addComponent(hotel_name, GroupLayout.PREFERRED_SIZE, 51, GroupLayout.PREFERRED_SIZE)
+                        .addComponent(rating_label))
                     .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
                     .addGroup(layout.createParallelGroup()
                         .addGroup(layout.createSequentialGroup()
-                            .addComponent(label8, GroupLayout.DEFAULT_SIZE, 57, Short.MAX_VALUE)
+                            .addComponent(hotel_img, GroupLayout.DEFAULT_SIZE, 57, Short.MAX_VALUE)
                             .addGap(140, 140, 140))
                         .addGroup(layout.createSequentialGroup()
                             .addGroup(layout.createParallelGroup()
-                                .addComponent(label3, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
-                                .addComponent(label1, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE))
+                                .addComponent(location_label, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
+                                .addComponent(rating5, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE))
                             .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                             .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                .addComponent(label6, GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE)
-                                .addComponent(label7, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE))
+                                .addComponent(location_field, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(rating4, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE))
                             .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                             .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                .addComponent(label4, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
-                                .addComponent(label12, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE))
+                                .addComponent(amenities_label, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
+                                .addComponent(rating3, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE))
                             .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                            .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                .addComponent(label11, GroupLayout.PREFERRED_SIZE, 34, GroupLayout.PREFERRED_SIZE)
-                                .addComponent(label13, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createParallelGroup()
+                                .addComponent(rating2, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE)
+                                .addComponent(amenities_field))
                             .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(label14, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE)
+                            .addComponent(rating1, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE)
                             .addGap(27, 27, 27)))
                     .addGroup(layout.createParallelGroup()
                         .addGroup(layout.createSequentialGroup()
-                            .addComponent(label9, GroupLayout.PREFERRED_SIZE, 28, GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
-                            .addComponent(label10, GroupLayout.PREFERRED_SIZE, 76, GroupLayout.PREFERRED_SIZE)
-                            .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(scrollPane1, GroupLayout.PREFERRED_SIZE, 123, GroupLayout.PREFERRED_SIZE)
-                            .addContainerGap(12, Short.MAX_VALUE))))
+                            .addComponent(desc_label, GroupLayout.PREFERRED_SIZE, 28, GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(desc_field))
+                        .addComponent(scrollPane1, GroupLayout.PREFERRED_SIZE, 123, GroupLayout.PREFERRED_SIZE))
+                    .addContainerGap(12, Short.MAX_VALUE))
         );
         // JFormDesigner - End of component initialization  //GEN-END:initComponents
     }
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
-    // Generated using JFormDesigner Evaluation license - Utkarsh grover
-    private JLabel label2;
-    private JLabel label3;
-    private JLabel label4;
-    private JLabel label5;
-    private JLabel label6;
-    private JLabel label8;
-    private JLabel label9;
-    private JLabel label10;
-    private JLabel label11;
-    private JLabel label1;
-    private JLabel label7;
-    private JLabel label12;
-    private JLabel label13;
-    private JLabel label14;
+    // Generated using JFormDesigner Evaluation license - Prateek Agarwal
+    private JLabel rating_label;
+    private JLabel location_label;
+    private JLabel amenities_label;
+    private JLabel hotel_name;
+    private JLabel location_field;
+    private JLabel hotel_img;
+    private JLabel desc_label;
+    private JLabel desc_field;
+    private JLabel amenities_field;
+    private JLabel rating5;
+    private JLabel rating4;
+    private JLabel rating3;
+    private JLabel rating2;
+    private JLabel rating1;
     private JScrollPane scrollPane1;
     // JFormDesigner - End of variables declaration  //GEN-END:variables
 }
