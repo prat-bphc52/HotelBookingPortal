@@ -53,30 +53,30 @@ new FormModel {
 				name: "rating5"
 				"text": "5 -> 50%"
 				"font": new com.jformdesigner.model.SwingDerivedFont( null, 0, 3, false )
-				"icon": new com.jformdesigner.model.SwingIcon( 1, "C:\\Users\\pratd\\IdeaProjects\\HotelBookingPortal\\src\\bits\\oops\\project\\star.png" )
+				"icon": new com.jformdesigner.model.SwingIcon( 0, "/bits/oops/project/star.png" )
 			} )
 			add( new FormComponent( "javax.swing.JLabel" ) {
 				name: "rating4"
 				"text": "4 -> 50%"
-				"icon": new com.jformdesigner.model.SwingIcon( 1, "C:\\Users\\pratd\\IdeaProjects\\HotelBookingPortal\\src\\bits\\oops\\project\\star.png" )
+				"icon": new com.jformdesigner.model.SwingIcon( 0, "/bits/oops/project/star.png" )
 				"font": new com.jformdesigner.model.SwingDerivedFont( null, 0, 3, false )
 			} )
 			add( new FormComponent( "javax.swing.JLabel" ) {
 				name: "rating3"
 				"text": "3 -> 0%"
-				"icon": new com.jformdesigner.model.SwingIcon( 1, "C:\\Users\\pratd\\IdeaProjects\\HotelBookingPortal\\src\\bits\\oops\\project\\star.png" )
+				"icon": new com.jformdesigner.model.SwingIcon( 0, "/bits/oops/project/star.png" )
 				"font": new com.jformdesigner.model.SwingDerivedFont( null, 0, 3, false )
 			} )
 			add( new FormComponent( "javax.swing.JLabel" ) {
 				name: "rating2"
 				"text": "2 -> 0%"
-				"icon": new com.jformdesigner.model.SwingIcon( 1, "C:\\Users\\pratd\\IdeaProjects\\HotelBookingPortal\\src\\bits\\oops\\project\\star.png" )
+				"icon": new com.jformdesigner.model.SwingIcon( 0, "/bits/oops/project/star.png" )
 				"font": new com.jformdesigner.model.SwingDerivedFont( null, 0, 3, false )
 			} )
 			add( new FormComponent( "javax.swing.JLabel" ) {
 				name: "rating1"
 				"text": "1 -> 0%"
-				"icon": new com.jformdesigner.model.SwingIcon( 1, "C:\\Users\\pratd\\IdeaProjects\\HotelBookingPortal\\src\\bits\\oops\\project\\star.png" )
+				"icon": new com.jformdesigner.model.SwingIcon( 0, "/bits/oops/project/star.png" )
 				"font": new com.jformdesigner.model.SwingDerivedFont( null, 0, 3, false )
 			} )
 			add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {

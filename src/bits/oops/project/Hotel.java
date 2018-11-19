@@ -79,26 +79,26 @@ public class Hotel extends JPanel {
         //---- rating5 ----
         rating5.setText("5 -> 50%");
         rating5.setFont(rating5.getFont().deriveFont(rating5.getFont().getSize() + 3f));
-        rating5.setIcon(new ImageIcon("C:\\Users\\pratd\\IdeaProjects\\HotelBookingPortal\\src\\bits\\oops\\project\\star.png"));
+        rating5.setIcon(new ImageIcon(getClass().getResource("/bits/oops/project/star.png")));
 
         //---- rating4 ----
         rating4.setText("4 -> 50%");
-        rating4.setIcon(new ImageIcon("C:\\Users\\pratd\\IdeaProjects\\HotelBookingPortal\\src\\bits\\oops\\project\\star.png"));
+        rating4.setIcon(new ImageIcon(getClass().getResource("/bits/oops/project/star.png")));
         rating4.setFont(rating4.getFont().deriveFont(rating4.getFont().getSize() + 3f));
 
         //---- rating3 ----
         rating3.setText("3 -> 0%");
-        rating3.setIcon(new ImageIcon("C:\\Users\\pratd\\IdeaProjects\\HotelBookingPortal\\src\\bits\\oops\\project\\star.png"));
+        rating3.setIcon(new ImageIcon(getClass().getResource("/bits/oops/project/star.png")));
         rating3.setFont(rating3.getFont().deriveFont(rating3.getFont().getSize() + 3f));
 
         //---- rating2 ----
         rating2.setText("2 -> 0%");
-        rating2.setIcon(new ImageIcon("C:\\Users\\pratd\\IdeaProjects\\HotelBookingPortal\\src\\bits\\oops\\project\\star.png"));
+        rating2.setIcon(new ImageIcon(getClass().getResource("/bits/oops/project/star.png")));
         rating2.setFont(rating2.getFont().deriveFont(rating2.getFont().getSize() + 3f));
 
         //---- rating1 ----
         rating1.setText("1 -> 0%");
-        rating1.setIcon(new ImageIcon("C:\\Users\\pratd\\IdeaProjects\\HotelBookingPortal\\src\\bits\\oops\\project\\star.png"));
+        rating1.setIcon(new ImageIcon(getClass().getResource("/bits/oops/project/star.png")));
         rating1.setFont(rating1.getFont().deriveFont(rating1.getFont().getSize() + 3f));
 
         GroupLayout layout = new GroupLayout(this);
