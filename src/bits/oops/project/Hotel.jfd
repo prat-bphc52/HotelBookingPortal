@@ -4,77 +4,77 @@ new FormModel {
 	contentType: "form/swing"
 	root: new FormRoot {
 		add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-			"$horizontalGroup": "par l {seq {space :::p, par l {seq t {space :p:6:p, comp label8:::p:259:p, space :::p, par l {comp label6:::::x, seq {par l {comp label4:::p:73:p, comp label3:::p:73:p}, space :0:118:x}, comp label11::l::191:x}}, comp label10::l::462:x, seq {par l {comp label5::l:::p, comp label9::l:p:259:p}, space :0:203:x}}, space :::p, par l {comp label2:::p::p, comp label1::l:p::p, comp label7::l:p::p, comp label13::l:p::p, comp label12::l:p::p, comp label14::l:p::p, comp scrollPane1:::p:215:p}, space :::p}}"
-			"$verticalGroup": "par l {seq l {space :p:15:p, par t {comp label5:::p:51:p, comp label2:::p::p}, space u:::p, par l {seq {par l {comp label3:::p:25:p, comp label1::l:p:27:p}, space :::p, par b {comp label6::b::31:x, comp label7::b:p:27:p}, space :::p, par b {comp label4::b:p:25:p, comp label12::b:p:27:p}, space :::p, par b {comp label11::b:p:34:p, comp label13::b:p:27:p}, space :::p, comp label14:::p:27:p}, comp label8::::170:x}, space :p:27:p, par l {seq {comp label9:::p:28:p, space ::19:x, comp label10:::p:76:p, space :::x}, seq {comp scrollPane1:::p:123:p, space ::12:x}}}}"
+			"$horizontalGroup": "par l {seq {space :::p, par l {seq t {space :p:6:p, comp hotel_img:::p:259:p, space :::p, par l {comp location_field:::::x, seq {par l {comp amenities_label:::p:73:p, comp location_label:::p:73:p}, space :0:0:x}, comp amenities_field::t:::x}}, seq {par l {comp hotel_name::l:::p, comp desc_label::l:p:259:p}, space :0:0:x}, comp desc_field::l:::x}, space :::p, par l {comp rating_label:::p::p, comp rating5::l:p::p, comp rating4::l:p::p, comp rating2::l:p::p, comp rating3::l:p::p, comp rating1::l:p::p, comp scrollPane1:::p:215:p}, space :::p}}"
+			"$verticalGroup": "par l {seq l {space :p:15:p, par t {comp hotel_name:::p:51:p, comp rating_label:::p::p}, space u:::p, par l {seq {comp hotel_img::::57:x, space :p:140:p}, seq l {par l {comp location_label:::p:25:p, comp rating5::l:p:27:p}, space :::p, par b {comp location_field::b:::x, comp rating4::b:p:27:p}, space :::p, par b {comp amenities_label::b:p:25:p, comp rating3::b:p:27:p}, space :::p, par l {comp rating2:::p:27:p, comp amenities_field:::p::p}, space :::p, comp rating1:::p:27:p, space :p:27:p}}, par l {seq {comp desc_label:::p:28:p, space :::p, comp desc_field:::p::p}, comp scrollPane1:::p:123:p}, space ::12:x}}"
 		} ) {
 			name: "this"
 			add( new FormComponent( "javax.swing.JLabel" ) {
-				name: "label2"
-				"text": "REVIEWS : 4.5/5"
+				name: "rating_label"
+				"text": "Rating : 5.0 / 5.0"
 				"font": new java.awt.Font( "Open Sans", 1, 19 )
 			} )
 			add( new FormComponent( "javax.swing.JLabel" ) {
-				name: "label3"
+				name: "location_label"
 				"text": "Location"
 				"font": new com.jformdesigner.model.SwingDerivedFont( null, 1, 2, false )
 			} )
 			add( new FormComponent( "javax.swing.JLabel" ) {
-				name: "label4"
+				name: "amenities_label"
 				"text": "Amenities"
 				"font": new com.jformdesigner.model.SwingDerivedFont( null, 1, 2, false )
 			} )
 			add( new FormComponent( "javax.swing.JLabel" ) {
-				name: "label5"
-				"text": "#hotelName (temp)"
+				name: "hotel_name"
+				"text": "Taj Mahal Mumbai"
 				"font": new java.awt.Font( "PlainBlackWide", 0, 20 )
 			} )
 			add( new FormComponent( "javax.swing.JLabel" ) {
-				name: "label6"
-				"text": "#yahan location aayega (temp)"
+				name: "location_field"
+				"text": "Mumbai"
 			} )
 			add( new FormComponent( "javax.swing.JLabel" ) {
-				name: "label8"
-				"text": "photo if possible"
+				name: "hotel_img"
+				"text": "Image"
 			} )
 			add( new FormComponent( "javax.swing.JLabel" ) {
-				name: "label9"
+				name: "desc_label"
 				"text": "Description"
 				"font": new com.jformdesigner.model.SwingDerivedFont( null, 1, 2, false )
 			} )
 			add( new FormComponent( "javax.swing.JLabel" ) {
-				name: "label10"
-				"text": "#yahan description aayega"
+				name: "desc_field"
+				"text": "Luxurious Hotel in Mumbai"
 			} )
 			add( new FormComponent( "javax.swing.JLabel" ) {
-				name: "label11"
-				"text": "text"
+				name: "amenities_field"
+				"text": "GYM, Swimming Pool, Valet Parking, ...."
 			} )
 			add( new FormComponent( "javax.swing.JLabel" ) {
-				name: "label1"
+				name: "rating5"
 				"text": "5 -> 50%"
 				"font": new com.jformdesigner.model.SwingDerivedFont( null, 0, 3, false )
 				"icon": new com.jformdesigner.model.SwingIcon( 0, "bits/oops/project/star_icon.png" )
 			} )
 			add( new FormComponent( "javax.swing.JLabel" ) {
-				name: "label7"
+				name: "rating4"
 				"text": "4 -> 50%"
 				"icon": new com.jformdesigner.model.SwingIcon( 1, "/home/euge/Downloads/star_icon.png" )
 				"font": new com.jformdesigner.model.SwingDerivedFont( null, 0, 3, false )
 			} )
 			add( new FormComponent( "javax.swing.JLabel" ) {
-				name: "label12"
+				name: "rating3"
 				"text": "3 -> 0%"
 				"icon": new com.jformdesigner.model.SwingIcon( 1, "/home/euge/Downloads/star_icon.png" )
 				"font": new com.jformdesigner.model.SwingDerivedFont( null, 0, 3, false )
 			} )
 			add( new FormComponent( "javax.swing.JLabel" ) {
-				name: "label13"
+				name: "rating2"
 				"text": "2 -> 0%"
 				"icon": new com.jformdesigner.model.SwingIcon( 1, "/home/euge/Downloads/star_icon.png" )
 				"font": new com.jformdesigner.model.SwingDerivedFont( null, 0, 3, false )
 			} )
 			add( new FormComponent( "javax.swing.JLabel" ) {
-				name: "label14"
+				name: "rating1"
 				"text": "1 -> 0%"
 				"icon": new com.jformdesigner.model.SwingIcon( 1, "/home/euge/Downloads/star_icon.png" )
 				"font": new com.jformdesigner.model.SwingDerivedFont( null, 0, 3, false )
