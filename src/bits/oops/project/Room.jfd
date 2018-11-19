@@ -1,0 +1,32 @@
+JFDML JFormDesigner: "6.0.4.1.172" Java: "1.8.0_152-release" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+			"$horizontalGroup": "par l {seq {par l {seq {space :::p, comp label6::::483:x}, seq l {space :p:12:p, comp label7:::p:183:p, space s:::p, par l {comp label8::::276:x, comp label9::::276:x}}}, space :::p}}"
+			"$verticalGroup": "par l {seq l {space :::p, comp label6:::p:31:p, space :::p, par l {comp label7:::p:120:p, seq {comp label8:::p:28:p, space :::p, comp label9:::::x}}, space ::132:x}}"
+		} ) {
+			name: "panel1"
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label6"
+				"text": "RoomType/Name"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label7"
+				"text": "photo of the room"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label8"
+				"text": "descrption of the room"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label9"
+				"text": "detailed description of the room"
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 5, 0 )
+			"size": new java.awt.Dimension( 495, 295 )
+		} )
+	}
+}
