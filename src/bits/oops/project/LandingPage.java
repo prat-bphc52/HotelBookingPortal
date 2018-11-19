@@ -172,8 +172,6 @@ public class LandingPage extends JPanel {
         comboBox1 = new JComboBox<>();
         label3 = new JLabel();
         comboBox2 = new JComboBox<>();
-        label4 = new JLabel();
-        label5 = new JLabel();
         checkout = new JLabel();
         button1 = new JButton();
         loggedInPanel = new JPanel();
@@ -187,6 +185,7 @@ public class LandingPage extends JPanel {
         errorCheckOut = new JLabel();
 
         //======== this ========
+        setBackground(Color.white);
 
         // JFormDesigner evaluation mark
         setBorder(new javax.swing.border.CompoundBorder(
@@ -226,15 +225,15 @@ public class LandingPage extends JPanel {
         checkoutLabel.setText("Checkout Date   :");
 
         //---- label1 ----
-        label1.setText("  Hotel Booking Portal");
         label1.setFont(new Font("Swis721 BlkOul BT", Font.PLAIN, 20));
-        label1.setIcon(new ImageIcon(getClass().getResource("/bits/oops/project/hotel_icon.png")));
+        label1.setIcon(new ImageIcon(getClass().getResource("/bits/oops/project/logo36.png")));
 
         //---- guestsLabel ----
         guestsLabel.setText("Guests                 :");
 
         //======== panel1 ========
         {
+            panel1.setBackground(Color.white);
 
             //---- label2 ----
             label2.setText("Adults");
@@ -261,12 +260,6 @@ public class LandingPage extends JPanel {
             }));
             comboBox2.setEditable(true);
 
-            //---- label4 ----
-            label4.setIcon(new ImageIcon("C:\\Users\\pratd\\IdeaProjects\\HotelBookingPortal\\src\\bits\\oops\\project\\adult_icon.png"));
-
-            //---- label5 ----
-            label5.setIcon(new ImageIcon("C:\\Users\\pratd\\IdeaProjects\\HotelBookingPortal\\src\\bits\\oops\\project\\child_icon.png"));
-
             GroupLayout panel1Layout = new GroupLayout(panel1);
             panel1.setLayout(panel1Layout);
             panel1Layout.setHorizontalGroup(
@@ -276,16 +269,11 @@ public class LandingPage extends JPanel {
                             .addGroup(panel1Layout.createSequentialGroup()
                                 .addComponent(label2, GroupLayout.PREFERRED_SIZE, 60, GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(comboBox1, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(label4)
-                                .addGap(0, 0, Short.MAX_VALUE))
+                                .addComponent(comboBox1, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE))
                             .addGroup(panel1Layout.createSequentialGroup()
                                 .addComponent(label3, GroupLayout.PREFERRED_SIZE, 60, GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(comboBox2, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(label5)))
+                                .addComponent(comboBox2, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)))
                         .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             );
             panel1Layout.setVerticalGroup(
@@ -294,14 +282,11 @@ public class LandingPage extends JPanel {
                         .addGap(0, 0, 0)
                         .addGroup(panel1Layout.createParallelGroup()
                             .addComponent(comboBox1, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
-                            .addComponent(label2, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
-                            .addComponent(label4, GroupLayout.Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE))
+                            .addComponent(label2, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
-                            .addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                .addComponent(label3, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
-                                .addComponent(comboBox2, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE))
-                            .addComponent(label5, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE))
+                        .addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                            .addComponent(label3, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
+                            .addComponent(comboBox2, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE))
                         .addContainerGap(12, Short.MAX_VALUE))
             );
         }
@@ -403,11 +388,14 @@ public class LandingPage extends JPanel {
         }
 
         //---- errorCheckIn ----
-        errorCheckIn.setIcon(UIManager.getIcon("TextField.darcula.clear.icon"));
+        errorCheckIn.setIcon(new ImageIcon(getClass().getResource("/bits/oops/project/error.png")));
         errorCheckIn.setText("Date cannot be ahead of current date");
+        errorCheckIn.setForeground(Color.red);
 
         //---- errorCheckOut ----
-        errorCheckOut.setIcon(UIManager.getIcon("TextField.darcula.clear.icon"));
+        errorCheckOut.setIcon(new ImageIcon(getClass().getResource("/bits/oops/project/error.png")));
+        errorCheckOut.setForeground(Color.red);
+        errorCheckOut.setText("Date cannot..");
 
         GroupLayout layout = new GroupLayout(this);
         setLayout(layout);
@@ -428,33 +416,33 @@ public class LandingPage extends JPanel {
                                     .addGap(16, 16, 16)
                                     .addComponent(checkin, GroupLayout.PREFERRED_SIZE, 125, GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(errorCheckIn, GroupLayout.PREFERRED_SIZE, 124, GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(errorCheckIn))
                                 .addGroup(GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                     .addComponent(checkoutLabel, GroupLayout.PREFERRED_SIZE, 96, GroupLayout.PREFERRED_SIZE)
                                     .addGap(16, 16, 16)
                                     .addComponent(checkout, GroupLayout.PREFERRED_SIZE, 125, GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(errorCheckOut, GroupLayout.PREFERRED_SIZE, 124, GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(errorCheckOut))
                                 .addGroup(GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                     .addComponent(guestsLabel, GroupLayout.PREFERRED_SIZE, 96, GroupLayout.PREFERRED_SIZE)
                                     .addGap(18, 18, 18)
                                     .addGroup(layout.createParallelGroup()
-                                        .addComponent(panel1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(panel1, GroupLayout.PREFERRED_SIZE, 106, GroupLayout.PREFERRED_SIZE)
                                         .addComponent(button1, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE)))))
                         .addComponent(label1))
-                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(loggedInPanel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                     .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                     .addComponent(loggedOutPanel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap())
+                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(loggedInPanel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup()
                 .addGroup(layout.createSequentialGroup()
                     .addGap(24, 24, 24)
-                    .addGroup(layout.createParallelGroup()
+                    .addGroup(layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
                         .addGroup(layout.createSequentialGroup()
-                            .addComponent(label1, GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)
+                            .addComponent(label1)
                             .addGap(36, 36, 36)
                             .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                                 .addComponent(cityLabel, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE)
@@ -463,24 +451,25 @@ public class LandingPage extends JPanel {
                             .addGroup(layout.createParallelGroup()
                                 .addComponent(checkinLabel, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE)
                                 .addComponent(checkin, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE)
-                                .addComponent(errorCheckIn))
-                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(errorCheckIn)))
+                        .addGroup(layout.createSequentialGroup()
                             .addGroup(layout.createParallelGroup()
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGroup(layout.createParallelGroup()
-                                        .addComponent(checkoutLabel, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(checkout, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE))
-                                    .addGap(18, 18, 18)
-                                    .addGroup(layout.createParallelGroup()
-                                        .addComponent(guestsLabel, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(panel1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                                    .addGap(18, 18, 18)
-                                    .addComponent(button1, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE))
-                                .addComponent(errorCheckOut)))
-                        .addGroup(layout.createParallelGroup(GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(loggedInPanel, GroupLayout.Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(loggedOutPanel, GroupLayout.Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addContainerGap(19, Short.MAX_VALUE))
+                                .addComponent(loggedOutPanel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                .addComponent(loggedInPanel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                            .addGap(8, 8, 8)))
+                    .addGroup(layout.createParallelGroup()
+                        .addGroup(layout.createSequentialGroup()
+                            .addGroup(layout.createParallelGroup()
+                                .addComponent(checkoutLabel, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE)
+                                .addComponent(checkout, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE))
+                            .addGap(18, 18, 18)
+                            .addGroup(layout.createParallelGroup()
+                                .addComponent(guestsLabel, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE)
+                                .addComponent(panel1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                            .addGap(18, 18, 18)
+                            .addComponent(button1, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE))
+                        .addComponent(errorCheckOut))
+                    .addContainerGap(68, Short.MAX_VALUE))
         );
         // JFormDesigner - End of component initialization  //GEN-END:initComponents
         loggedInPanel.setVisible(true);
@@ -504,8 +493,6 @@ public class LandingPage extends JPanel {
     private JComboBox<String> comboBox1;
     private JLabel label3;
     private JComboBox<String> comboBox2;
-    private JLabel label4;
-    private JLabel label5;
     private JLabel checkout;
     private JButton button1;
     private JPanel loggedInPanel;
