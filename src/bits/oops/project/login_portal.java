@@ -137,6 +137,7 @@ public class login_portal extends JPanel {
         usernameerror = new JLabel();
         passworderror = new JLabel();
         contacterror = new JLabel();
+        label1 = new JLabel();
 
         //======== this ========
         setBackground(Color.white);
@@ -266,6 +267,13 @@ public class login_portal extends JPanel {
         contacterror.setIcon(new ImageIcon("C:\\Users\\shreya\\HotelBookingPortal\\src\\bits\\oops\\project\\error.png"));
         contacterror.setFont(contacterror.getFont().deriveFont(contacterror.getFont().getStyle() | Font.BOLD, contacterror.getFont().getSize() + 1f));
 
+        //---- label1 ----
+        label1.setText("This username already exists");
+        label1.setBackground(Color.white);
+        label1.setFont(label1.getFont().deriveFont(label1.getFont().getStyle() | Font.BOLD, label1.getFont().getSize() + 1f));
+        label1.setForeground(Color.red);
+        label1.setIcon(new ImageIcon("C:\\Users\\shreya\\HotelBookingPortal\\src\\bits\\oops\\project\\error.png"));
+
         GroupLayout layout = new GroupLayout(this);
         setLayout(layout);
         layout.setHorizontalGroup(
@@ -296,20 +304,20 @@ public class login_portal extends JPanel {
                                 .addComponent(usernametext, GroupLayout.Alignment.LEADING)
                                 .addComponent(emailidtext)
                                 .addComponent(contacttext)
-                                .addComponent(addresstext, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 250, GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(addresstext, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 250, GroupLayout.PREFERRED_SIZE)
+                                .addComponent(label1, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 230, GroupLayout.PREFERRED_SIZE)))
                         .addGroup(layout.createSequentialGroup()
                             .addGap(37, 37, 37)
                             .addComponent(RegistrationPortal, GroupLayout.PREFERRED_SIZE, 286, GroupLayout.PREFERRED_SIZE)))
                     .addGap(44, 44, 44)
                     .addGroup(layout.createParallelGroup()
-                        .addComponent(nameerror, GroupLayout.DEFAULT_SIZE, 141, Short.MAX_VALUE)
-                        .addComponent(emailerror, GroupLayout.DEFAULT_SIZE, 141, Short.MAX_VALUE)
-                        .addComponent(usernameerror, GroupLayout.DEFAULT_SIZE, 141, Short.MAX_VALUE)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(passworderror, GroupLayout.PREFERRED_SIZE, 141, GroupLayout.PREFERRED_SIZE)
-                            .addGap(0, 0, Short.MAX_VALUE))
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(contacterror, GroupLayout.DEFAULT_SIZE, 135, Short.MAX_VALUE)
+                        .addComponent(nameerror, GroupLayout.DEFAULT_SIZE, 195, Short.MAX_VALUE)
+                        .addComponent(emailerror, GroupLayout.DEFAULT_SIZE, 195, Short.MAX_VALUE)
+                        .addComponent(usernameerror, GroupLayout.DEFAULT_SIZE, 195, Short.MAX_VALUE)
+                        .addGroup(GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addGroup(layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
+                                .addComponent(passworderror, GroupLayout.Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 189, Short.MAX_VALUE)
+                                .addComponent(contacterror, GroupLayout.DEFAULT_SIZE, 189, Short.MAX_VALUE))
                             .addContainerGap())))
         );
         layout.setVerticalGroup(
@@ -347,8 +355,10 @@ public class login_portal extends JPanel {
                     .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                         .addComponent(Address, GroupLayout.PREFERRED_SIZE, 26, GroupLayout.PREFERRED_SIZE)
                         .addComponent(addresstext, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(Register))
+                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
+                    .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                        .addComponent(Register)
+                        .addComponent(label1)))
         );
         // JFormDesigner - End of component initialization  //GEN-END:initComponents
     }
@@ -374,6 +384,7 @@ public class login_portal extends JPanel {
     private JLabel usernameerror;
     private JLabel passworderror;
     private JLabel contacterror;
+    private JLabel label1;
     // JFormDesigner - End of variables declaration  //GEN-END:variables
 
   //  public static void main(String[] args) {
