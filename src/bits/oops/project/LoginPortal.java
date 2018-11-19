@@ -1,0 +1,156 @@
+package bits.oops.project;
+
+import java.awt.*;
+import javax.swing.*;
+import javax.swing.GroupLayout;
+import javax.swing.border.*;
+/*
+ * Created by JFormDesigner on Mon Nov 19 20:06:01 IST 2018
+ */
+
+
+
+/**
+ * @author Shreeya Nelekar
+ */
+public class LoginPortal extends JPanel {
+    public LoginPortal() {
+        initComponents();
+    }
+
+    private void initComponents() {
+        // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
+        // Generated using JFormDesigner Evaluation license - Shreeya Nelekar
+        LoginPortal = new JLabel();
+        label1 = new JLabel();
+        Nametext = new JFormattedTextField();
+        Password = new JLabel();
+        passwordField1 = new JPasswordField();
+        button1 = new JButton();
+        newhere = new JLabel();
+        Login = new JButton();
+
+        //======== this ========
+        setBackground(Color.white);
+        setForeground(Color.black);
+        setBorder(new CompoundBorder(
+            new CompoundBorder(),
+            null));
+
+        // JFormDesigner evaluation mark
+        setBorder(new javax.swing.border.CompoundBorder(
+            new javax.swing.border.TitledBorder(new javax.swing.border.EmptyBorder(0, 0, 0, 0),
+                "JFormDesigner Evaluation", javax.swing.border.TitledBorder.CENTER,
+                javax.swing.border.TitledBorder.BOTTOM, new java.awt.Font("Dialog", java.awt.Font.BOLD, 12),
+                java.awt.Color.red), getBorder())); addPropertyChangeListener(new java.beans.PropertyChangeListener(){public void propertyChange(java.beans.PropertyChangeEvent e){if("border".equals(e.getPropertyName()))throw new RuntimeException();}});
+
+
+        //---- LoginPortal ----
+        LoginPortal.setText("LOGIN PORTAL");
+        LoginPortal.setHorizontalAlignment(SwingConstants.CENTER);
+        LoginPortal.setForeground(Color.black);
+        LoginPortal.setFont(new Font("Baskerville Old Face", LoginPortal.getFont().getStyle() | Font.BOLD, LoginPortal.getFont().getSize() + 5));
+
+        //---- label1 ----
+        label1.setText("USERNAME:");
+        label1.setForeground(Color.black);
+        label1.setFont(label1.getFont().deriveFont(label1.getFont().getStyle() | Font.BOLD, label1.getFont().getSize() + 2f));
+
+        //---- Nametext ----
+        Nametext.setBackground(Color.white);
+        Nametext.setForeground(Color.black);
+        Nametext.setBorder(LineBorder.createBlackLineBorder());
+
+        //---- Password ----
+        Password.setText("PASSWORD:");
+        Password.setBackground(Color.white);
+        Password.setFont(Password.getFont().deriveFont(Password.getFont().getStyle() | Font.BOLD, Password.getFont().getSize() + 2f));
+        Password.setForeground(Color.black);
+
+        //---- passwordField1 ----
+        passwordField1.setForeground(Color.black);
+        passwordField1.setBackground(Color.white);
+        passwordField1.setBorder(LineBorder.createBlackLineBorder());
+
+        //---- button1 ----
+        button1.setText("REGISTER");
+        button1.setBackground(new Color(0, 0, 51));
+        button1.setFont(button1.getFont().deriveFont(button1.getFont().getStyle() | Font.BOLD, button1.getFont().getSize() + 2f));
+        button1.setForeground(Color.white);
+
+        //---- newhere ----
+        newhere.setText("New Here?");
+        newhere.setForeground(new Color(0, 0, 51));
+        newhere.setFont(newhere.getFont().deriveFont(newhere.getFont().getStyle() | Font.BOLD, newhere.getFont().getSize() + 2f));
+
+        //---- Login ----
+        Login.setText("LOGIN");
+        Login.setFont(Login.getFont().deriveFont(Login.getFont().getStyle() | Font.BOLD, Login.getFont().getSize() + 2f));
+        Login.setForeground(Color.white);
+        Login.setBackground(new Color(0, 0, 51));
+
+        GroupLayout layout = new GroupLayout(this);
+        setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup()
+                .addGroup(layout.createSequentialGroup()
+                    .addGroup(layout.createParallelGroup()
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(114, 114, 114)
+                            .addComponent(LoginPortal, GroupLayout.PREFERRED_SIZE, 166, GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(45, 45, 45)
+                            .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGroup(layout.createParallelGroup()
+                                        .addComponent(label1, GroupLayout.PREFERRED_SIZE, 91, GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(Password, GroupLayout.PREFERRED_SIZE, 91, GroupLayout.PREFERRED_SIZE))
+                                    .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(Nametext)
+                                        .addComponent(passwordField1, GroupLayout.PREFERRED_SIZE, 202, GroupLayout.PREFERRED_SIZE)))
+                                .addGroup(GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                    .addGap(17, 17, 17)
+                                    .addComponent(Login, GroupLayout.PREFERRED_SIZE, 96, GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addGroup(layout.createParallelGroup()
+                                        .addComponent(newhere)
+                                        .addComponent(button1))))))
+                    .addContainerGap(50, Short.MAX_VALUE))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup()
+                .addGroup(layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(LoginPortal, GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)
+                    .addGap(30, 30, 30)
+                    .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                        .addComponent(Nametext, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                        .addComponent(label1, GroupLayout.PREFERRED_SIZE, 28, GroupLayout.PREFERRED_SIZE))
+                    .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addGroup(layout.createParallelGroup()
+                        .addComponent(Password, GroupLayout.PREFERRED_SIZE, 29, GroupLayout.PREFERRED_SIZE)
+                        .addComponent(passwordField1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                    .addGap(18, 18, 18)
+                    .addComponent(newhere)
+                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                    .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                        .addComponent(button1)
+                        .addComponent(Login))
+                    .addContainerGap(85, Short.MAX_VALUE))
+        );
+        // JFormDesigner - End of component initialization  //GEN-END:initComponents
+    }
+
+    // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
+    // Generated using JFormDesigner Evaluation license - Shreeya Nelekar
+    private JLabel LoginPortal;
+    private JLabel label1;
+    private JFormattedTextField Nametext;
+    private JLabel Password;
+    private JPasswordField passwordField1;
+    private JButton button1;
+    private JLabel newhere;
+    private JButton Login;
+    // JFormDesigner - End of variables declaration  //GEN-END:variables
+}

@@ -1,0 +1,110 @@
+JFDML JFormDesigner: "6.0.4.1.172" Java: "1.8.0_152-release" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+			"$horizontalGroup": "par l {seq {par l {seq l {par l {seq {space :p:33:p, par l {comp Contact::l:p::p, comp Username::l:p::p, comp Password::l:p:96:p, comp Address::l:p:88:p, comp Register::l:p::p}}, seq t {space :::p, comp Email:::p:102:p}}, space :::p, par t:::p {comp passwordField1::l:::x, comp usernametext::l:::x, comp emailidtext:::::x, comp contacttext:::::x, comp addresstext::l:p:250:p}}, seq {space :37:37:p, comp RegistrationPortal:::p:286:p}, seq l {space :p:31:p, comp Name:::p:100:p, space u:::p, comp nametext:::p:242:p}}, space :0:0:x}}"
+			"$verticalGroup": "par l {seq l {space :::p, comp RegistrationPortal:::p:42:p, space :p:19:p, par b {comp nametext::b:p::p, comp Name::b:p:27:p}, space :p:15:p, par b {comp emailidtext::b:p::p, comp Email::b:p:28:p}, space :p:14:p, par b {comp Username::b:p:28:p, comp usernametext::b:p::p}, space u:::p, par l {comp Password:::p:28:p, comp passwordField1:::p::p}, space s:::p, par b {comp Contact::b:p:27:p, comp contacttext::b:p::p}, space s:::p, par b {comp Address::b:p:26:p, comp addresstext::b:p::p}, space :::x, comp Register:::p::p}}"
+		} ) {
+			name: "this"
+			"background": new java.awt.Color( 255, 255, 255, 255 )
+			"border": sfield com.jgoodies.forms.factories.Borders DLU21_BORDER
+			"foreground": new java.awt.Color( 0, 0, 0, 255 )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "RegistrationPortal"
+				"text": "REGISTRATION PORTAL"
+				"toolTipText": "ds"
+				"horizontalAlignment": 0
+				"font": new com.jformdesigner.model.SwingDerivedFont( "Baskerville Old Face", 1, 6, false )
+				"background": new java.awt.Color( 255, 255, 255, 255 )
+				"foreground": new java.awt.Color( 51, 0, 51, 255 )
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "Name"
+				"text": "NAME:*"
+				"horizontalAlignment": 2
+				"font": new com.jformdesigner.model.SwingDerivedFont( null, 1, 2, false )
+				"foreground": new java.awt.Color( 0, 0, 0, 255 )
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "Email"
+				"text": "E-MAIL ID:*"
+				"font": new com.jformdesigner.model.SwingDerivedFont( null, 1, 2, false )
+				"horizontalAlignment": 2
+				"foreground": &Color0 new java.awt.Color( 0, 0, 0, 255 )
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "Username"
+				"text": "USERNAME:*"
+				"horizontalAlignment": 2
+				"font": new com.jformdesigner.model.SwingDerivedFont( null, 1, 2, false )
+				"foreground": #Color0
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "Password"
+				"text": "PASSWORD*:"
+				"horizontalAlignment": 2
+				"font": new com.jformdesigner.model.SwingDerivedFont( null, 1, 2, false )
+				"foreground": #Color0
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "Contact"
+				"text": "CONTACT NO:*"
+				"font": new com.jformdesigner.model.SwingDerivedFont( null, 1, 2, false )
+				"horizontalAlignment": 2
+				"foreground": #Color0
+			} )
+			add( new FormComponent( "javax.swing.JFormattedTextField" ) {
+				name: "emailidtext"
+				"background": &Color1 new java.awt.Color( 255, 255, 255, 255 )
+				"foreground": &Color2 new java.awt.Color( 0, 0, 0, 255 )
+			} )
+			add( new FormComponent( "javax.swing.JFormattedTextField" ) {
+				name: "usernametext"
+				"background": #Color1
+				"foreground": #Color2
+			} )
+			add( new FormComponent( "javax.swing.JPasswordField" ) {
+				name: "passwordField1"
+				"background": #Color1
+				"foreground": #Color2
+			} )
+			add( new FormComponent( "javax.swing.JFormattedTextField" ) {
+				name: "contacttext"
+				"background": #Color1
+				"foreground": #Color2
+			} )
+			add( new FormComponent( "javax.swing.JFormattedTextField" ) {
+				name: "nametext"
+				"background": new java.awt.Color( 255, 255, 255, 255 )
+				"selectionColor": new java.awt.Color( 0, 0, 0, 255 )
+				"caretColor": new java.awt.Color( 0, 0, 0, 255 )
+				"disabledTextColor": new java.awt.Color( 0, 0, 0, 255 )
+				"selectedTextColor": new java.awt.Color( 0, 0, 0, 255 )
+				"foreground": #Color2
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "Address"
+				"text": "ADDRESS:"
+				"foreground": new java.awt.Color( 0, 0, 0, 255 )
+				"font": new com.jformdesigner.model.SwingDerivedFont( null, 1, 2, false )
+			} )
+			add( new FormComponent( "javax.swing.JFormattedTextField" ) {
+				name: "addresstext"
+				"foreground": new java.awt.Color( 0, 0, 0, 255 )
+				"background": new java.awt.Color( 255, 255, 255, 255 )
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "Register"
+				"text": "REGISTER"
+				"background": new java.awt.Color( 0, 51, 102, 255 )
+				"font": new com.jformdesigner.model.SwingDerivedFont( null, 1, 2, false )
+				"foreground": new java.awt.Color( 255, 255, 255, 255 )
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 35, 105 )
+			"size": new java.awt.Dimension( 430, 400 )
+		} )
+	}
+}
