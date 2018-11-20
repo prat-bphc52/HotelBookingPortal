@@ -17,7 +17,7 @@ public class Bookings {
     Date check_out_date;
     int cost;
     long timestamp;
-    String status;
+    int status;
     int rating;
     String review;
     JSONObject waitlist = new JSONObject();

@@ -49,43 +49,39 @@ public class MysqlCon {
 
      User login(String user, String pwd) {
 
-
+        System.out.print("pwd printed +" + pwd + "   " +user);
         try {
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306//mydb" , "root" , "draco");
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mydb" , "root" , "draco");
             smt = con.createStatement();
             ResultSet rs;
             if (user != "") {
 
-                rs = smt.executeQuery("Select * from USER Where UID = ' " + user + " ' AND PASSWORD = '"+pwd+"';");
+                rs = smt.executeQuery("Select * from USER Where UID = '"+user+"' AND PASSWORD = '"+pwd+"';");
                 if (rs.next()) {
+                    System.out.print("reached here");
                     User u = new User();
                     u.Name = rs.getString("NAME");
                     u.Username=rs.getString("UID");
                     u.Emailid=rs.getString("EMAIL");
                     u.password=rs.getString("PASSWORD");
-                    u.Contact=rs.getString("CONTACT");
+                    u.Contact=rs.getString("PHONE");
                     u.Address=rs.getString("ADDRESS");
                     return u;
-
-
-                    }
-                    else return null;
-                } else
-                    return null;
-
-
+                }
+                else return null;
             }
-
-
-
-         catch(Exception e)
+            else
+                return null;
+        }
+        catch(Exception e)
         {
+            System.out.print(e.toString());
             return null;
         }
 
     }
 
-     int register(String user, String name, String email, int phone, String address, String password) {
+     int register(String user, String name, String email, String phone, String address, String password) {
        // con = DriverManager.getConnection("jdbc:mysql://localhost/OOPS" , "root" , "draco");
         try {
             con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mydb" , "root" , "draco");
@@ -265,14 +261,15 @@ public class MysqlCon {
                     CHECK_IN2 = c.getTime();
 
                 }
+                b1.status = 0;
                 b1.waitlist = O;
                 String str1 = dateFormat.format(b1.check_in_date);
                 String str2 = dateFormat.format(b1.check_out_date);
-                int row = smt.executeUpdate("INSERT INTO BOOKINGS (REF, UID, HID, ADULTS, CHILD, ROOMS, CHECK_IN, CHECK_OUT, COST, TIMESTAMP, STATUS, WAITLIST) VALUES ('" + b1.ref + "','" + b1.uid + "','" + b1.hid + "','" + b1.adults + "','" + b1.child + "', '" + b1.rooms + "','" + str1 + "', '" + str2 + "' ,'" + b1.cost + "', '" + timestamp2 + "' , 'waiting', '" + b1.waitlist + "');");
+                int row = smt.executeUpdate("INSERT INTO BOOKINGS (REF, UID, HID, ADULTS, CHILD, ROOMS, CHECK_IN, CHECK_OUT, COST, TIMESTAMP, STATUS, WAITLIST) VALUES ('" + b1.ref + "','" + b1.uid + "','" + b1.hid + "','" + b1.adults + "','" + b1.child + "', '" + b1.rooms + "','" + str1 + "', '" + str2 + "' ,'" + b1.cost + "', '" + timestamp2 + "' , "+0+", '" + b1.waitlist + "');");
 
             } else {
 
-
+                b1.status =1;
                 while (CHECK_IN2.compareTo(b1.check_out_date) < 0) {
                     String str1 = dateFormat.format(CHECK_IN2);
                     String str2 = dateFormat.format(b1.check_out_date);
@@ -306,7 +303,7 @@ public class MysqlCon {
                 }
                 String str1 = dateFormat.format(b1.check_in_date);
                 String str2 = dateFormat.format(b1.check_out_date);
-                int row = smt.executeUpdate("INSERT INTO BOOKINGS (REF, UID, HID, ADULTS, CHILD, ROOMS, CHECK_IN, CHECK_OUT, COST, TIMESTAMP, STATUS) VALUES ('" + b1.ref + "','" + b1.uid + "','" + b1.hid + "','" +b1.adults + "','" + b1.child + "', '" + str1 + "', '" + str2 + "' , " + b1.cost + ", '" + timestamp2 + "', 'confirmed');");
+                int row = smt.executeUpdate("INSERT INTO BOOKINGS (REF, UID, HID, ADULTS, CHILD, ROOMS, CHECK_IN, CHECK_OUT, COST, TIMESTAMP, STATUS) VALUES ('" + b1.ref + "','" + b1.uid + "','" + b1.hid + "','" +b1.adults + "','" + b1.child + "', '" + str1 + "', '" + str2 + "' , " + b1.cost + ", '" + timestamp2 + "', "+1+");");
 
             }
         }
@@ -403,6 +400,74 @@ public class MysqlCon {
 
 
 
+    }
+   void cancel(String ref)
+    {
+        try{
+            con=DriverManager.getConnection("jdbc:mysql://localhost:3306/mydb", "root", "draco");
+            smt=con.createStatement();
+            ResultSet rs;
+            rs= smt.executeQuery("SELECT * FROM mydb.BOOKINGS WHERE REF = '"+ref+"' ; ");
+            rs.next();
+            if(rs.getInt("STATUS")==1)
+            {
+                String check_in_date = rs.getString("CHECK_IN_DATE");
+                String check_out_date = rs.getString("CHECK_OUT_DATE");
+                DateFormat format = new SimpleDateFormat("yyyy-mm-dd");
+                Date check_in = format.parse(check_in_date);
+                Date check_out = format.parse(check_out_date);
+                while(check_in.compareTo(check_out) < 0) {
+                    String str = rs.getString("ROOMS");
+                    JSONObject obj = new JSONObject(str);
+                    while (obj.keys().hasNext()) {
+                        String rid = obj.keys().next().toString();
+                        int i = Integer.parseInt(obj.getString(rid));
+                        ResultSet result = smt.executeQuery("SELECT * FROM ROOM WHERE RID = '" + rid + "' ;");
+                        String str1 = result.getString("BOOKINGS");
+                        JSONObject obj2 = new JSONObject("str1");
+                        String number = obj2.getString("check_in");
+                        String topass0 = "" + (Integer.parseInt(number) - i) ;
+                        String topass = "$." + check_in;
+                        smt.executeUpdate("UPDATE mydb.ROOM SET BOOKINGS = JSON_SET(BOOKINGS, '"+topass+"', '"+topass0+"') WHERE RID= '"+rid+"' ; ");
+                    }
+                    Calendar c = Calendar.getInstance();
+                    c.setTime(check_in);
+                    c.add(Calendar.DATE, 1);
+                    check_in = c.getTime();
+                }
+            }
+            else if(rs.getInt("STATUS")==0) {
+                String check_in_date = rs.getString("CHECK_IN_DATE");
+                String check_out_date = rs.getString("CHECK_OUT_DATE");
+                DateFormat format = new SimpleDateFormat("yyyy-mm-dd");
+                Date check_in = format.parse(check_in_date);
+                Date check_out = format.parse(check_out_date);
+                while(check_in.compareTo(check_out) < 0) {
+                    String str = rs.getString("ROOMS");
+                    JSONObject obj = new JSONObject(str);
+                    while (obj.keys().hasNext()) {
+                        String rid = obj.keys().next().toString();
+                        int i = Integer.parseInt(obj.getString(rid));
+                        ResultSet result = smt.executeQuery("SELECT * FROM ROOM WHERE RID = '" + rid + "' ;");
+                        String str1 = result.getString("WAITLIST");
+                        JSONObject obj2 = new JSONObject("str1");
+                        String number = obj2.getString("check_in");
+                        String topass0 = "" + (Integer.parseInt(number) - i) ;
+                        String topass = "$." + check_in;
+                        smt.executeUpdate("UPDATE mydb.ROOM SET WAITLIST = JSON_SET(WAITLIST, '"+topass+"', '"+topass0+"') WHERE RID= '"+rid+"' ; ");
+                    }
+                    Calendar c = Calendar.getInstance();
+                    c.setTime(check_in);
+                    c.add(Calendar.DATE, 1);
+                    check_in = c.getTime();
+                }
+
+            }
+        }
+        catch(Exception e)
+        {
+
+        }
     }
 
     static void feely(int i)
