@@ -1,6 +1,7 @@
 package bits.oops.project;
 
 import java.awt.*;
+import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.GroupLayout;
 import javax.swing.border.*;
@@ -14,8 +15,68 @@ import javax.swing.border.*;
  * @author Shreeya Nelekar
  */
 public class LoginPortal extends JPanel {
-    public LoginPortal() {
+    public LoginPortal(JFrame parent) {
+        this.parent = parent;
         initComponents();
+    }
+
+
+    private void button1ActionPerformed(ActionEvent e) {
+        // TODO add your code
+        JFrame registerframe = new JFrame();
+        login_portal registerwindow = new login_portal(registerframe);
+        registerwindow.setVisible(true);
+        registerframe.add(registerwindow);
+        registerframe.pack();
+        this.parent.setEnabled(false);
+        registerframe.setVisible(true);
+        registerframe.addWindowListener(new WindowListener() {
+            @Override
+            public void windowOpened(WindowEvent e) {
+
+            }
+
+            @Override
+            public void windowClosing(WindowEvent e) {
+
+            }
+
+            @Override
+            public void windowClosed(WindowEvent e) {
+
+            }
+
+            @Override
+            public void windowIconified(WindowEvent e) {
+
+            }
+
+            @Override
+            public void windowDeiconified(WindowEvent e) {
+
+            }
+
+            @Override
+            public void windowActivated(WindowEvent e) {
+
+            }
+
+            @Override
+            public void windowDeactivated(WindowEvent e) {
+
+            }
+        });
+
+
+
+        }
+
+
+
+    private void doLogin(ActionEvent e) {
+        //call login func
+        //currentUser  = returned object
+        parent.dispose();
     }
 
     private void initComponents() {
@@ -77,6 +138,7 @@ public class LoginPortal extends JPanel {
         button1.setBackground(new Color(0, 0, 51));
         button1.setFont(button1.getFont().deriveFont(button1.getFont().getStyle() | Font.BOLD, button1.getFont().getSize() + 2f));
         button1.setForeground(Color.white);
+        //button1.addActionListener(e -> button1ActionPerformed(e));
 
         //---- newhere ----
         newhere.setText("New Here?");
@@ -88,6 +150,7 @@ public class LoginPortal extends JPanel {
         Login.setFont(Login.getFont().deriveFont(Login.getFont().getStyle() | Font.BOLD, Login.getFont().getSize() + 2f));
         Login.setForeground(Color.white);
         Login.setBackground(new Color(0, 0, 51));
+        Login.addActionListener(e -> doLogin(e));
 
         GroupLayout layout = new GroupLayout(this);
         setLayout(layout);
@@ -142,6 +205,10 @@ public class LoginPortal extends JPanel {
         // JFormDesigner - End of component initialization  //GEN-END:initComponents
     }
 
+    public User getCurrentUser() {
+        return currentUser;
+    }
+
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
     // Generated using JFormDesigner Evaluation license - Shreeya Nelekar
     private JLabel LoginPortal;
@@ -153,4 +220,6 @@ public class LoginPortal extends JPanel {
     private JLabel newhere;
     private JButton Login;
     // JFormDesigner - End of variables declaration  //GEN-END:variables
+    User currentUser;
+    JFrame parent;
 }
