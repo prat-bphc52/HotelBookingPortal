@@ -26,13 +26,24 @@ public class Hotel extends JPanel {
         hotel_img = new JLabel();
         desc_label = new JLabel();
         desc_field = new JLabel();
-        amenities_field = new JLabel();
         rating5 = new JLabel();
-        rating4 = new JLabel();
         rating3 = new JLabel();
         rating2 = new JLabel();
         rating1 = new JLabel();
         scrollPane1 = new JScrollPane();
+        rating4 = new JLabel();
+        panel1 = new JPanel();
+        a1 = new JLabel();
+        a2 = new JLabel();
+        a3 = new JLabel();
+        a4 = new JLabel();
+        a5 = new JLabel();
+        a6 = new JLabel();
+        a7 = new JLabel();
+        a8 = new JLabel();
+        a9 = new JLabel();
+        scrollPane2 = new JScrollPane();
+        label11 = new JLabel();
 
         //======== this ========
 
@@ -46,7 +57,7 @@ public class Hotel extends JPanel {
 
         //---- rating_label ----
         rating_label.setText("Rating : 5.0 / 5.0");
-        rating_label.setFont(new Font("Open Sans", Font.BOLD, 19));
+        rating_label.setFont(new Font("Papyrus", Font.PLAIN, 20));
 
         //---- location_label ----
         location_label.setText("Location");
@@ -58,33 +69,29 @@ public class Hotel extends JPanel {
 
         //---- hotel_name ----
         hotel_name.setText("Taj Mahal Mumbai");
-        hotel_name.setFont(new Font("PlainBlackWide", Font.PLAIN, 20));
+        hotel_name.setFont(new Font("Pristina", Font.BOLD, 24));
 
         //---- location_field ----
         location_field.setText("Mumbai");
 
         //---- hotel_img ----
         hotel_img.setText("Image");
+        hotel_img.setMinimumSize(new Dimension(200, 200));
+        hotel_img.setMaximumSize(new Dimension(400, 400));
+        hotel_img.setIcon(new ImageIcon("C:\\Users\\pratd\\Pictures\\Dubai Trip\\Pixel\\IMG_20180312_211154.jpg"));
+        hotel_img.setPreferredSize(new Dimension(300, 300));
 
         //---- desc_label ----
         desc_label.setText("Description");
-        desc_label.setFont(desc_label.getFont().deriveFont(desc_label.getFont().getStyle() | Font.BOLD, desc_label.getFont().getSize() + 2f));
+        desc_label.setFont(new Font("Segoe UI", Font.BOLD, 14));
 
         //---- desc_field ----
         desc_field.setText("Luxurious Hotel in Mumbai");
-
-        //---- amenities_field ----
-        amenities_field.setText("GYM, Swimming Pool, Valet Parking, ....");
 
         //---- rating5 ----
         rating5.setText("5 -> 50%");
         rating5.setFont(rating5.getFont().deriveFont(rating5.getFont().getSize() + 3f));
         rating5.setIcon(new ImageIcon(getClass().getResource("/bits/oops/project/star.png")));
-
-        //---- rating4 ----
-        rating4.setText("4 -> 50%");
-        rating4.setIcon(new ImageIcon(getClass().getResource("/bits/oops/project/star.png")));
-        rating4.setFont(rating4.getFont().deriveFont(rating4.getFont().getSize() + 3f));
 
         //---- rating3 ----
         rating3.setText("3 -> 0%");
@@ -101,80 +108,123 @@ public class Hotel extends JPanel {
         rating1.setIcon(new ImageIcon(getClass().getResource("/bits/oops/project/star.png")));
         rating1.setFont(rating1.getFont().deriveFont(rating1.getFont().getSize() + 3f));
 
+        //---- rating4 ----
+        rating4.setText("4 -> 0%");
+        rating4.setIcon(new ImageIcon(getClass().getResource("/bits/oops/project/star.png")));
+        rating4.setFont(rating4.getFont().deriveFont(rating4.getFont().getSize() + 3f));
+
+        //======== panel1 ========
+        {
+            panel1.setLayout(new GridLayout(3, 3));
+
+            //---- a1 ----
+            a1.setIcon(new ImageIcon(getClass().getResource("/bits/oops/project/parking_icon.png")));
+            panel1.add(a1);
+            panel1.add(a2);
+            panel1.add(a3);
+            panel1.add(a4);
+            panel1.add(a5);
+            panel1.add(a6);
+            panel1.add(a7);
+            panel1.add(a8);
+            panel1.add(a9);
+        }
+
+        //---- label11 ----
+        label11.setText("Room Categories");
+        label11.setFont(new Font("Segoe UI", Font.BOLD, 14));
+
         GroupLayout layout = new GroupLayout(this);
         setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup()
-                .addGroup(layout.createSequentialGroup()
-                    .addContainerGap()
+                .addGroup(GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                     .addGroup(layout.createParallelGroup()
-                        .addGroup(GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                            .addGap(6, 6, 6)
-                            .addComponent(hotel_img, GroupLayout.PREFERRED_SIZE, 259, GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createSequentialGroup()
+                            .addContainerGap()
+                            .addComponent(hotel_img, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                            .addGap(12, 12, 12)
                             .addGroup(layout.createParallelGroup()
-                                .addComponent(location_field, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(location_field, GroupLayout.Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
+                                .addComponent(location_label)
+                                .addComponent(amenities_label)
+                                .addComponent(panel1, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(24, 24, 24)
+                            .addComponent(hotel_name))
+                        .addGroup(layout.createSequentialGroup()
+                            .addContainerGap()
+                            .addGroup(layout.createParallelGroup()
+                                .addComponent(desc_field, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(layout.createSequentialGroup()
                                     .addGroup(layout.createParallelGroup()
-                                        .addComponent(amenities_label, GroupLayout.PREFERRED_SIZE, 73, GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(location_label, GroupLayout.PREFERRED_SIZE, 73, GroupLayout.PREFERRED_SIZE))
-                                    .addGap(0, 0, Short.MAX_VALUE))
-                                .addComponent(amenities_field, GroupLayout.Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup()
-                                .addComponent(hotel_name)
-                                .addComponent(desc_label, GroupLayout.PREFERRED_SIZE, 259, GroupLayout.PREFERRED_SIZE))
-                            .addGap(0, 0, Short.MAX_VALUE))
-                        .addComponent(desc_field, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                        .addComponent(label11)
+                                        .addComponent(desc_label))
+                                    .addGap(0, 346, Short.MAX_VALUE)))))
                     .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                     .addGroup(layout.createParallelGroup()
-                        .addComponent(rating_label)
-                        .addComponent(rating5)
-                        .addComponent(rating4)
-                        .addComponent(rating2)
-                        .addComponent(rating3)
-                        .addComponent(rating1)
-                        .addComponent(scrollPane1, GroupLayout.PREFERRED_SIZE, 215, GroupLayout.PREFERRED_SIZE))
-                    .addContainerGap())
+                        .addGroup(layout.createParallelGroup()
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(rating_label)
+                                .addGap(78, 78, 78))
+                            .addGroup(GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(scrollPane1, GroupLayout.PREFERRED_SIZE, 215, GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap()))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(6, 6, 6)
+                            .addGroup(layout.createParallelGroup()
+                                .addComponent(rating4)
+                                .addComponent(rating5)
+                                .addComponent(rating3)
+                                .addComponent(rating2)
+                                .addComponent(rating1)))))
+                .addGroup(layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(scrollPane2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(677, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup()
                 .addGroup(layout.createSequentialGroup()
                     .addGap(15, 15, 15)
-                    .addGroup(layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                         .addComponent(hotel_name, GroupLayout.PREFERRED_SIZE, 51, GroupLayout.PREFERRED_SIZE)
                         .addComponent(rating_label))
-                    .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
                     .addGroup(layout.createParallelGroup()
                         .addGroup(layout.createSequentialGroup()
-                            .addComponent(hotel_img, GroupLayout.DEFAULT_SIZE, 57, Short.MAX_VALUE)
-                            .addGap(140, 140, 140))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup()
-                                .addComponent(location_label, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                .addComponent(location_label)
                                 .addComponent(rating5, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE))
                             .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                            .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                .addComponent(location_field, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(rating4, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE))
-                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                            .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                .addComponent(amenities_label, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
-                                .addComponent(rating3, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE))
-                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                             .addGroup(layout.createParallelGroup()
-                                .addComponent(rating2, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE)
-                                .addComponent(amenities_field))
-                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(rating1, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE)
-                            .addGap(27, 27, 27)))
-                    .addGroup(layout.createParallelGroup()
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(rating4, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(rating3, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(rating2)
+                                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(rating1, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE)
+                                    .addGap(73, 73, 73)
+                                    .addComponent(scrollPane1, GroupLayout.PREFERRED_SIZE, 123, GroupLayout.PREFERRED_SIZE))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(location_field)
+                                    .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(amenities_label, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(panel1, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE))))
                         .addGroup(layout.createSequentialGroup()
+                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(hotel_img, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                            .addGap(18, 18, 18)
                             .addComponent(desc_label, GroupLayout.PREFERRED_SIZE, 28, GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(desc_field))
-                        .addComponent(scrollPane1, GroupLayout.PREFERRED_SIZE, 123, GroupLayout.PREFERRED_SIZE))
-                    .addContainerGap(12, Short.MAX_VALUE))
+                            .addComponent(desc_field)))
+                    .addGap(18, 18, 18)
+                    .addComponent(label11)
+                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(scrollPane2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(199, Short.MAX_VALUE))
         );
         // JFormDesigner - End of component initialization  //GEN-END:initComponents
     }
@@ -189,12 +239,23 @@ public class Hotel extends JPanel {
     private JLabel hotel_img;
     private JLabel desc_label;
     private JLabel desc_field;
-    private JLabel amenities_field;
     private JLabel rating5;
-    private JLabel rating4;
     private JLabel rating3;
     private JLabel rating2;
     private JLabel rating1;
     private JScrollPane scrollPane1;
+    private JLabel rating4;
+    private JPanel panel1;
+    private JLabel a1;
+    private JLabel a2;
+    private JLabel a3;
+    private JLabel a4;
+    private JLabel a5;
+    private JLabel a6;
+    private JLabel a7;
+    private JLabel a8;
+    private JLabel a9;
+    private JScrollPane scrollPane2;
+    private JLabel label11;
     // JFormDesigner - End of variables declaration  //GEN-END:variables
 }

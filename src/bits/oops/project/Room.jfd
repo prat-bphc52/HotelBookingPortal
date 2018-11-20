@@ -4,29 +4,49 @@ new FormModel {
 	contentType: "form/swing"
 	root: new FormRoot {
 		add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-			"$horizontalGroup": "par l {seq {par l {seq {space :::p, comp label6::::483:x}, seq l {space :p:12:p, comp label7:::p:183:p, space s:::p, par l {comp label8::::276:x, comp label9::::276:x}}}, space :::p}}"
-			"$verticalGroup": "par l {seq l {space :::p, comp label6:::p:31:p, space :::p, par l {comp label7:::p:120:p, seq {comp label8:::p:28:p, space :::p, comp label9:::::x}}, space ::132:x}}"
+			"$horizontalGroup": "par l {seq {space :p:16:p, par l {seq {comp room_img:::p:180:p, space s:::p, par l {comp room_shortdesc::::423:x, seq {comp room_longdesc:::p:400:p, space :0:23:x}}}, comp room_title:::p::p}, space :0:28:x, par l {comp costLabel::t:p::p, comp bookButton::t:p:100:p}, space :p:24:p}}"
+			"$verticalGroup": "par l {seq l {space :p:16:p, comp room_title:::p::p, space u:::p, par l {seq {par b {comp room_shortdesc::b:p::p, comp costLabel::b:p::p}, space :::p, comp bookButton:::p:35:p}, par b {comp room_img::b:p:120:p, comp room_longdesc::b:p::p}}, space ::18:x}}"
 		} ) {
-			name: "panel1"
+			name: "this"
+			"minimumSize": sfield com.jformdesigner.model.FormObject NULL_VALUE
+			"preferredSize": new java.awt.Dimension( 800, 200 )
+			"maximumSize": sfield com.jformdesigner.model.FormObject NULL_VALUE
 			add( new FormComponent( "javax.swing.JLabel" ) {
-				name: "label6"
-				"text": "RoomType/Name"
+				name: "room_title"
+				"text": "Super Deluxe"
+				"font": new java.awt.Font( "Pristina", 1, 24 )
 			} )
 			add( new FormComponent( "javax.swing.JLabel" ) {
-				name: "label7"
+				name: "room_img"
 				"text": "photo of the room"
+				"border": new javax.swing.border.LineBorder( sfield java.awt.Color black, 1, false )
 			} )
 			add( new FormComponent( "javax.swing.JLabel" ) {
-				name: "label8"
-				"text": "descrption of the room"
+				name: "room_shortdesc"
+				"text": "Twin Bed Room for 2 with Buffet Breakfast"
+				"font": new java.awt.Font( "Swis721 LtEx BT", 0, 16 )
 			} )
 			add( new FormComponent( "javax.swing.JLabel" ) {
-				name: "label9"
-				"text": "detailed description of the room"
+				name: "room_longdesc"
+				"text": "<html>Room facilities: Mini Bar, Buffet Breakfast, Complementary airport pickup/drop</html>"
+				"font": new java.awt.Font( "Swis721 LtEx BT", 0, 14 )
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "costLabel"
+				"text": "$ 4000/night"
+				"font": new java.awt.Font( "Swis721 LtEx BT", 1, 16 )
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "bookButton"
+				"text": "ADD"
+				"background": new java.awt.Color( 255, 102, 0, 255 )
+				"border": new javax.swing.border.EtchedBorder( 1, null, null )
+				"foreground": sfield java.awt.Color white
+				"font": new java.awt.Font( "Swis721 LtEx BT", 1, 12 )
 			} )
 		}, new FormLayoutConstraints( null ) {
 			"location": new java.awt.Point( 5, 0 )
-			"size": new java.awt.Dimension( 495, 295 )
+			"size": new java.awt.Dimension( 800, 195 )
 		} )
 	}
 }

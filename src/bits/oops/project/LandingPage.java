@@ -6,7 +6,6 @@ package bits.oops.project;
 
 import java.awt.*;
 import java.awt.event.*;
-import java.text.DateFormat;
 import java.util.Calendar;
 import javax.swing.*;
 import javax.swing.GroupLayout;
@@ -51,7 +50,7 @@ public class LandingPage extends JPanel {
                         checkinStatus = 1;
                         checkin.setText("");
                         errorCheckIn.setVisible(true);
-                        errorCheckIn.setText("<html>Date cannot be ahead of current date</html>");
+                        errorCheckIn.setText("Date cannot be ahead of current date");
                     }
                     else {
                         checkin.setText(obj.date);
@@ -87,8 +86,8 @@ public class LandingPage extends JPanel {
 
     private void datecheckout(MouseEvent e) {
         if(checkinStatus!=2){
-            errorCheckOut.setVisible(true);
-            errorCheckOut.setText("<html>Please choose checkin date</html>");
+            errorCheckIn.setVisible(true);
+            errorCheckIn.setText("Please choose checkin date");
             return;
         }
         parent.setEnabled(false);
@@ -120,7 +119,7 @@ public class LandingPage extends JPanel {
                         checkoutStatus = 1;
                         checkout.setText("");
                         errorCheckOut.setVisible(true);
-                        errorCheckOut.setText("<html>Date should be ahead of checkin date</html>");
+                        errorCheckOut.setText("Date should be ahead of checkin date");
                     }
                     else {
                         checkout.setText(obj.date);
@@ -147,14 +146,93 @@ public class LandingPage extends JPanel {
 
             @Override
             public void windowDeactivated(WindowEvent e) {
-
+                System.out.print("deactivatedd");
             }
         });
     }
 
     private void submit(ActionEvent e) {
         System.out.print("Submit Button Clicked");
-        // TODO add your code here
+        if(checkinStatus!=2){
+            errorCheckIn.setVisible(true);
+            errorCheckIn.setText("Please choose checkin date");
+            return;
+        }
+        if(checkoutStatus!=2){
+            errorCheckOut.setVisible(true);
+            errorCheckOut.setText("Please choose checkout date");
+            return;
+        }
+        errorAdults.setVisible(false);
+        errorChild.setVisible(false);
+        try {
+            if (Integer.parseInt(adult.getSelectedItem().toString()) <= 0) {
+                errorAdults.setVisible(true);
+                errorAdults.setText("Choose at least 1 adult");
+                return;
+            }
+        }
+        catch (Exception ex){
+            errorAdults.setVisible(true);
+            errorAdults.setText("Enter a valid number");
+            return;
+        }
+        try {
+            int childcount = Integer.parseInt(child.getSelectedItem().toString());
+        }
+        catch (Exception ex){
+            errorChild.setVisible(true);
+            errorChild.setText("Enter a valid number");
+            return;
+        }
+        //call function
+
+    }
+
+    private void doLogin(ActionEvent e) {
+        JFrame loginFrame = new JFrame();
+        LoginPortal loginwindow = new LoginPortal(loginFrame);
+        loginwindow.setVisible(true);
+        loginFrame.add(loginwindow);
+        loginFrame.pack();
+        this.parent.setEnabled(false);
+        loginFrame.setVisible(true);
+        loginFrame.addWindowListener(new WindowListener() {
+            @Override
+            public void windowOpened(WindowEvent e) {
+
+            }
+
+            @Override
+            public void windowClosing(WindowEvent e) {
+
+            }
+
+            @Override
+            public void windowClosed(WindowEvent e) {
+
+            }
+
+            @Override
+            public void windowIconified(WindowEvent e) {
+
+            }
+
+            @Override
+            public void windowDeiconified(WindowEvent e) {
+
+            }
+
+            @Override
+            public void windowActivated(WindowEvent e) {
+
+            }
+
+            @Override
+            public void windowDeactivated(WindowEvent e) {
+
+            }
+        });
     }
 
     private void initComponents() {
@@ -169,9 +247,11 @@ public class LandingPage extends JPanel {
         guestsLabel = new JLabel();
         panel1 = new JPanel();
         label2 = new JLabel();
-        comboBox1 = new JComboBox<>();
+        adult = new JComboBox<>();
         label3 = new JLabel();
-        comboBox2 = new JComboBox<>();
+        child = new JComboBox<>();
+        errorAdults = new JLabel();
+        errorChild = new JLabel();
         checkout = new JLabel();
         button1 = new JButton();
         loggedInPanel = new JPanel();
@@ -238,27 +318,37 @@ public class LandingPage extends JPanel {
             //---- label2 ----
             label2.setText("Adults");
 
-            //---- comboBox1 ----
-            comboBox1.setModel(new DefaultComboBoxModel<>(new String[] {
+            //---- adult ----
+            adult.setModel(new DefaultComboBoxModel<>(new String[] {
                 "1",
                 "2",
                 "3",
                 "4"
             }));
-            comboBox1.setEditable(true);
+            adult.setEditable(true);
 
             //---- label3 ----
             label3.setText("Child(<18)");
 
-            //---- comboBox2 ----
-            comboBox2.setModel(new DefaultComboBoxModel<>(new String[] {
+            //---- child ----
+            child.setModel(new DefaultComboBoxModel<>(new String[] {
                 "0",
                 "1",
                 "2",
                 "3",
                 "4"
             }));
-            comboBox2.setEditable(true);
+            child.setEditable(true);
+
+            //---- errorAdults ----
+            errorAdults.setIcon(new ImageIcon(getClass().getResource("/bits/oops/project/error.png")));
+            errorAdults.setText("Number of adults can't be zero");
+            errorAdults.setForeground(Color.red);
+
+            //---- errorChild ----
+            errorChild.setIcon(new ImageIcon(getClass().getResource("/bits/oops/project/error.png")));
+            errorChild.setText("Choose a valid number");
+            errorChild.setForeground(Color.red);
 
             GroupLayout panel1Layout = new GroupLayout(panel1);
             panel1.setLayout(panel1Layout);
@@ -269,24 +359,31 @@ public class LandingPage extends JPanel {
                             .addGroup(panel1Layout.createSequentialGroup()
                                 .addComponent(label2, GroupLayout.PREFERRED_SIZE, 60, GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(comboBox1, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE))
+                                .addComponent(adult, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(errorAdults))
                             .addGroup(panel1Layout.createSequentialGroup()
                                 .addComponent(label3, GroupLayout.PREFERRED_SIZE, 60, GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(comboBox2, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addComponent(child, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(errorChild)
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addContainerGap())
             );
             panel1Layout.setVerticalGroup(
                 panel1Layout.createParallelGroup()
                     .addGroup(panel1Layout.createSequentialGroup()
-                        .addGap(0, 0, 0)
                         .addGroup(panel1Layout.createParallelGroup()
-                            .addComponent(comboBox1, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
+                            .addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                .addComponent(adult, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
+                                .addComponent(errorAdults))
                             .addComponent(label2, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                             .addComponent(label3, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
-                            .addComponent(comboBox2, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE))
+                            .addComponent(child, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
+                            .addComponent(errorChild))
                         .addContainerGap(12, Short.MAX_VALUE))
             );
         }
@@ -304,7 +401,7 @@ public class LandingPage extends JPanel {
         //---- button1 ----
         button1.setText("SEARCH");
         button1.setBorder(new EtchedBorder());
-        button1.setBackground(new Color(102, 102, 255));
+        button1.setBackground(new Color(255, 102, 0));
         button1.setFont(new Font("Segoe UI Semilight", Font.BOLD, 12));
         button1.addActionListener(e -> submit(e));
 
@@ -362,6 +459,7 @@ public class LandingPage extends JPanel {
 
             //---- button2 ----
             button2.setText("LOGIN");
+            button2.addActionListener(e -> doLogin(e));
 
             GroupLayout loggedOutPanelLayout = new GroupLayout(loggedOutPanel);
             loggedOutPanel.setLayout(loggedOutPanelLayout);
@@ -422,25 +520,29 @@ public class LandingPage extends JPanel {
                                     .addGap(16, 16, 16)
                                     .addComponent(checkout, GroupLayout.PREFERRED_SIZE, 125, GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(errorCheckOut))
+                                    .addComponent(errorCheckOut, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addGroup(GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                     .addComponent(guestsLabel, GroupLayout.PREFERRED_SIZE, 96, GroupLayout.PREFERRED_SIZE)
                                     .addGap(18, 18, 18)
                                     .addGroup(layout.createParallelGroup()
-                                        .addComponent(panel1, GroupLayout.PREFERRED_SIZE, 106, GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(button1, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE)))))
+                                        .addComponent(button1, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(panel1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))))
                         .addComponent(label1))
-                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                    .addComponent(loggedOutPanel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                    .addComponent(loggedInPanel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 124, Short.MAX_VALUE)
+                    .addGroup(layout.createParallelGroup()
+                        .addComponent(loggedInPanel, GroupLayout.Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                        .addComponent(loggedOutPanel, GroupLayout.Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                    .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup()
                 .addGroup(layout.createSequentialGroup()
                     .addGap(24, 24, 24)
-                    .addGroup(layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createParallelGroup()
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(loggedInPanel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(loggedOutPanel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
                         .addGroup(layout.createSequentialGroup()
                             .addComponent(label1)
                             .addGap(36, 36, 36)
@@ -451,31 +553,26 @@ public class LandingPage extends JPanel {
                             .addGroup(layout.createParallelGroup()
                                 .addComponent(checkinLabel, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE)
                                 .addComponent(checkin, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE)
-                                .addComponent(errorCheckIn)))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup()
-                                .addComponent(loggedOutPanel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                .addComponent(loggedInPanel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                            .addGap(8, 8, 8)))
-                    .addGroup(layout.createParallelGroup()
-                        .addGroup(layout.createSequentialGroup()
+                                .addComponent(errorCheckIn))
                             .addGroup(layout.createParallelGroup()
                                 .addComponent(checkoutLabel, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE)
-                                .addComponent(checkout, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE))
+                                .addComponent(checkout, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE)
+                                .addComponent(errorCheckOut))
                             .addGap(18, 18, 18)
                             .addGroup(layout.createParallelGroup()
                                 .addComponent(guestsLabel, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE)
                                 .addComponent(panel1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
                             .addGap(18, 18, 18)
-                            .addComponent(button1, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE))
-                        .addComponent(errorCheckOut))
-                    .addContainerGap(68, Short.MAX_VALUE))
+                            .addComponent(button1, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)))
+                    .addContainerGap(55, Short.MAX_VALUE))
         );
         // JFormDesigner - End of component initialization  //GEN-END:initComponents
         loggedInPanel.setVisible(true);
         loggedOutPanel.setVisible(false);
         errorCheckIn.setVisible(false);
         errorCheckOut.setVisible(false);
+        errorAdults.setVisible(false);
+        errorChild.setVisible(false);
         checkinStatus = checkoutStatus = 0;
     }
 
@@ -490,9 +587,11 @@ public class LandingPage extends JPanel {
     private JLabel guestsLabel;
     private JPanel panel1;
     private JLabel label2;
-    private JComboBox<String> comboBox1;
+    private JComboBox<String> adult;
     private JLabel label3;
-    private JComboBox<String> comboBox2;
+    private JComboBox<String> child;
+    private JLabel errorAdults;
+    private JLabel errorChild;
     private JLabel checkout;
     private JButton button1;
     private JPanel loggedInPanel;
@@ -513,10 +612,10 @@ public class LandingPage extends JPanel {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setSize(500,500);
-        frame.setVisible(true);
         LandingPage panelLanding = new LandingPage(frame);
         panelLanding.setSize(500,500);
         frame.add(panelLanding);
         panelLanding.setVisible(true);
+        frame.setVisible(true);
     }
 }

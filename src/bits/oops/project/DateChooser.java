@@ -18,11 +18,13 @@ public class DateChooser extends JDialog {
     public DateChooser(Frame owner) {
         super(owner);
         initComponents();
+        this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
 
     public DateChooser(Dialog owner) {
         super(owner);
         initComponents();
+        this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
 
     private void customize() {
