@@ -25,7 +25,10 @@ import org.jdesktop.swingx.*;*/
  * @author Shreeya
  */
 public class login_portal extends JPanel {
-    public login_portal() {
+    private final JFrame parent;
+
+    public login_portal(JFrame parent) {
+        this.parent=parent;
         initComponents();
     }
 
@@ -115,6 +118,52 @@ public class login_portal extends JPanel {
 
     private void emailidtextActionPerformed(ActionEvent e) {
         // TODO add your code here
+    }
+
+    private void OpenLogin(ActionEvent e) {
+        JFrame loginFrame = new JFrame();
+        login_portal loginwindow = new login_portal(loginFrame);
+        loginwindow.setVisible(true);
+        loginFrame.add(loginwindow);
+        loginFrame.pack();
+        this.parent.setEnabled(false);
+        loginFrame.setVisible(true);
+        loginFrame.addWindowListener(new WindowListener() {
+            @Override
+            public void windowOpened(WindowEvent e) {
+
+            }
+
+            @Override
+            public void windowClosing(WindowEvent e) {
+
+            }
+
+            @Override
+            public void windowClosed(WindowEvent e) {
+
+            }
+
+            @Override
+            public void windowIconified(WindowEvent e) {
+
+            }
+
+            @Override
+            public void windowDeiconified(WindowEvent e) {
+
+            }
+
+            @Override
+            public void windowActivated(WindowEvent e) {
+
+            }
+
+            @Override
+            public void windowDeactivated(WindowEvent e) {
+
+            }
+        });
     }
 
 
@@ -247,6 +296,7 @@ public class login_portal extends JPanel {
         Register.addActionListener(e -> {
 			RegisterActionPerformed(e);
 			RegisterActionPerformed(e);
+			OpenLogin(e);
 		});
 
         //---- nameerror ----
