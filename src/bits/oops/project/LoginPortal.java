@@ -5,7 +5,7 @@ import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.GroupLayout;
 import javax.swing.border.*;
-import com.intellij.ide.ui.laf.darcula.ui.*;
+//import com.intellij.ide.ui.laf.darcula.ui.*;
 /*
  * Created by JFormDesigner on Mon Nov 19 20:06:01 IST 2018
  */
@@ -159,9 +159,6 @@ public class LoginPortal extends JPanel {
         Remembermebox.setBackground(Color.white);
         Remembermebox.setFont(Remembermebox.getFont().deriveFont(Remembermebox.getFont().getStyle() | Font.BOLD, Remembermebox.getFont().getSize() + 2f));
         Remembermebox.setForeground(new Color(0, 0, 102));
-        Remembermebox.setBorder(new CompoundBorder(
-            new DarculaCheckBoxBorder(),
-            null));
         Remembermebox.setBorderPainted(true);
 
         GroupLayout layout = new GroupLayout(this);
