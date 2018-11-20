@@ -71,6 +71,8 @@ new FormModel {
 				"background": new java.awt.Color( 255, 255, 255, 255 )
 				"font": new com.jformdesigner.model.SwingDerivedFont( null, 1, 2, false )
 				"foreground": new java.awt.Color( 0, 0, 102, 255 )
+				"border": new javax.swing.border.CompoundBorder( new com.intellij.ide.ui.laf.darcula.ui.DarculaCheckBoxBorder, null )
+				"borderPainted": true
 			} )
 		}, new FormLayoutConstraints( null ) {
 			"location": new java.awt.Point( 0, 0 )
