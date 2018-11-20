@@ -132,7 +132,7 @@ public class MysqlCon {
         }
 
     }
-     ArrayList<HotelTab> _hotels(String location, Date check_in, Date check_out, int adults)
+     ArrayList<HotelTab> gethotels(String location, Date check_in, Date check_out)
     {
 
         ArrayList<HotelTab> a1 = new ArrayList<>();

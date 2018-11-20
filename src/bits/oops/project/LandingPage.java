@@ -9,9 +9,9 @@ import com.google.gson.Gson;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.File;
-import java.util.Base64;
-import java.util.Calendar;
-import java.util.Scanner;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.*;
 import javax.swing.*;
 import javax.swing.GroupLayout;
 import javax.swing.border.*;
@@ -203,15 +203,63 @@ public class LandingPage extends JPanel {
             return;
         }
         try {
-            int childcount = Integer.parseInt(child.getSelectedItem().toString());
+            Integer.parseInt(child.getSelectedItem().toString());
         }
         catch (Exception ex){
             errorChild.setVisible(true);
             errorChild.setText("Enter a valid number");
             return;
         }
-        //call function
+        Bookings newBooking = new Bookings();
+        newBooking.uid = currentUser.getUsername();
+        DateFormat format = new SimpleDateFormat("DD/MM/YYYY");
+        try {
+            Date c_in = format.parse(checkin.getText());
+            Date c_out = format.parse(checkout.getText());
+            newBooking.check_in_date = c_in;
+            newBooking.check_out_date = c_out;
+            newBooking.adult_count = Integer.parseInt(adult.getSelectedItem().toString());
+            newBooking.child_count = Integer.parseInt(child.getSelectedItem().toString());
+            ArrayList<HotelTab> hlist= MysqlCon.getInstance().gethotels(cityChooser.getSelectedItem().toString(),c_in,c_out);
+            container hotel_list = new container(hlist);
+            JScrollPane pane=new JScrollPane();
+            pane.getViewport().add(hotel_list);
+            parent.remove(this);
+            parent.add(pane);
+            parent.pack();
+            parent.setVisible(true);
+            for(HotelTab t:hlist){
+                t.addMouseListener(new MouseListener() {
+                    @Override
+                    public void mouseClicked(MouseEvent e) {
+                        System.out.print(t.name);
+                    }
 
+                    @Override
+                    public void mousePressed(MouseEvent e) {
+
+                    }
+
+                    @Override
+                    public void mouseReleased(MouseEvent e) {
+
+                    }
+
+                    @Override
+                    public void mouseEntered(MouseEvent e) {
+
+                    }
+
+                    @Override
+                    public void mouseExited(MouseEvent e) {
+
+                    }
+                });
+            }
+        }
+        catch (Exception ex){
+
+        }
     }
 
     private void doLogin(ActionEvent e) {

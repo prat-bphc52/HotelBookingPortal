@@ -1,5 +1,6 @@
 package bits.oops.project;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.sql.Timestamp;
@@ -10,15 +11,14 @@ public class Bookings {
     String ref;
     String uid;
     String hid;
-    JSONObject adults = new JSONObject();
-    JSONObject child = new JSONObject();
+    JSONArray adults = new JSONArray();
+    JSONArray child = new JSONArray();
     JSONObject rooms = new JSONObject();
     Date check_in_date;
     Date check_out_date;
     int cost;
     long timestamp;
-    int status;
-    int rating;
+    int status,rating,adult_count,child_count;
     String review;
     JSONObject waitlist = new JSONObject();
 
