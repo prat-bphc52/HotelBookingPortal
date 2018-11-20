@@ -4,8 +4,8 @@ new FormModel {
 	contentType: "form/swing"
 	root: new FormRoot {
 		add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-			"$horizontalGroup": "par l {seq l {par l {seq l {space :p:31:p, comp Name:::p:100:p, space u:::p, comp nametext:::p:242:p}, seq l {par l {seq {space :p:33:p, par l {comp Contact::l:p::p, comp Username::l:p::p, comp Password::l:p:96:p, comp Address::l:p:88:p, comp Register::l:p::p}}, seq t {space :::p, comp Email:::p:102:p}}, space :::p, par t:::p {comp passwordField1::l:::x, comp usernametext::l:::x, comp emailidtext:::::x, comp contacttext:::::x, comp addresstext::l:p:250:p, comp label1::l:p:230:p}}, seq {space :37:37:p, comp RegistrationPortal:::p:286:p}}, space :p:44:p, par l {comp nameerror::::195:x, comp emailerror::::195:x, comp usernameerror::l::195:x, seq t {par t {comp passworderror::l::189:x, comp contacterror::::189:x}, space :::p}}}}"
-			"$verticalGroup": "par l {seq l {space :::p, comp RegistrationPortal:::p:42:p, space :p:19:p, par b {comp nametext::b:p::p, comp Name::b:p:27:p, comp nameerror::b:p::p}, space :p:15:p, par b {comp emailidtext::b:p::p, comp Email::b:p:28:p, comp emailerror::b:p::p}, space :p:14:p, par b {comp Username::b:p:28:p, comp usernametext::b:p::p, comp usernameerror::b:p::p}, space u:::p, par l {comp Password:::p:28:p, par b {comp passwordField1::b:p::p, comp passworderror::b:p::p}}, space s:::p, par b {comp Contact::b:p:27:p, comp contacttext::b:p::p, comp contacterror::b:p::p}, space s:::p, par b {comp Address::b:p:26:p, comp addresstext::b:p::p}, space ::46:x, par b {comp Register::b:p::p, comp label1::b:p::p}}}"
+			"$horizontalGroup": "par l {seq l {par l {seq t {space :p:31:p, comp Name:::p:100:p, space s:::p, comp nametext:::p:254:p}, seq l {par l {seq {space :p:33:p, par l {comp Contact::l:p::p, comp Username::l:p::p, comp Password::l:p:96:p, comp Address::l:p:88:p, comp Register::l:p::p}}, seq t {space :::p, comp Email:::p:102:p}}, space s:::p, par l {comp label1::l:p:230:p, par t:l::p {comp passwordField1::l:::x, comp usernametext::l:::x, comp emailidtext:::::x, comp contacttext:::::x, comp addresstext::l:p:250:p}}}, seq {space :37:37:p, comp RegistrationPortal:::p:286:p}}, space :p:44:p, par l {comp nameerror::::195:x, comp emailerror::::195:x, comp usernameerror::l::195:x, seq t {par t {comp passworderror::l::189:x, comp contacterror::::189:x}, space :::p}}}, seq l {space :p:24:p, comp label2:::p:371:p, space ::235:x}}"
+			"$verticalGroup": "par l {seq l {space :::p, comp RegistrationPortal:::p:42:p, space :p:19:p, par b {comp Name::b:p:27:p, comp nameerror::b:p::p, comp nametext::b:p::p}, space :p:15:p, par b {comp emailidtext::b:p::p, comp Email::b:p:28:p, comp emailerror::b:p::p}, space :p:14:p, par b {comp Username::b:p:28:p, comp usernametext::b:p::p, comp usernameerror::b:p::p}, space u:::p, par l {comp Password:::p:28:p, par b {comp passwordField1::b:p::p, comp passworderror::b:p::p}}, space s:::p, par b {comp Contact::b:p:27:p, comp contacttext::b:p::p, comp contacterror::b:p::p}, space s:::p, par b {comp Address::b:p:26:p, comp addresstext::b:p::p}, space s:::p, par b {comp Register::b:p::p, comp label1::b:p::p}, space u:::p, comp label2:::p::p, space ::125:x}}"
 		} ) {
 			name: "this"
 			"background": new java.awt.Color( 255, 255, 255, 255 )
@@ -151,9 +151,15 @@ new FormModel {
 				"foreground": new java.awt.Color( 255, 0, 0, 255 )
 				"icon": new com.jformdesigner.model.SwingIcon( 1, "C:\\Users\\shreya\\HotelBookingPortal\\src\\bits\\oops\\project\\error.png" )
 			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label2"
+				"text": "Congratulations! You have successfully registered."
+				"foreground": new java.awt.Color( 51, 153, 0, 255 )
+				"font": new com.jformdesigner.model.SwingDerivedFont( null, 1, 3, false )
+			} )
 		}, new FormLayoutConstraints( null ) {
 			"location": new java.awt.Point( 10, 95 )
-			"size": new java.awt.Dimension( 630, 400 )
+			"size": new java.awt.Dimension( 630, 530 )
 		} )
 	}
 }
