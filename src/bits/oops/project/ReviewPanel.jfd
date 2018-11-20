@@ -5,9 +5,10 @@ new FormModel {
 	root: new FormRoot {
 		add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
 			"$horizontalGroup": "par l {seq {space :::p, par l {seq l {comp label1:::p::p, space :::p, comp label4:::p::p}, comp label2::l:p::p, comp label3::l:p:200:p}, space ::4:x}}"
-			"$verticalGroup": "par l {seq l {space :::p, par b {comp label1::b:p::p, comp label4::b:p::p}, space u:::p, comp label2:::p::p, space :::p, comp label3:::p::p, space ::5:x}}"
+			"$verticalGroup": "par l {seq l {space :::p, par b {comp label1::b:p::p, comp label4::b:p::p}, space :::p, comp label2:::p::p, space :::p, comp label3:::p::p, space ::10:x}}"
 		} ) {
 			name: "this"
+			"autoscrolls": true
 			add( new FormComponent( "javax.swing.JLabel" ) {
 				name: "label1"
 				"text": "Rating:"
@@ -20,7 +21,7 @@ new FormModel {
 			} )
 			add( new FormComponent( "javax.swing.JLabel" ) {
 				name: "label3"
-				"text": "Comments given by the user"
+				"text": "<html>Comments given by the useruhyghbjhjhb</html>"
 			} )
 			add( new FormComponent( "javax.swing.JLabel" ) {
 				name: "label4"
@@ -28,7 +29,7 @@ new FormModel {
 			} )
 		}, new FormLayoutConstraints( null ) {
 			"location": new java.awt.Point( 0, 0 )
-			"size": new java.awt.Dimension( 210, 85 )
+			"size": new java.awt.Dimension( 210, 100 )
 		} )
 	}
 }

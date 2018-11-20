@@ -4,6 +4,7 @@
 
 package bits.oops.project;
 
+import java.awt.event.*;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -15,11 +16,12 @@ import javax.swing.border.*;
  * @author unknown
  */
 public class Hotel extends JPanel {
+    int revPos;
     public Hotel(HotelObject obj) {
         this.hotelData = obj;
         initComponents();
         hotel_name.setText(hotelData.name);
-        location_field.setText(hotelData.address);
+        location_field.setText("<html>"+hotelData.address+"</html>");
         starCategory.setText("- "+hotelData.star_category+" Star");
         double rating =hotelData.getRating();
         if(rating==-1){
@@ -28,7 +30,7 @@ public class Hotel extends JPanel {
         else{
             rating_label.setText("Rating: " + rating + " / 5.0");
         }
-        desc_field.setText(hotelData.description);
+        desc_field.setText("<html>"+hotelData.description+"</html>");
         rating5.setText("5 -> "+ hotelData.get5ratings()+" %");
         rating4.setText("4 -> "+ hotelData.get4ratings()+" %");
         rating3.setText("3 -> "+ hotelData.get3ratings()+" %");
@@ -36,19 +38,57 @@ public class Hotel extends JPanel {
         rating1.setText("1 -> "+ hotelData.get1ratings()+" %");
         roomsPanel.setVisible(false);
         loadingRooms.setVisible(true);
-        rooms = MysqlCon.getInstance().display_rooms(hotelData.hid);
-        for(RoomObject r:rooms){
-            Room roomholder=new Room(r);
-            roomsPanel.getViewport().add(roomholder);
-            roomholder.bookButton.addActionListener(new ActionListener() {
+//        rooms = MysqlCon.getInstance().display_rooms(hotelData.hid);
+//        for(RoomObject r:rooms){
+//            Room roomholder=new Room(r);
+//            roomsPanel.getViewport().add(roomholder);
+//            roomholder.bookButton.addActionListener(new ActionListener() {
+//                @Override
+//                public void actionPerformed(ActionEvent e) {
+//
+//                }
+//            });
+//        }
+        loadingRooms.setVisible(false);
+        roomsPanel.setVisible(true);
+        ArrayList<ReviewPanel> panels = new ArrayList<>();
+        for(Review r:hotelData.reviews){
+            System.out.println("Adding" +r.comment);
+            panels.add(new ReviewPanel(r));
+        }
+        if(panels.size()==0){
+            arrowL.setEnabled(false);
+            arrowR.setEnabled(false);
+            JLabel label = new JLabel("No Reviews");
+            reviewHolder.getViewport().add(label);
+        }
+        else{
+            revPos=0;
+            arrowL.setEnabled(false);
+            if(panels.size()==1)
+                arrowR.setEnabled(false);
+            reviewHolder.getViewport().add(panels.get(0));
+            arrowL.addMouseListener(new MouseAdapter() {
                 @Override
-                public void actionPerformed(ActionEvent e) {
-
+                public void mouseClicked(MouseEvent e) {
+                    reviewHolder.getViewport().remove(panels.get(revPos--));
+                    reviewHolder.getViewport().add(panels.get(revPos));
+                    reviewHolder.getViewport().updateUI();
+                    if(revPos == 0) arrowL.setEnabled(false);
+                    arrowR.setEnabled(true);
+                }
+            });
+            arrowR.addMouseListener(new MouseAdapter() {
+                @Override
+                public void mouseClicked(MouseEvent e) {
+                    reviewHolder.getViewport().remove(panels.get(revPos++));
+                    reviewHolder.getViewport().add(panels.get(revPos));
+                    reviewHolder.getViewport().updateUI();
+                    if(revPos == panels.size()-1) arrowR.setEnabled(false);
+                    arrowL.setEnabled(true);
                 }
             });
         }
-        loadingRooms.setVisible(false);
-        roomsPanel.setVisible(true);
     }
 
     private void initComponents() {
@@ -66,7 +106,10 @@ public class Hotel extends JPanel {
         rating3 = new JLabel();
         rating2 = new JLabel();
         rating1 = new JLabel();
-        reviewPanel = new JScrollPane();
+        reviewPanel = new JPanel();
+        arrowL = new JLabel();
+        reviewHolder = new JScrollPane();
+        arrowR = new JLabel();
         rating4 = new JLabel();
         panel1 = new JPanel();
         a1 = new JLabel();
@@ -146,6 +189,42 @@ public class Hotel extends JPanel {
         rating1.setIcon(new ImageIcon(getClass().getResource("/bits/oops/project/star.png")));
         rating1.setFont(rating1.getFont().deriveFont(rating1.getFont().getSize() + 3f));
 
+        //======== reviewPanel ========
+        {
+            reviewPanel.setBorder(new TitledBorder(null, "Reviews", TitledBorder.CENTER, TitledBorder.TOP,
+                new Font("Papyrus", Font.PLAIN, 16)));
+            reviewPanel.setLayout(new GridBagLayout());
+            ((GridBagLayout)reviewPanel.getLayout()).columnWidths = new int[] {0, 0, 0, 0};
+            ((GridBagLayout)reviewPanel.getLayout()).rowHeights = new int[] {0, 0};
+            ((GridBagLayout)reviewPanel.getLayout()).columnWeights = new double[] {0.0, 0.0, 0.0, 1.0E-4};
+            ((GridBagLayout)reviewPanel.getLayout()).rowWeights = new double[] {1.0, 1.0E-4};
+
+            //---- arrowL ----
+            arrowL.setIcon(new ImageIcon(getClass().getResource("/bits/oops/project/arrow_l.png")));
+            arrowL.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+            reviewPanel.add(arrowL, new GridBagConstraints(0, 0, 1, 1, 0.0, 0.0,
+                GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL,
+                new Insets(0, 0, 0, 0), 0, 0));
+
+            //======== reviewHolder ========
+            {
+                reviewHolder.setBorder(null);
+                reviewHolder.setPreferredSize(new Dimension(200, 100));
+                reviewHolder.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+                reviewHolder.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+            }
+            reviewPanel.add(reviewHolder, new GridBagConstraints(1, 0, 1, 1, 1.0, 1.0,
+                GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+                new Insets(0, 0, 0, 0), 0, 0));
+
+            //---- arrowR ----
+            arrowR.setIcon(new ImageIcon(getClass().getResource("/bits/oops/project/arrow_r.png")));
+            arrowR.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+            reviewPanel.add(arrowR, new GridBagConstraints(2, 0, 1, 1, 0.0, 0.0,
+                GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL,
+                new Insets(0, 0, 0, 0), 0, 0));
+        }
+
         //---- rating4 ----
         rating4.setText("4 -> 0%");
         rating4.setIcon(new ImageIcon(getClass().getResource("/bits/oops/project/star.png")));
@@ -195,26 +274,24 @@ public class Hotel extends JPanel {
                             .addComponent(hotel_img, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                             .addGap(12, 12, 12)
                             .addGroup(layout.createParallelGroup()
-                                .addComponent(location_field, GroupLayout.Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
                                 .addComponent(location_label)
                                 .addComponent(amenities_label)
-                                .addComponent(panel1, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(panel1, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE)
+                                .addComponent(location_field, GroupLayout.PREFERRED_SIZE, 200, GroupLayout.PREFERRED_SIZE)))
                         .addGroup(layout.createSequentialGroup()
                             .addGap(24, 24, 24)
                             .addComponent(hotel_name)
                             .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(starCategory)
-                            .addGap(0, 193, Short.MAX_VALUE))
+                            .addComponent(starCategory))
                         .addGroup(layout.createSequentialGroup()
                             .addContainerGap()
                             .addGroup(layout.createParallelGroup()
-                                .addComponent(desc_field, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGroup(layout.createParallelGroup()
-                                        .addComponent(label11)
-                                        .addComponent(desc_label))
-                                    .addGap(0, 346, Short.MAX_VALUE)))))
-                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(label11)
+                                .addComponent(desc_label)))
+                        .addGroup(GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addContainerGap()
+                            .addComponent(desc_field, GroupLayout.PREFERRED_SIZE, 512, GroupLayout.PREFERRED_SIZE)))
+                    .addGap(0, 0, Short.MAX_VALUE)
                     .addGroup(layout.createParallelGroup()
                         .addComponent(rating_label)
                         .addGroup(layout.createSequentialGroup()
@@ -225,14 +302,14 @@ public class Hotel extends JPanel {
                                 .addComponent(rating3)
                                 .addComponent(rating2)
                                 .addComponent(rating1)
-                                .addComponent(reviewPanel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))))
-                    .addGap(90, 90, 90))
+                                .addComponent(reviewPanel, GroupLayout.PREFERRED_SIZE, 250, GroupLayout.PREFERRED_SIZE))))
+                    .addContainerGap())
                 .addGroup(layout.createSequentialGroup()
                     .addContainerGap()
                     .addComponent(roomsPanel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                     .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                     .addComponent(loadingRooms)
-                    .addContainerGap(619, Short.MAX_VALUE))
+                    .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup()
@@ -241,11 +318,11 @@ public class Hotel extends JPanel {
                         .addGroup(layout.createSequentialGroup()
                             .addGap(15, 15, 15)
                             .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                .addComponent(hotel_name, GroupLayout.PREFERRED_SIZE, 51, GroupLayout.PREFERRED_SIZE)
+                                .addComponent(hotel_name)
                                 .addComponent(rating_label)))
                         .addGroup(GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                             .addContainerGap()
-                            .addComponent(starCategory, GroupLayout.PREFERRED_SIZE, 51, GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(starCategory)))
                     .addGroup(layout.createParallelGroup()
                         .addGroup(layout.createSequentialGroup()
                             .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
@@ -268,21 +345,21 @@ public class Hotel extends JPanel {
                                     .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                                     .addComponent(rating1, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE)
                                     .addGap(18, 18, 18)
-                                    .addComponent(reviewPanel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))))
+                                    .addComponent(reviewPanel, GroupLayout.PREFERRED_SIZE, 132, GroupLayout.PREFERRED_SIZE))))
                         .addGroup(layout.createSequentialGroup()
                             .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(hotel_img, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                             .addGap(18, 18, 18)
-                            .addComponent(desc_label, GroupLayout.PREFERRED_SIZE, 28, GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(desc_field)))
+                            .addComponent(desc_label, GroupLayout.PREFERRED_SIZE, 28, GroupLayout.PREFERRED_SIZE)))
+                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(desc_field)
                     .addGap(18, 18, 18)
                     .addComponent(label11)
                     .addGap(18, 18, 18)
                     .addGroup(layout.createParallelGroup()
                         .addComponent(loadingRooms)
                         .addComponent(roomsPanel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                    .addContainerGap(183, Short.MAX_VALUE))
+                    .addContainerGap(202, Short.MAX_VALUE))
         );
         // JFormDesigner - End of component initialization  //GEN-END:initComponents
     }
@@ -301,7 +378,10 @@ public class Hotel extends JPanel {
     private JLabel rating3;
     private JLabel rating2;
     private JLabel rating1;
-    private JScrollPane reviewPanel;
+    private JPanel reviewPanel;
+    private JLabel arrowL;
+    private JScrollPane reviewHolder;
+    private JLabel arrowR;
     private JLabel rating4;
     private JPanel panel1;
     private JLabel a1;
@@ -320,4 +400,26 @@ public class Hotel extends JPanel {
     // JFormDesigner - End of variables declaration  //GEN-END:variables
     HotelObject hotelData;
     ArrayList<RoomObject> rooms;
+    public static void main(String args[]){
+        JFrame frame=new JFrame();
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        HotelObject obj=new HotelObject();
+        obj.name="Taj Banjara";
+        obj.star_category = 5;
+        obj.address = "Road number 18, Banjara Hill, Hyderabad, Telangana";
+        obj.description = " Most popular 5-star hotel located in the heart of hyderabad city offering an amazing view of the Buddha Statue at Hussain Sagar Lake.";
+        obj.reviews = new ArrayList<>();
+        for(int i=0;i<5;i++){
+            Review r=new Review();
+            r.rating = 4;
+            for(int j=0;j<2;j++)
+                r.comment += "Review "+i;
+            obj.reviews.add(r);
+        }
+        Hotel hpanel = new Hotel(obj);
+        hpanel.setSize(1000,1000);
+        frame.add(hpanel);
+        frame.pack();
+        frame.setVisible(true);
+    }
 }

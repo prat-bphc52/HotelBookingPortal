@@ -39,6 +39,7 @@ public class LandingPage extends JPanel {
         }
         catch (Exception e){
         }
+        loggedOutPanel.setVisible(true);
         currentUser = null;
     }
 
@@ -329,6 +330,10 @@ public class LandingPage extends JPanel {
         }
     }
 
+    private void displayProfile(ActionEvent e) {
+
+    }
+
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
         // Generated using JFormDesigner Evaluation license - Prateek Agarwal
@@ -352,6 +357,7 @@ public class LandingPage extends JPanel {
         label6 = new JLabel();
         userName = new JLabel();
         button3 = new JButton();
+        profile = new JButton();
         loggedOutPanel = new JPanel();
         label7 = new JLabel();
         button2 = new JButton();
@@ -515,6 +521,10 @@ public class LandingPage extends JPanel {
             button3.setText("LOGOUT");
             button3.addActionListener(e -> doLogOut(e));
 
+            //---- profile ----
+            profile.setText("PROFILE");
+            profile.addActionListener(e -> displayProfile(e));
+
             GroupLayout loggedInPanelLayout = new GroupLayout(loggedInPanel);
             loggedInPanel.setLayout(loggedInPanelLayout);
             loggedInPanelLayout.setHorizontalGroup(
@@ -527,7 +537,8 @@ public class LandingPage extends JPanel {
                                 .addGap(0, 0, Short.MAX_VALUE))
                             .addComponent(userName)
                             .addGroup(GroupLayout.Alignment.TRAILING, loggedInPanelLayout.createSequentialGroup()
-                                .addGap(0, 42, Short.MAX_VALUE)
+                                .addComponent(profile)
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(button3)))
                         .addContainerGap())
             );
@@ -539,7 +550,9 @@ public class LandingPage extends JPanel {
                         .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(userName, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
-                        .addComponent(button3)
+                        .addGroup(loggedInPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                            .addComponent(button3)
+                            .addComponent(profile))
                         .addContainerGap())
             );
         }
@@ -562,11 +575,13 @@ public class LandingPage extends JPanel {
                 loggedOutPanelLayout.createParallelGroup()
                     .addGroup(loggedOutPanelLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(label7, GroupLayout.PREFERRED_SIZE, 141, GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(GroupLayout.Alignment.TRAILING, loggedOutPanelLayout.createSequentialGroup()
-                        .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(button2)
+                        .addGroup(loggedOutPanelLayout.createParallelGroup()
+                            .addGroup(loggedOutPanelLayout.createSequentialGroup()
+                                .addComponent(label7, GroupLayout.PREFERRED_SIZE, 141, GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(GroupLayout.Alignment.TRAILING, loggedOutPanelLayout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(button2)))
                         .addContainerGap())
             );
             loggedOutPanelLayout.setVerticalGroup(
@@ -623,7 +638,7 @@ public class LandingPage extends JPanel {
                                         .addComponent(button1, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE)
                                         .addComponent(panel1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))))
                         .addComponent(label1))
-                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 124, Short.MAX_VALUE)
+                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 108, Short.MAX_VALUE)
                     .addGroup(layout.createParallelGroup()
                         .addComponent(loggedInPanel, GroupLayout.Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                         .addComponent(loggedOutPanel, GroupLayout.Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
@@ -693,6 +708,7 @@ public class LandingPage extends JPanel {
     private JLabel label6;
     private JLabel userName;
     private JButton button3;
+    private JButton profile;
     private JPanel loggedOutPanel;
     private JLabel label7;
     private JButton button2;

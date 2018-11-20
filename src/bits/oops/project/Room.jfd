@@ -43,6 +43,7 @@ new FormModel {
 				"border": new javax.swing.border.EtchedBorder( 1, null, null )
 				"foreground": sfield java.awt.Color white
 				"font": new java.awt.Font( "Swis721 LtEx BT", 1, 12 )
+				"cursor": new java.awt.Cursor( 12 )
 				auxiliary() {
 					"JavaCodeGenerator.variableModifiers": 0
 				}
