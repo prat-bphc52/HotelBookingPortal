@@ -222,6 +222,7 @@ public class LandingPage extends JPanel {
         LoginPortal loginwindow = new LoginPortal(loginFrame);
         loginwindow.setVisible(true);
         loginFrame.add(loginwindow);
+        loginFrame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         loginFrame.pack();
         this.parent.setEnabled(false);
         loginFrame.setVisible(true);
@@ -245,6 +246,7 @@ public class LandingPage extends JPanel {
                     userName.setText(currentUser.getName());
                 }
                 parent.setEnabled(true);
+                parent.setVisible(true);
             }
 
             @Override

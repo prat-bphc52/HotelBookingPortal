@@ -4,8 +4,8 @@ new FormModel {
 	contentType: "form/swing"
 	root: new FormRoot {
 		add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-			"$horizontalGroup": "par l {seq {par l {seq {space :p:114:p, comp LoginPortal:::p:166:p}, seq l {space :p:45:p, par l:::p {seq {par l {comp label1:::p:91:p, comp Password:::p:91:p}, space u:::p, par l:::p {comp Nametext:::::x, comp passwordField1:::p:202:p}}, seq l {space :p:17:p, par l {comp Remembermebox:::p:160:p, seq {comp Login:::p:96:p, space :::x, par l {comp newhere::l:::p, comp button1::l:p::p}}}}}}}, space ::50:x}}"
-			"$verticalGroup": "par l {seq l {space :::p, comp LoginPortal:::p:36:p, space :p:30:p, par b {comp Nametext::b:p::p, comp label1::b:p:28:p}, space u:::p, par l {comp Password:::p:29:p, comp passwordField1:::p::p}, space s:::p, comp newhere:::p::p, space :::p, par b {comp button1::b:p::p, comp Login::b:p::p}, space u:::p, comp Remembermebox:::p::p, space ::55:x}}"
+			"$horizontalGroup": "par l {seq {par l {seq l {space :p:45:p, par l:::p {seq l {space :p:17:p, par l {comp Remembermebox:::p:160:p, seq {comp Login:::p:96:p, space :::x, par l {comp newhere::l:::p, comp button1::l:p::p}}}}, seq l {par l {comp label1:::p:91:p, comp Password:::p:91:p}, space u:::p, par l {comp error:::p::p, par l:::p {comp username:::::x, comp password:::p:202:p}}}}}, seq l {space :p:114:p, comp LoginPortal:::p:166:p}}, space ::50:x}}"
+			"$verticalGroup": "par l {seq l {space :::p, comp LoginPortal:::p:36:p, space :::p, comp error:::p::p, space :p:8:p, par b {comp username::b:p::p, comp label1::b:p:28:p}, space u:::p, par l {comp Password:::p:29:p, comp password:::p::p}, space s:::p, comp newhere:::p::p, space :::p, par b {comp button1::b:p::p, comp Login::b:p::p}, space u:::p, comp Remembermebox:::p::p, space ::57:x}}"
 		} ) {
 			name: "this"
 			"background": new java.awt.Color( 255, 255, 255, 255 )
@@ -25,7 +25,7 @@ new FormModel {
 				"font": new com.jformdesigner.model.SwingDerivedFont( null, 1, 2, false )
 			} )
 			add( new FormComponent( "javax.swing.JFormattedTextField" ) {
-				name: "Nametext"
+				name: "username"
 				"background": new java.awt.Color( 255, 255, 255, 255 )
 				"foreground": new java.awt.Color( 0, 0, 0, 255 )
 				"border": &LineBorder0 new javax.swing.border.LineBorder( sfield java.awt.Color black, 1, false )
@@ -38,7 +38,7 @@ new FormModel {
 				"foreground": new java.awt.Color( 0, 0, 0, 255 )
 			} )
 			add( new FormComponent( "javax.swing.JPasswordField" ) {
-				name: "passwordField1"
+				name: "password"
 				"foreground": new java.awt.Color( 0, 0, 0, 255 )
 				"background": new java.awt.Color( 255, 255, 255, 255 )
 				"border": #LineBorder0
@@ -72,6 +72,12 @@ new FormModel {
 				"font": new com.jformdesigner.model.SwingDerivedFont( null, 1, 2, false )
 				"foreground": new java.awt.Color( 0, 0, 102, 255 )
 				"borderPainted": true
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "error"
+				"text": "Invalid Username or Password"
+				"foreground": sfield java.awt.Color red
+				"icon": new com.jformdesigner.model.SwingIcon( 0, "/bits/oops/project/error.png" )
 			} )
 		}, new FormLayoutConstraints( null ) {
 			"location": new java.awt.Point( 0, 0 )

@@ -124,7 +124,7 @@ public class Room extends JPanel {
     private JLabel room_shortdesc;
     private JLabel room_longdesc;
     private JLabel costLabel;
-    private JButton bookButton;
+    JButton bookButton;
     // JFormDesigner - End of variables declaration  //GEN-END:variables
     String roomTitle, roomImg, roomShortdesc, roomLongdesc, cost;
     RoomObject roomData;
