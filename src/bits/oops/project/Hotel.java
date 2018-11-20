@@ -6,12 +6,14 @@ package bits.oops.project;
 
 import javax.swing.*;
 import java.awt.*;
+import javax.swing.border.*;
 
 /**
  * @author unknown
  */
 public class Hotel extends JPanel {
-    public Hotel() {
+    public Hotel(HotelObject obj) {
+        this.hotelData = obj;
         initComponents();
     }
 
@@ -30,7 +32,7 @@ public class Hotel extends JPanel {
         rating3 = new JLabel();
         rating2 = new JLabel();
         rating1 = new JLabel();
-        scrollPane1 = new JScrollPane();
+        reviewPanel = new JScrollPane();
         rating4 = new JLabel();
         panel1 = new JPanel();
         a1 = new JLabel();
@@ -130,6 +132,11 @@ public class Hotel extends JPanel {
             panel1.add(a9);
         }
 
+        //======== scrollPane2 ========
+        {
+            scrollPane2.setBorder(LineBorder.createBlackLineBorder());
+        }
+
         //---- label11 ----
         label11.setText("Room Categories");
         label11.setFont(new Font("Segoe UI", Font.BOLD, 14));
@@ -168,7 +175,7 @@ public class Hotel extends JPanel {
                                 .addComponent(rating_label)
                                 .addGap(78, 78, 78))
                             .addGroup(GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(scrollPane1, GroupLayout.PREFERRED_SIZE, 215, GroupLayout.PREFERRED_SIZE)
+                                .addComponent(reviewPanel, GroupLayout.PREFERRED_SIZE, 215, GroupLayout.PREFERRED_SIZE)
                                 .addContainerGap()))
                         .addGroup(layout.createSequentialGroup()
                             .addGap(6, 6, 6)
@@ -206,7 +213,7 @@ public class Hotel extends JPanel {
                                     .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                                     .addComponent(rating1, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE)
                                     .addGap(73, 73, 73)
-                                    .addComponent(scrollPane1, GroupLayout.PREFERRED_SIZE, 123, GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(reviewPanel, GroupLayout.PREFERRED_SIZE, 123, GroupLayout.PREFERRED_SIZE))
                                 .addGroup(layout.createSequentialGroup()
                                     .addComponent(location_field)
                                     .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
@@ -243,7 +250,7 @@ public class Hotel extends JPanel {
     private JLabel rating3;
     private JLabel rating2;
     private JLabel rating1;
-    private JScrollPane scrollPane1;
+    private JScrollPane reviewPanel;
     private JLabel rating4;
     private JPanel panel1;
     private JLabel a1;
@@ -258,4 +265,5 @@ public class Hotel extends JPanel {
     private JScrollPane scrollPane2;
     private JLabel label11;
     // JFormDesigner - End of variables declaration  //GEN-END:variables
+    HotelObject hotelData;
 }

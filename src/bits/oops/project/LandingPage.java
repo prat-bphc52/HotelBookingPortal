@@ -244,6 +244,7 @@ public class LandingPage extends JPanel {
                     loggedOutPanel.setVisible(false);
                     userName.setText(currentUser.getName());
                 }
+                parent.setEnabled(true);
             }
 
             @Override
@@ -477,7 +478,7 @@ public class LandingPage extends JPanel {
                             .addGroup(loggedInPanelLayout.createSequentialGroup()
                                 .addComponent(label6)
                                 .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(userName, GroupLayout.DEFAULT_SIZE, 119, Short.MAX_VALUE)
+                            .addComponent(userName)
                             .addGroup(GroupLayout.Alignment.TRAILING, loggedInPanelLayout.createSequentialGroup()
                                 .addGap(0, 42, Short.MAX_VALUE)
                                 .addComponent(button3)))
@@ -489,8 +490,8 @@ public class LandingPage extends JPanel {
                         .addContainerGap()
                         .addComponent(label6)
                         .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(userName, GroupLayout.PREFERRED_SIZE, 28, GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
+                        .addComponent(userName, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
                         .addComponent(button3)
                         .addContainerGap())
             );

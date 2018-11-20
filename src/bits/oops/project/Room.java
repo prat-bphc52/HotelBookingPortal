@@ -13,8 +13,14 @@ import javax.swing.border.*;
  * @author Utkarsh grover
  */
 public class Room extends JPanel {
-    public Room() {
+
+    public Room(RoomObject roomObject) {
+        this.roomData = roomObject;
         initComponents();
+        room_title.setText(roomData.getTitle());
+        room_shortdesc.setText(roomData.getDescription());
+        room_longdesc.setText(roomData.getAmenities());
+        costLabel.setText("$ "+roomData.getPrice()+"/night");
     }
 
     private void initComponents() {
@@ -121,14 +127,16 @@ public class Room extends JPanel {
     private JButton bookButton;
     // JFormDesigner - End of variables declaration  //GEN-END:variables
     String roomTitle, roomImg, roomShortdesc, roomLongdesc, cost;
+    RoomObject roomData;
+
     public static void main(String args[]){
-        JFrame frame=new JFrame();
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        Room obj=new Room();
-        obj.setSize(400,400);
-        obj.setVisible(true);
-        frame.add(obj);
-        frame.pack();
-        frame.setVisible(true);
+//        JFrame frame=new JFrame();
+//        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//        Room obj=new Room();
+//        obj.setSize(400,400);
+//        obj.setVisible(true);
+//        frame.add(obj);
+//        frame.pack();
+//        frame.setVisible(true);
     }
 }
