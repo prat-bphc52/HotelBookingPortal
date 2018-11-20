@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class HotelObject {
     String hid,name,city,description,amenities,address,check_in_time,check_out_time;
-    ArrayList<String> rooms;
+    String[] rooms;
     int totalrooms,star_category;
     ArrayList<Review> reviews;
     double getRating(){
