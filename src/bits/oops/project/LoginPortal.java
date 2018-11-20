@@ -90,6 +90,7 @@ public class LoginPortal extends JPanel {
         button1 = new JButton();
         newhere = new JLabel();
         Login = new JButton();
+        Remembermebox = new JCheckBox();
 
         //======== this ========
         setBackground(Color.white);
@@ -138,7 +139,7 @@ public class LoginPortal extends JPanel {
         button1.setBackground(new Color(0, 0, 51));
         button1.setFont(button1.getFont().deriveFont(button1.getFont().getStyle() | Font.BOLD, button1.getFont().getSize() + 2f));
         button1.setForeground(Color.white);
-        //button1.addActionListener(e -> button1ActionPerformed(e));
+        button1.addActionListener(e -> button1ActionPerformed(e));
 
         //---- newhere ----
         newhere.setText("New Here?");
@@ -151,6 +152,12 @@ public class LoginPortal extends JPanel {
         Login.setForeground(Color.white);
         Login.setBackground(new Color(0, 0, 51));
         Login.addActionListener(e -> doLogin(e));
+
+        //---- Remembermebox ----
+        Remembermebox.setText("Remember me?");
+        Remembermebox.setBackground(Color.white);
+        Remembermebox.setFont(Remembermebox.getFont().deriveFont(Remembermebox.getFont().getStyle() | Font.BOLD, Remembermebox.getFont().getSize() + 2f));
+        Remembermebox.setForeground(new Color(0, 0, 102));
 
         GroupLayout layout = new GroupLayout(this);
         setLayout(layout);
@@ -172,13 +179,16 @@ public class LoginPortal extends JPanel {
                                     .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
                                         .addComponent(Nametext)
                                         .addComponent(passwordField1, GroupLayout.PREFERRED_SIZE, 202, GroupLayout.PREFERRED_SIZE)))
-                                .addGroup(GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGroup(layout.createSequentialGroup()
                                     .addGap(17, 17, 17)
-                                    .addComponent(Login, GroupLayout.PREFERRED_SIZE, 96, GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addGroup(layout.createParallelGroup()
-                                        .addComponent(newhere)
-                                        .addComponent(button1))))))
+                                        .addComponent(Remembermebox, GroupLayout.PREFERRED_SIZE, 160, GroupLayout.PREFERRED_SIZE)
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addComponent(Login, GroupLayout.PREFERRED_SIZE, 96, GroupLayout.PREFERRED_SIZE)
+                                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addGroup(layout.createParallelGroup()
+                                                .addComponent(newhere)
+                                                .addComponent(button1))))))))
                     .addContainerGap(50, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -200,7 +210,9 @@ public class LoginPortal extends JPanel {
                     .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                         .addComponent(button1)
                         .addComponent(Login))
-                    .addContainerGap(85, Short.MAX_VALUE))
+                    .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(Remembermebox)
+                    .addContainerGap(55, Short.MAX_VALUE))
         );
         // JFormDesigner - End of component initialization  //GEN-END:initComponents
     }
@@ -219,6 +231,7 @@ public class LoginPortal extends JPanel {
     private JButton button1;
     private JLabel newhere;
     private JButton Login;
+    private JCheckBox Remembermebox;
     // JFormDesigner - End of variables declaration  //GEN-END:variables
     User currentUser;
     JFrame parent;
