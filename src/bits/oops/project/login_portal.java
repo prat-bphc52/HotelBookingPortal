@@ -9,6 +9,7 @@ import java.awt.event.*;
 import java.beans.*;
 import javax.swing.*;
 import javax.swing.GroupLayout;
+import javax.swing.border.*;
 import javax.swing.plaf.basic.BasicBorders;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -72,7 +73,7 @@ public class login_portal extends JPanel {
     {
 
         Pattern p = Pattern.compile("(0/91)?[7-9][0-9]{9}");
-        Matcher m = p.matcher(contacttext);
+        Matcher m = p.matcher(contacttext.getText());
         return (m.find() && m.group().equals(contacttext));
     }
 
@@ -153,8 +154,10 @@ public class login_portal extends JPanel {
 
         //======== this ========
         setBackground(Color.white);
-        setBorder(null);
+        setBorder(new MatteBorder(3, 3, 3, 3, Color.black));
         setForeground(Color.black);
+        setAlignmentX(4.5F);
+        setAlignmentY(8.5F);
 
         // JFormDesigner evaluation mark
         setBorder(new javax.swing.border.CompoundBorder(
@@ -329,18 +332,18 @@ public class login_portal extends JPanel {
                             .addComponent(RegistrationPortal, GroupLayout.PREFERRED_SIZE, 286, GroupLayout.PREFERRED_SIZE)))
                     .addGap(44, 44, 44)
                     .addGroup(layout.createParallelGroup()
-                        .addComponent(nameerror, GroupLayout.DEFAULT_SIZE, 195, Short.MAX_VALUE)
-                        .addComponent(emailerror, GroupLayout.DEFAULT_SIZE, 195, Short.MAX_VALUE)
-                        .addComponent(usernameerror, GroupLayout.DEFAULT_SIZE, 195, Short.MAX_VALUE)
+                        .addComponent(nameerror, GroupLayout.DEFAULT_SIZE, 238, Short.MAX_VALUE)
+                        .addComponent(emailerror, GroupLayout.DEFAULT_SIZE, 238, Short.MAX_VALUE)
+                        .addComponent(usernameerror, GroupLayout.DEFAULT_SIZE, 238, Short.MAX_VALUE)
                         .addGroup(GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                             .addGroup(layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
-                                .addComponent(passworderror, GroupLayout.Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 189, Short.MAX_VALUE)
-                                .addComponent(contacterror, GroupLayout.DEFAULT_SIZE, 189, Short.MAX_VALUE))
+                                .addComponent(passworderror, GroupLayout.Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 232, Short.MAX_VALUE)
+                                .addComponent(contacterror, GroupLayout.DEFAULT_SIZE, 232, Short.MAX_VALUE))
                             .addContainerGap())))
                 .addGroup(layout.createSequentialGroup()
                     .addGap(24, 24, 24)
                     .addComponent(label2, GroupLayout.PREFERRED_SIZE, 371, GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(235, Short.MAX_VALUE))
+                    .addContainerGap(290, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup()
@@ -383,10 +386,11 @@ public class login_portal extends JPanel {
                         .addComponent(label1))
                     .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
                     .addComponent(label2)
-                    .addContainerGap(125, Short.MAX_VALUE))
+                    .addContainerGap(250, Short.MAX_VALUE))
         );
         // JFormDesigner - End of component initialization  //GEN-END:initComponents
     }
+
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
     // Generated using JFormDesigner Evaluation license - Shreeya Nelekar
