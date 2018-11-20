@@ -56,6 +56,7 @@ public class login_portal extends JPanel {
         if(contacttext.getText().equals("")) {
             flag=true;
             contacterror.setVisible(true);
+            contacttextcheck(contacttext);
         }
         else contacterror.setVisible(false);
 
@@ -65,6 +66,14 @@ public class login_portal extends JPanel {
         }
         //call Rashi's function
 
+    }
+
+    public static boolean contacttextcheck(JFormattedTextField contacttext)
+    {
+
+        Pattern p = Pattern.compile("(0/91)?[7-9][0-9]{9}");
+        Matcher m = p.matcher(contacttext);
+        return (m.find() && m.group().equals(contacttext));
     }
 
 
@@ -271,7 +280,7 @@ public class login_portal extends JPanel {
         contacterror.setFont(contacterror.getFont().deriveFont(contacterror.getFont().getStyle() | Font.BOLD, contacterror.getFont().getSize() + 1f));
 
         //---- label1 ----
-        label1.setText("This username already exists");
+        label1.setText("This username already exists.");
         label1.setBackground(Color.white);
         label1.setFont(label1.getFont().deriveFont(label1.getFont().getStyle() | Font.BOLD, label1.getFont().getSize() + 1f));
         label1.setForeground(Color.red);

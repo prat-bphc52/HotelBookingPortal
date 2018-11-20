@@ -145,7 +145,7 @@ new FormModel {
 			} )
 			add( new FormComponent( "javax.swing.JLabel" ) {
 				name: "label1"
-				"text": "This username already exists"
+				"text": "This username already exists."
 				"background": new java.awt.Color( 255, 255, 255, 255 )
 				"font": new com.jformdesigner.model.SwingDerivedFont( null, 1, 1, false )
 				"foreground": new java.awt.Color( 255, 0, 0, 255 )
