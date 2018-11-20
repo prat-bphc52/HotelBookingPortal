@@ -1,7 +1,12 @@
 package bits.oops.project;
 
+import com.google.gson.Gson;
+
 import java.awt.*;
 import java.awt.event.*;
+import java.io.File;
+import java.io.FileWriter;
+import java.util.Base64;
 import javax.swing.*;
 import javax.swing.GroupLayout;
 import javax.swing.border.*;
@@ -75,13 +80,41 @@ public class LoginPortal extends JPanel {
 
     private void doLogin(ActionEvent e) {
         //call login func
-        //currentUser  = returned object
+        User currentUser  = null;//returned object
+        File f=null;
+        try {
+            f = new File(getClass().getResource("/bits/oops/project/user.csf").toURI());
+        }
+        catch(Exception ex) {
+
+        }
+        if(Remembermebox.isSelected() && f!=null){
+            String json = new Gson().toJson(currentUser);
+            String encoded = new String(Base64.getEncoder().encode(json.getBytes()));
+         try {
+             FileWriter fw = new FileWriter(f);
+             fw.write(encoded);
+             fw.flush();
+             fw.close();
+         }
+         catch(Exception ex2) {
+         }
+         }
+
+        else {
+            try {
+                if(f!=null)
+                    f.delete();
+            } catch (Exception ex) {
+
+            }
+        }
         parent.dispose();
     }
 
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
-        // Generated using JFormDesigner Evaluation license - Prateek Agarwal
+        // Generated using JFormDesigner Evaluation license - Shreeya Nelekar
         LoginPortal = new JLabel();
         label1 = new JLabel();
         Nametext = new JFormattedTextField();
@@ -223,7 +256,7 @@ public class LoginPortal extends JPanel {
     }
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
-    // Generated using JFormDesigner Evaluation license - Prateek Agarwal
+    // Generated using JFormDesigner Evaluation license - Shreeya Nelekar
     private JLabel LoginPortal;
     private JLabel label1;
     private JFormattedTextField Nametext;
