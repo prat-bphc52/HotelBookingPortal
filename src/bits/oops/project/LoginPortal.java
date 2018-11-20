@@ -5,7 +5,6 @@ import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.GroupLayout;
 import javax.swing.border.*;
-//import com.intellij.ide.ui.laf.darcula.ui.*;
 /*
  * Created by JFormDesigner on Mon Nov 19 20:06:01 IST 2018
  */
@@ -82,7 +81,7 @@ public class LoginPortal extends JPanel {
 
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
-        // Generated using JFormDesigner Evaluation license - Shreeya Nelekar
+        // Generated using JFormDesigner Evaluation license - Prateek Agarwal
         LoginPortal = new JLabel();
         label1 = new JLabel();
         Nametext = new JFormattedTextField();
@@ -224,7 +223,7 @@ public class LoginPortal extends JPanel {
     }
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
-    // Generated using JFormDesigner Evaluation license - Shreeya Nelekar
+    // Generated using JFormDesigner Evaluation license - Prateek Agarwal
     private JLabel LoginPortal;
     private JLabel label1;
     private JFormattedTextField Nametext;

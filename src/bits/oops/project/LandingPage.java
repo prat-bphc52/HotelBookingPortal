@@ -4,9 +4,14 @@
 
 package bits.oops.project;
 
+import com.google.gson.Gson;
+
 import java.awt.*;
 import java.awt.event.*;
+import java.io.File;
+import java.util.Base64;
 import java.util.Calendar;
+import java.util.Scanner;
 import javax.swing.*;
 import javax.swing.GroupLayout;
 import javax.swing.border.*;
@@ -18,6 +23,26 @@ public class LandingPage extends JPanel {
     public LandingPage(JFrame parent) {
         this.parent = parent;
         initComponents();
+        try {
+            File f = new File(getClass().getResource("/bits/oops/project/user.csf").toURI());
+            if(f.exists()) {
+                Scanner sc=new Scanner(f);
+                String content = sc.next();
+                System.out.println(content);
+                byte[] decodedBytes = Base64.getDecoder().decode(content.getBytes());
+                String userJson = new String(decodedBytes);
+                currentUser = new Gson().fromJson(userJson,User.class);
+                loggedInPanel.setVisible(true);
+                userName.setText(currentUser.getName());
+                loggedOutPanel.setVisible(true);
+                return;
+            }
+        }
+        catch (Exception e){
+        }
+        loggedOutPanel.setVisible(true);
+        loggedInPanel.setVisible(false);
+        currentUser = null;
     }
 
     private void datecheckin(MouseEvent e) {
@@ -146,12 +171,15 @@ public class LandingPage extends JPanel {
 
             @Override
             public void windowDeactivated(WindowEvent e) {
-                System.out.print("deactivatedd");
+
             }
         });
     }
 
     private void submit(ActionEvent e) {
+        if(currentUser==null){
+
+        }
         System.out.print("Submit Button Clicked");
         if(checkinStatus!=2){
             errorCheckIn.setVisible(true);
@@ -210,7 +238,12 @@ public class LandingPage extends JPanel {
 
             @Override
             public void windowClosed(WindowEvent e) {
-
+                if(loginwindow.getCurrentUser()!=null){
+                    currentUser = loginwindow.getCurrentUser();
+                    loggedInPanel.setVisible(true);
+                    loggedOutPanel.setVisible(false);
+                    userName.setText(currentUser.getName());
+                }
             }
 
             @Override
@@ -233,6 +266,19 @@ public class LandingPage extends JPanel {
 
             }
         });
+    }
+
+    private void doLogOut(ActionEvent e) {
+        try {
+            File f = new File(getClass().getResource("/bits/oops/project/user.csf").toURI());
+            f.delete();
+            currentUser=null;
+            loggedInPanel.setVisible(false);
+            loggedOutPanel.setVisible(true);
+        }
+        catch (Exception ex){
+
+        }
     }
 
     private void initComponents() {
@@ -419,6 +465,7 @@ public class LandingPage extends JPanel {
 
             //---- button3 ----
             button3.setText("LOGOUT");
+            button3.addActionListener(e -> doLogOut(e));
 
             GroupLayout loggedInPanelLayout = new GroupLayout(loggedInPanel);
             loggedInPanel.setLayout(loggedInPanelLayout);
@@ -567,7 +614,7 @@ public class LandingPage extends JPanel {
                     .addContainerGap(55, Short.MAX_VALUE))
         );
         // JFormDesigner - End of component initialization  //GEN-END:initComponents
-        loggedInPanel.setVisible(true);
+        loggedInPanel.setVisible(false);
         loggedOutPanel.setVisible(false);
         errorCheckIn.setVisible(false);
         errorCheckOut.setVisible(false);
@@ -605,8 +652,8 @@ public class LandingPage extends JPanel {
     private JLabel errorCheckOut;
     // JFormDesigner - End of variables declaration  //GEN-END:variables
     private JFrame parent;
-    int checkinStatus;
-    int checkoutStatus;
+    int checkinStatus,checkoutStatus;
+    User currentUser;
     public static void main(String args[]){
         JFrame frame=new JFrame();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
