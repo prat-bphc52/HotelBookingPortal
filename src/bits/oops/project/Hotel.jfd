@@ -4,13 +4,13 @@ new FormModel {
 	contentType: "form/swing"
 	root: new FormRoot {
 		add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-			"$horizontalGroup": "par l {seq t {par l {seq {space :::p, comp hotel_img:::p::p, space :p:12:p, par l {comp location_field::t::150:x, comp location_label:::p::p, comp amenities_label:::p::p, comp panel1:::p:100:p}}, seq {space :p:24:p, comp hotel_name:::::p}, seq l {space :::p, par l {comp desc_field::l:::x, seq {par l {comp label11:::p::p, comp desc_label::l:::p}, space :0:346:x}}}}, space :::p, par l {par l {seq {comp rating_label:::p::p, space :p:78:p}, seq t {comp reviewPanel:::p:215:p, space :::p}}, seq l {space :6:6:p, par l {comp rating4:::p::p, comp rating5:::p::p, comp rating3::l:p::p, comp rating2::l:p::p, comp rating1::l:p::p}}}}, seq l {space :::p, comp scrollPane2:::p::p, space ::677:x}}"
-			"$verticalGroup": "par l {seq l {space :p:15:p, par b {comp hotel_name::b:p:51:p, comp rating_label::b:p::p}, par l {seq l {par b {comp location_label::b:p::p, comp rating5::b:p:27:p}, space :::p, par l {seq l {comp rating4:::p:27:p, space :::p, comp rating3:::p:27:p, space :::p, comp rating2:::p::p, space :::p, comp rating1:::p:27:p, space :p:73:p, comp reviewPanel:::p:123:p}, seq l {comp location_field:::::p, space u:::p, comp amenities_label:::p:25:p, space :::p, comp panel1:::p:100:p}}}, seq l {space :::p, comp hotel_img:::p::p, space s:::p, comp desc_label:::p:28:p, space :::p, comp desc_field:::p::p}}, space s:::p, comp label11:::p::p, space :::p, comp scrollPane2:::p::p, space ::199:x}}"
+			"$horizontalGroup": "par l {seq t {par l {seq {space :::p, comp hotel_img:::p::p, space :p:12:p, par l {comp location_field::t::150:x, comp location_label:::p::p, comp amenities_label:::p::p, comp panel1:::p:100:p}}, seq {space :p:24:p, comp hotel_name:::::p, space :::p, comp starCategory:::p::p, space :0:193:x}, seq l {space :::p, par l {comp desc_field::l:::x, seq {par l {comp label11:::p::p, comp desc_label::l:::p}, space :0:346:x}}}}, space :::p, par l {par l {seq {comp rating_label:::p::p, space :p:78:p}, seq t {comp reviewPanel:::p:215:p, space :::p}}, seq l {space :6:6:p, par l {comp rating4:::p::p, comp rating5:::p::p, comp rating3::l:p::p, comp rating2::l:p::p, comp rating1::l:p::p}}}}, seq l {space :::p, comp scrollPane2:::p::p, space ::677:x}}"
+			"$verticalGroup": "par l {seq l {par l {seq {space :p:15:p, par b {comp hotel_name::b:p:51:p, comp rating_label::b:p::p}}, seq t {space :::p, comp starCategory:::p:51:p}}, par l {seq l {par b {comp location_label::b:p::p, comp rating5::b:p:27:p}, space :::p, par l {seq l {comp rating4:::p:27:p, space :::p, comp rating3:::p:27:p, space :::p, comp rating2:::p::p, space :::p, comp rating1:::p:27:p, space :p:73:p, comp reviewPanel:::p:123:p}, seq l {comp location_field:::::p, space u:::p, comp amenities_label:::p:25:p, space :::p, comp panel1:::p:100:p}}}, seq l {space :::p, comp hotel_img:::p::p, space s:::p, comp desc_label:::p:28:p, space :::p, comp desc_field:::p::p}}, space s:::p, comp label11:::p::p, space :::p, comp scrollPane2:::p::p, space ::199:x}}"
 		} ) {
 			name: "this"
 			add( new FormComponent( "javax.swing.JLabel" ) {
 				name: "rating_label"
-				"text": "Rating : 5.0 / 5.0"
+				"text": "Rating: 5.0/5.0"
 				"font": new java.awt.Font( "Papyrus", 0, 20 )
 			} )
 			add( new FormComponent( "javax.swing.JLabel" ) {
@@ -124,6 +124,11 @@ new FormModel {
 				name: "label11"
 				"text": "Room Categories"
 				"font": new java.awt.Font( "Segoe UI", 1, 14 )
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "starCategory"
+				"text": "- 7 Star"
+				"font": new java.awt.Font( "Pristina", 0, 24 )
 			} )
 		}, new FormLayoutConstraints( null ) {
 			"location": new java.awt.Point( 0, 0 )
