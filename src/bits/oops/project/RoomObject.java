@@ -1,16 +1,16 @@
 package bits.oops.project;
 
-import com.google.gson.JsonObject;
+import org.json.JSONObject;
 
 public class RoomObject {
     private String rid,title,hid,description,amenities;
     private double price,extra;
     private int size, total;
-    private JsonObject bookings,waitlist;
+    private JSONObject bookings,waitlist;
     public RoomObject(){
 
     }
-    public RoomObject(String rid,String title, String hid, String description, String amenities,double price, double extra, int size,int total, JsonObject bookings, JsonObject waitlist) {
+    public RoomObject(String rid,String title, String hid, String description, String amenities,double price, double extra, int size,int total, JSONObject bookings, JSONObject waitlist) {
         this.rid=rid;
         this.title=title;
         this.hid=hid;
@@ -59,11 +59,11 @@ public class RoomObject {
         return total;
     }
 
-    public JsonObject getBookings() {
+    public JSONObject getBookings() {
         return bookings;
     }
 
-    public JsonObject getWaitlist() {
+    public JSONObject getWaitlist() {
         return waitlist;
     }
 
@@ -91,7 +91,7 @@ public class RoomObject {
         this.title = title;
     }
 
-    public void setBookings(JsonObject bookings) {
+    public void setBookings(JSONObject bookings) {
         this.bookings = bookings;
     }
 
@@ -107,7 +107,7 @@ public class RoomObject {
         this.total = total;
     }
 
-    public void setWaitlist(JsonObject waitlist) {
+    public void setWaitlist(JSONObject waitlist) {
         this.waitlist = waitlist;
     }
 }
