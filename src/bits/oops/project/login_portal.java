@@ -13,13 +13,6 @@ import javax.swing.border.*;
 import javax.swing.plaf.basic.BasicBorders;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-/*import com.jgoodies.forms.factories.*;
-import com.jgoodies.forms.factories.*;
-import com.jgoodies.forms.factories.*;
-import javax.swing.border.*;
-import com.jgoodies.forms.factories.*;
-import info.clearthought.layout.*;
-import org.jdesktop.swingx.*;*/
 
 /**
  * @author Shreeya
@@ -61,7 +54,7 @@ public class login_portal extends JPanel {
             usernameerror.setVisible(true);
         }
         else usernameerror.setVisible(false);
-        if(passwordField1.getText().equals("")) {
+        if(passwordField1.getPassword().length==0) {
             flag=true;
             passworderror.setVisible(true);
             passwordtextActionPerformed(passwordField1);
@@ -81,10 +74,10 @@ public class login_portal extends JPanel {
             register.setText("Hang on");
             register.setEnabled(false);
         }
-        int status = MysqlCon.getInstance().register(usernametext.getText(),nametext.getText(),emailidtext.getText(),contacttext.getText(),addresstext.getText(),passwordField1.getPassword().toString());
+        int status = MysqlCon.getInstance().register(usernametext.getText(),nametext.getText(),emailidtext.getText(),contacttext.getText(),addresstext.getText(),new String(passwordField1.getPassword()));
         if(status==1){//registered
             label2.setVisible(true);
-            registeredUser = new User(usernametext.getText(),nametext.getText(),emailidtext.getText(),contacttext.getText(),addresstext.getText(),passwordField1.getPassword().toString());
+            registeredUser = new User(usernametext.getText(),nametext.getText(),emailidtext.getText(),contacttext.getText(),addresstext.getText(),new String(passwordField1.getPassword()));
             parent.dispose();
         }
         else {
@@ -136,52 +129,6 @@ public class login_portal extends JPanel {
         }
 
         return pat.matcher(passwordField1.getText()).matches();
-    }
-
-    private void OpenLogin(ActionEvent e) {
-        JFrame loginFrame = new JFrame();
-        login_portal loginwindow = new login_portal(loginFrame);
-        loginwindow.setVisible(true);
-        loginFrame.add(loginwindow);
-        loginFrame.pack();
-        this.parent.setEnabled(false);
-        loginFrame.setVisible(true);
-        loginFrame.addWindowListener(new WindowListener() {
-            @Override
-            public void windowOpened(WindowEvent e) {
-
-            }
-
-            @Override
-            public void windowClosing(WindowEvent e) {
-
-            }
-
-            @Override
-            public void windowClosed(WindowEvent e) {
-
-            }
-
-            @Override
-            public void windowIconified(WindowEvent e) {
-
-            }
-
-            @Override
-            public void windowDeiconified(WindowEvent e) {
-
-            }
-
-            @Override
-            public void windowActivated(WindowEvent e) {
-
-            }
-
-            @Override
-            public void windowDeactivated(WindowEvent e) {
-
-            }
-        });
     }
 
     private void initComponents() {
@@ -300,11 +247,7 @@ public class login_portal extends JPanel {
         register.setBackground(new Color(0, 51, 102));
         register.setFont(register.getFont().deriveFont(register.getFont().getStyle() | Font.BOLD, register.getFont().getSize() + 2f));
         register.setForeground(Color.white);
-        register.addActionListener(e -> {
-			RegisterActionPerformed(e);
-			RegisterActionPerformed(e);
-			OpenLogin(e);
-		});
+        register.addActionListener(e -> RegisterActionPerformed(e));
 
         //---- nameerror ----
         nameerror.setText("Please enter name");

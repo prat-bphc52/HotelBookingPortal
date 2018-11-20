@@ -34,14 +34,11 @@ public class LandingPage extends JPanel {
                 currentUser = new Gson().fromJson(userJson,User.class);
                 loggedInPanel.setVisible(true);
                 userName.setText(currentUser.getName());
-                loggedOutPanel.setVisible(true);
                 return;
             }
         }
         catch (Exception e){
         }
-        loggedOutPanel.setVisible(true);
-        loggedInPanel.setVisible(false);
         currentUser = null;
     }
 

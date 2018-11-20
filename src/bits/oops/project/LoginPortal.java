@@ -85,7 +85,7 @@ public class LoginPortal extends JPanel {
 
     private void doLogin(ActionEvent e) {
         String user_name = username.getText();
-        String pwd = password.getPassword().toString();
+        String pwd = new String(password.getPassword());
         if(user_name.equals("") || pwd.equals("")){
             error.setVisible(true);
             return;
@@ -96,33 +96,33 @@ public class LoginPortal extends JPanel {
             return;
         }
         error.setVisible(false);
-        File f=null;
+        File f;
         try {
             f = new File(getClass().getResource("/bits/oops/project/user.csf").toURI());
+            if(Remembermebox.isSelected() && f!=null){
+                String json = new Gson().toJson(currentUser);
+                String encoded = new String(Base64.getEncoder().encode(json.getBytes()));
+                try {
+                    FileWriter fw = new FileWriter(f);
+                    fw.write(encoded);
+                    fw.flush();
+                    fw.close();
+                }
+                catch(Exception ex2) {
+                }
+            }
+
+            else {
+                try {
+                    if(f!=null)
+                        f.delete();
+                } catch (Exception ex) {
+
+                }
+            }
         }
         catch(Exception ex) {
 
-        }
-        if(Remembermebox.isSelected() && f!=null){
-            String json = new Gson().toJson(currentUser);
-            String encoded = new String(Base64.getEncoder().encode(json.getBytes()));
-         try {
-             FileWriter fw = new FileWriter(f);
-             fw.write(encoded);
-             fw.flush();
-             fw.close();
-         }
-         catch(Exception ex2) {
-         }
-         }
-
-        else {
-            try {
-                if(f!=null)
-                    f.delete();
-            } catch (Exception ex) {
-
-            }
         }
         parent.dispose();
     }

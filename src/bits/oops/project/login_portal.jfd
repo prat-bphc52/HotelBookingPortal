@@ -104,8 +104,6 @@ new FormModel {
 				"font": new com.jformdesigner.model.SwingDerivedFont( null, 1, 2, false )
 				"foreground": new java.awt.Color( 255, 255, 255, 255 )
 				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "RegisterActionPerformed", true ) )
-				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "RegisterActionPerformed", true ) )
-				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "OpenLogin", true ) )
 			} )
 			add( new FormComponent( "javax.swing.JLabel" ) {
 				name: "nameerror"
