@@ -16,7 +16,7 @@ public class Bookings {
     JSONObject rooms = new JSONObject();
     Date check_in_date;
     Date check_out_date;
-    int cost;
+    float cost;
     long timestamp;
     int status,rating,adult_count,child_count;
     String review;

@@ -22,7 +22,7 @@ public class container extends javax.swing.JPanel {
      */
     public container(ArrayList<HotelTab> a1) {
         initComponents();
-         JFrame f = new JFrame();
+         //JFrame f = new JFrame();
         //f.setSize(1000, 1000);
         
         
@@ -33,45 +33,16 @@ public class container extends javax.swing.JPanel {
         for(int i=0; i<a1.size();i++)
         {
             this.add(a1.get(i));
-            //MouseListener l1 = on
-            final int id = i;
-            a1.get(i).addMouseListener(new MouseListener()
-            {
-            
 
-                @Override
-                public void mouseClicked(MouseEvent e) {
-                    
-                    action(e,id,a1); 
-                }
 
-                @Override
-                public void mousePressed(MouseEvent e) {
-                    //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-                }
 
-                @Override
-                public void mouseReleased(MouseEvent e) {
-                    //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-                }
-
-                @Override
-                public void mouseEntered(MouseEvent e) {
-                    //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-                }
-
-                @Override
-                public void mouseExited(MouseEvent e) {
-                    //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-                }
-            });
         }
        
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-        JScrollPane p1= new JScrollPane();
-        p1.getViewport().add(this);
-        f.add(p1);
-        f.setVisible(true);
+        //JScrollPane p1= new JScrollPane();
+        //p1.getViewport().add(this);
+        //f.add(p1);
+        //f.setVisible(true);
         
         
         
@@ -94,15 +65,15 @@ public class container extends javax.swing.JPanel {
         results.setText("RESULTS");
         add(results);
     }// </editor-fold>//GEN-END:initComponents
-   public void action(MouseEvent e ,int i, ArrayList<HotelTab> a1)
+   /*public void action(MouseEvent e ,int i, ArrayList<HotelTab> a1)
    {
        //int id = Integer.parseInt(a1.get(i).hotel_id.getText());
        a1.get(i).name.setText("changed");
        a1.get(i).setBackground(Color.LIGHT_GRAY);
        //function to view hotel passing id
    
-   }
-    public static void main(String args[])
+   }*/
+   /* public static void main(String args[])
     {
         ArrayList<HotelTab> a1= new ArrayList<>();
     for(int i=0; i<15; i++)
@@ -113,6 +84,7 @@ public class container extends javax.swing.JPanel {
     }
     new container(a1);
     }
+    */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel results;

@@ -1,0 +1,54 @@
+JFDML JFormDesigner: "6.0.4.1.172" Java: "1.8.0_152-release" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+			"$horizontalGroup": "par l {seq {par l {comp panel1:::p::p, seq l {space :p:59:p, comp status:::p:279:p}, seq l {space :p:114:p, comp addguestdetails:::p::p}, seq l {space :p:17:p, par l {seq l {par t {comp label1:::p::p, comp label3:::p::p, comp label2::t:p::p}, space :::p, par l {comp cardnumber:::p:180:p, comp nameoncard::l:p:137:p, comp cvv::l:p:54:p}}, seq l {space :p:99:p, comp proceedtopay:::p::p}}}}, space :p:62:p}}"
+			"$verticalGroup": "par l {seq {comp panel1:::p::p, space :p:27:p, comp status:::p::p, space :::p, comp addguestdetails:::p::p, space :p:16:p, par b {comp label1::b:p::p, comp cardnumber::b:p::p}, space :p:18:p, par b {comp label2::b:p::p, comp nameoncard::b:p::p}, space :p:28:p, par b {comp label3::b:p::p, comp cvv::b:p::p}, space ::22:x, comp proceedtopay:::p::p, space :p:17:p}}"
+		} ) {
+			name: "this"
+			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class javax.swing.BoxLayout ) ) {
+				name: "panel1"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "status"
+				"text": "BOOKING CAN BE CONFIRMED/AWAITED"
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "proceedtopay"
+				"text": "PROCEED TO PAY"
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "proceedtopayActionPerformed", true ) )
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "addguestdetails"
+				"text": "ADD GUEST DETAILS"
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "addguestdetailsActionPerformed", true ) )
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label1"
+				"text": "ENTER CARD NUMBER:"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label2"
+				"text": "NAME ON CARD:"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label3"
+				"text": "CVV:"
+			} )
+			add( new FormComponent( "javax.swing.JTextField" ) {
+				name: "cardnumber"
+			} )
+			add( new FormComponent( "javax.swing.JTextField" ) {
+				name: "nameoncard"
+			} )
+			add( new FormComponent( "javax.swing.JPasswordField" ) {
+				name: "cvv"
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 0, 0 )
+			"size": new java.awt.Dimension( 400, 300 )
+		} )
+	}
+}
