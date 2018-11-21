@@ -73,6 +73,7 @@ public class Room extends JPanel {
         bookButton.setBorder(new EtchedBorder());
         bookButton.setForeground(Color.white);
         bookButton.setFont(new Font("Swis721 LtEx BT", Font.BOLD, 12));
+        bookButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 
         GroupLayout layout = new GroupLayout(this);
         setLayout(layout);

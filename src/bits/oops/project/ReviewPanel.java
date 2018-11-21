@@ -12,8 +12,10 @@ import javax.swing.GroupLayout;
  * @author Prateek Agarwal
  */
 public class ReviewPanel extends JPanel {
-    public ReviewPanel() {
+    public ReviewPanel(Review review) {
         initComponents();
+        label4.setText(review.rating+" / 5");
+        label3.setText("<html>"+review.comment+"</html>");
     }
 
     private void initComponents() {
@@ -25,6 +27,7 @@ public class ReviewPanel extends JPanel {
         label4 = new JLabel();
 
         //======== this ========
+        setAutoscrolls(true);
 
         // JFormDesigner evaluation mark
         setBorder(new javax.swing.border.CompoundBorder(
@@ -43,7 +46,7 @@ public class ReviewPanel extends JPanel {
         label2.setFont(new Font("Segoe UI", Font.BOLD, 14));
 
         //---- label3 ----
-        label3.setText("Comments given by the user");
+        label3.setText("<html>Comments given by the useruhyghbjhjhb</html>");
 
         //---- label4 ----
         label4.setText("5 / 5");
@@ -70,11 +73,11 @@ public class ReviewPanel extends JPanel {
                     .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                         .addComponent(label1)
                         .addComponent(label4))
-                    .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                     .addComponent(label2)
                     .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                    .addComponent(label3)
-                    .addContainerGap(5, Short.MAX_VALUE))
+                    .addComponent(label3, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(10, Short.MAX_VALUE))
         );
         // JFormDesigner - End of component initialization  //GEN-END:initComponents
     }
