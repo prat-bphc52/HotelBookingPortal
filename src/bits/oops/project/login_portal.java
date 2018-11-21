@@ -40,30 +40,33 @@ public class login_portal extends JPanel {
                 nameerror.setVisible(true);
             }
         else nameerror.setVisible(false);
-        if(emailidtext.getText().equals("")) {
+       /* if(emailidtext.getText().equals("")) {
             flag=true;
             emailerror.setVisible(true);
             emailidtextActionPerformed(emailidtext);
         }
-        else emailerror.setVisible(false);
+        else emailerror.setVisible(false);*/
+       emailidtextActionPerformed(emailidtext);
+
         if(usernametext.getText().equals("")) {
             flag=true;
             usernameerror.setVisible(true);
         }
         else usernameerror.setVisible(false);
-        if(passwordField1.getText().equals("")) {
+      /*  if(passwordField1.getText().equals("")) {
             flag=true;
             passworderror.setVisible(true);
             passwordtextActionPerformed(passwordField1);
         }
-        else passworderror.setVisible(false);
-        if(contacttext.getText().equals("")) {
+        else passworderror.setVisible(false);*/
+      passwordtextActionPerformed(passwordField1);
+
+      /*  if(contacttext.getText().equals("")) {
             flag=true;
             contacterror.setVisible(true);
             contacttextcheck(contacttext);
         }
-        else contacterror.setVisible(false);
-
+        else contacterror.setVisible(false);*/contacttextcheck(contacttext);
         if(flag) {
             label2.setVisible(true);
             return;
@@ -72,12 +75,20 @@ public class login_portal extends JPanel {
 
     }
 
-    public static boolean contacttextcheck(JFormattedTextField contacttext)
+    private boolean contacttextcheck(JFormattedTextField contacttext)
     {
 
         Pattern p = Pattern.compile("(0/91)?[7-9][0-9]{9}");
-        Matcher m = p.matcher(contacttext.getText());
-        return (m.find() && m.group().equals(contacttext));
+        if(contacttext==null){
+            contacterror.setVisible(true);
+            return false;
+        }
+        boolean matches2 = p.matcher(contacttext.getText()).matches();
+        if(matches2==false)
+        {
+            contacterror.setVisible(true);
+        }
+        return matches2;
     }
 
 
@@ -95,7 +106,12 @@ public class login_portal extends JPanel {
             return false;
         }
 
-        return p.matcher(emailidtext.getText()).matches();
+        boolean matches = p.matcher(emailidtext.getText()).matches();
+        if(matches==false)
+        {
+            emailerror.setVisible(true);
+        }
+        return matches;
     }
 
     private boolean passwordtextActionPerformed(JPasswordField passwordField1) {
@@ -113,7 +129,12 @@ public class login_portal extends JPanel {
             return false;
         }
 
-        return pat.matcher(passwordField1.getText()).matches();
+        boolean matches1 = pat.matcher(passwordField1.getText()).matches();
+        if(matches1==false)
+        {
+            passworderror.setVisible(true);
+        }
+        return matches1;
     }
 
     private void emailidtextActionPerformed(ActionEvent e) {
