@@ -7,6 +7,17 @@ public class User {
     String password;
     String Contact;
     String Address;
+    public User(){
+
+    }
+    public User(String username,String name,String email,String contact,String address,String pwd){
+        this.Name=name;
+        this.Emailid=email;
+        this.Username=username;
+        this.password=pwd;
+        this.Contact=contact;
+        this.Address=address;
+    }
 
     public String getAddress() {
         return Address;

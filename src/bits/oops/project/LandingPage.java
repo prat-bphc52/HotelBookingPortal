@@ -9,9 +9,9 @@ import com.google.gson.Gson;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.File;
-import java.util.Base64;
-import java.util.Calendar;
-import java.util.Scanner;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.*;
 import javax.swing.*;
 import javax.swing.GroupLayout;
 import javax.swing.border.*;
@@ -34,14 +34,12 @@ public class LandingPage extends JPanel {
                 currentUser = new Gson().fromJson(userJson,User.class);
                 loggedInPanel.setVisible(true);
                 userName.setText(currentUser.getName());
-                loggedOutPanel.setVisible(true);
                 return;
             }
         }
         catch (Exception e){
         }
         loggedOutPanel.setVisible(true);
-        loggedInPanel.setVisible(false);
         currentUser = null;
     }
 
@@ -206,15 +204,63 @@ public class LandingPage extends JPanel {
             return;
         }
         try {
-            int childcount = Integer.parseInt(child.getSelectedItem().toString());
+            Integer.parseInt(child.getSelectedItem().toString());
         }
         catch (Exception ex){
             errorChild.setVisible(true);
             errorChild.setText("Enter a valid number");
             return;
         }
-        //call function
+        Bookings newBooking = new Bookings();
+        newBooking.uid = currentUser.getUsername();
+        DateFormat format = new SimpleDateFormat("DD/MM/YYYY");
+        try {
+            Date c_in = format.parse(checkin.getText());
+            Date c_out = format.parse(checkout.getText());
+            newBooking.check_in_date = c_in;
+            newBooking.check_out_date = c_out;
+            newBooking.adult_count = Integer.parseInt(adult.getSelectedItem().toString());
+            newBooking.child_count = Integer.parseInt(child.getSelectedItem().toString());
+            ArrayList<HotelTab> hlist= MysqlCon.getInstance().gethotels(cityChooser.getSelectedItem().toString(),c_in,c_out);
+            container hotel_list = new container(hlist);
+            JScrollPane pane=new JScrollPane();
+            pane.getViewport().add(hotel_list);
+            parent.remove(this);
+            parent.add(pane);
+            parent.pack();
+            parent.setVisible(true);
+            for(HotelTab t:hlist){
+                t.addMouseListener(new MouseListener() {
+                    @Override
+                    public void mouseClicked(MouseEvent e) {
+                        System.out.print(t.name);
+                    }
 
+                    @Override
+                    public void mousePressed(MouseEvent e) {
+
+                    }
+
+                    @Override
+                    public void mouseReleased(MouseEvent e) {
+
+                    }
+
+                    @Override
+                    public void mouseEntered(MouseEvent e) {
+
+                    }
+
+                    @Override
+                    public void mouseExited(MouseEvent e) {
+
+                    }
+                });
+            }
+        }
+        catch (Exception ex){
+
+        }
     }
 
     private void doLogin(ActionEvent e) {
@@ -222,6 +268,7 @@ public class LandingPage extends JPanel {
         LoginPortal loginwindow = new LoginPortal(loginFrame);
         loginwindow.setVisible(true);
         loginFrame.add(loginwindow);
+        loginFrame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         loginFrame.pack();
         this.parent.setEnabled(false);
         loginFrame.setVisible(true);
@@ -244,6 +291,8 @@ public class LandingPage extends JPanel {
                     loggedOutPanel.setVisible(false);
                     userName.setText(currentUser.getName());
                 }
+                parent.setEnabled(true);
+                parent.setVisible(true);
             }
 
             @Override
@@ -281,6 +330,10 @@ public class LandingPage extends JPanel {
         }
     }
 
+    private void displayProfile(ActionEvent e) {
+
+    }
+
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
         // Generated using JFormDesigner Evaluation license - Prateek Agarwal
@@ -304,6 +357,7 @@ public class LandingPage extends JPanel {
         label6 = new JLabel();
         userName = new JLabel();
         button3 = new JButton();
+        profile = new JButton();
         loggedOutPanel = new JPanel();
         label7 = new JLabel();
         button2 = new JButton();
@@ -467,6 +521,10 @@ public class LandingPage extends JPanel {
             button3.setText("LOGOUT");
             button3.addActionListener(e -> doLogOut(e));
 
+            //---- profile ----
+            profile.setText("PROFILE");
+            profile.addActionListener(e -> displayProfile(e));
+
             GroupLayout loggedInPanelLayout = new GroupLayout(loggedInPanel);
             loggedInPanel.setLayout(loggedInPanelLayout);
             loggedInPanelLayout.setHorizontalGroup(
@@ -477,9 +535,10 @@ public class LandingPage extends JPanel {
                             .addGroup(loggedInPanelLayout.createSequentialGroup()
                                 .addComponent(label6)
                                 .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(userName, GroupLayout.DEFAULT_SIZE, 119, Short.MAX_VALUE)
+                            .addComponent(userName)
                             .addGroup(GroupLayout.Alignment.TRAILING, loggedInPanelLayout.createSequentialGroup()
-                                .addGap(0, 42, Short.MAX_VALUE)
+                                .addComponent(profile)
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(button3)))
                         .addContainerGap())
             );
@@ -489,9 +548,11 @@ public class LandingPage extends JPanel {
                         .addContainerGap()
                         .addComponent(label6)
                         .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(userName, GroupLayout.PREFERRED_SIZE, 28, GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
-                        .addComponent(button3)
+                        .addComponent(userName, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
+                        .addGroup(loggedInPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                            .addComponent(button3)
+                            .addComponent(profile))
                         .addContainerGap())
             );
         }
@@ -514,11 +575,13 @@ public class LandingPage extends JPanel {
                 loggedOutPanelLayout.createParallelGroup()
                     .addGroup(loggedOutPanelLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(label7, GroupLayout.PREFERRED_SIZE, 141, GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(GroupLayout.Alignment.TRAILING, loggedOutPanelLayout.createSequentialGroup()
-                        .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(button2)
+                        .addGroup(loggedOutPanelLayout.createParallelGroup()
+                            .addGroup(loggedOutPanelLayout.createSequentialGroup()
+                                .addComponent(label7, GroupLayout.PREFERRED_SIZE, 141, GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(GroupLayout.Alignment.TRAILING, loggedOutPanelLayout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(button2)))
                         .addContainerGap())
             );
             loggedOutPanelLayout.setVerticalGroup(
@@ -575,7 +638,7 @@ public class LandingPage extends JPanel {
                                         .addComponent(button1, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE)
                                         .addComponent(panel1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))))
                         .addComponent(label1))
-                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 124, Short.MAX_VALUE)
+                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 108, Short.MAX_VALUE)
                     .addGroup(layout.createParallelGroup()
                         .addComponent(loggedInPanel, GroupLayout.Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                         .addComponent(loggedOutPanel, GroupLayout.Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
@@ -645,6 +708,7 @@ public class LandingPage extends JPanel {
     private JLabel label6;
     private JLabel userName;
     private JButton button3;
+    private JButton profile;
     private JPanel loggedOutPanel;
     private JLabel label7;
     private JButton button2;

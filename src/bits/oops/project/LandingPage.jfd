@@ -4,7 +4,7 @@ new FormModel {
 	contentType: "form/swing"
 	root: new FormRoot {
 		add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-			"$horizontalGroup": "par l {seq {space :p:16:p, par l {seq l {space :p:10:p, par t {seq l {comp cityLabel:::p:96:p, space :p:16:p, comp cityChooser:::p:125:p}, seq l {comp checkinLabel:::p:96:p, space :p:16:p, comp checkin:::p:125:p, space :::p, comp errorCheckIn:::p::p}, seq l {comp checkoutLabel:::p:96:p, space :p:16:p, comp checkout:::p:125:p, space :::p, comp errorCheckOut:::::x}, seq l {comp guestsLabel:::p:96:p, space s:::p, par l {comp button1:::p:80:p, comp panel1::l:p::p}}}}, comp label1:::p::p}, space ::124:x, par l {comp panel2::t:p::p, comp panel3::t:p::p}, space :::p}}"
+			"$horizontalGroup": "par l {seq {space :p:16:p, par l {seq l {space :p:10:p, par t {seq l {comp cityLabel:::p:96:p, space :p:16:p, comp cityChooser:::p:125:p}, seq l {comp checkinLabel:::p:96:p, space :p:16:p, comp checkin:::p:125:p, space :::p, comp errorCheckIn:::p::p}, seq l {comp checkoutLabel:::p:96:p, space :p:16:p, comp checkout:::p:125:p, space :::p, comp errorCheckOut:::::x}, seq l {comp guestsLabel:::p:96:p, space s:::p, par l {comp button1:::p:80:p, comp panel1::l:p::p}}}}, comp label1:::p::p}, space ::108:x, par l {comp panel2::t:p::p, comp panel3::t:p::p}, space :::p}}"
 			"$verticalGroup": "par l {seq l {space :p:24:p, par l {seq {comp panel2:::p::p, space :::p, comp panel3:::p::p}, seq {comp label1:::p::p, space :p:36:p, par b {comp cityLabel::b:p:24:p, comp cityChooser::b:p:24:p}, space s:::p, par l {comp checkinLabel:::p:24:p, comp checkin:::p:24:p, comp errorCheckIn::l:p::p}, par l {comp checkoutLabel:::p:24:p, comp checkout:::p:24:p, comp errorCheckOut::l:p::p}, space s:::p, par l {comp guestsLabel:::p:24:p, comp panel1:::p::p}, space s:::p, comp button1:::p:30:p}}, space ::55:x}}"
 		} ) {
 			name: "this"
@@ -116,8 +116,8 @@ new FormModel {
 				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "submit", true ) )
 			} )
 			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-				"$horizontalGroup": "par l {seq {space :::p, par l {seq l {comp label6:::p::p, space :0:0:x}, comp userName::l::119:x, seq t {space :0:42:x, comp button3:::p::p}}, space :::p}}"
-				"$verticalGroup": "par l {seq l {space :::p, comp label6:::p::p, space :::p, comp userName:::p:28:p, space ::34:x, comp button3:::p::p, space :::p}}"
+				"$horizontalGroup": "par l {seq {space :::p, par l {seq l {comp label6:::p::p, space :0:0:x}, comp userName::l:::x, seq t {comp profile:::p::p, space :::x, comp button3:::p::p}}, space :::p}}"
+				"$verticalGroup": "par l {seq l {space :::p, comp label6:::p::p, space :::p, comp userName:::p::p, space ::46:x, par b {comp button3::b:p::p, comp profile::b:p::p}, space :::p}}"
 			} ) {
 				name: "panel2"
 				"border": &LineBorder0 new javax.swing.border.LineBorder( sfield java.awt.Color black, 1, false )
@@ -139,9 +139,14 @@ new FormModel {
 					"text": "LOGOUT"
 					addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "doLogOut", true ) )
 				} )
+				add( new FormComponent( "javax.swing.JButton" ) {
+					name: "profile"
+					"text": "PROFILE"
+					addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "displayProfile", true ) )
+				} )
 			} )
 			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-				"$horizontalGroup": "par l {seq l {space :::p, comp label7:::p:141:p, space :::x}, seq t {space :::x, comp button2:::p::p, space :::p}}"
+				"$horizontalGroup": "par l {seq {space :::p, par l {seq l {comp label7:::p:141:p, space :0:0:x}, seq t {space :0:0:x, comp button2:::p::p}}, space :::p}}"
 				"$verticalGroup": "par l {seq l {space :::p, comp label7:::p::p, space ::52:x, comp button2:::p::p, space :::p}}"
 			} ) {
 				name: "panel3"

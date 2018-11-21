@@ -23,18 +23,20 @@ public class LoginPortal extends JPanel {
     public LoginPortal(JFrame parent) {
         this.parent = parent;
         initComponents();
+        error.setVisible(false);
+        currentUser=null;
     }
 
-
     private void button1ActionPerformed(ActionEvent e) {
-        // TODO add your code
+        this.parent.setEnabled(false);
         JFrame registerframe = new JFrame();
+        registerframe.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         login_portal registerwindow = new login_portal(registerframe);
-        registerwindow.setVisible(true);
         registerframe.add(registerwindow);
         registerframe.pack();
-        this.parent.setEnabled(false);
+        registerwindow.setVisible(true);
         registerframe.setVisible(true);
+        parent.setEnabled(false);
         registerframe.addWindowListener(new WindowListener() {
             @Override
             public void windowOpened(WindowEvent e) {
@@ -48,6 +50,14 @@ public class LoginPortal extends JPanel {
 
             @Override
             public void windowClosed(WindowEvent e) {
+                if(registerwindow.registeredUser!=null){
+                    currentUser = registerwindow.registeredUser;
+                    parent.dispose();
+                }
+                else {
+                    parent.setEnabled(true);
+                    parent.setVisible(true);
+                }
 
             }
 
@@ -71,59 +81,65 @@ public class LoginPortal extends JPanel {
 
             }
         });
-
-
-
-        }
-
-
+    }
 
     private void doLogin(ActionEvent e) {
-        //call login func
-        User currentUser  = null;//returned object
-        File f=null;
+        String user_name = username.getText();
+        String pwd = new String(password.getPassword());
+        if(user_name.equals("") || pwd.equals("")){
+            error.setVisible(true);
+            return;
+        }
+        currentUser  = MysqlCon.getInstance().login(user_name,pwd);
+        if(currentUser==null){
+            error.setVisible(true);
+            return;
+        }
+        error.setVisible(false);
+        File f;
         try {
             f = new File(getClass().getResource("/bits/oops/project/user.csf").toURI());
+            if(Remembermebox.isSelected() && f!=null){
+                String json = new Gson().toJson(currentUser);
+                String encoded = new String(Base64.getEncoder().encode(json.getBytes()));
+                try {
+                    FileWriter fw = new FileWriter(f);
+                    fw.write(encoded);
+                    fw.flush();
+                    fw.close();
+                }
+                catch(Exception ex2) {
+                }
+            }
+
+            else {
+                try {
+                    if(f!=null)
+                        f.delete();
+                } catch (Exception ex) {
+
+                }
+            }
         }
         catch(Exception ex) {
 
-        }
-        if(Remembermebox.isSelected() && f!=null){
-            String json = new Gson().toJson(currentUser);
-            String encoded = new String(Base64.getEncoder().encode(json.getBytes()));
-         try {
-             FileWriter fw = new FileWriter(f);
-             fw.write(encoded);
-             fw.flush();
-             fw.close();
-         }
-         catch(Exception ex2) {
-         }
-         }
-
-        else {
-            try {
-                if(f!=null)
-                    f.delete();
-            } catch (Exception ex) {
-
-            }
         }
         parent.dispose();
     }
 
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
-        // Generated using JFormDesigner Evaluation license - Shreeya Nelekar
+        // Generated using JFormDesigner Evaluation license - Prateek Agarwal
         LoginPortal = new JLabel();
         label1 = new JLabel();
-        Nametext = new JFormattedTextField();
+        username = new JFormattedTextField();
         Password = new JLabel();
-        passwordField1 = new JPasswordField();
+        password = new JPasswordField();
         button1 = new JButton();
         newhere = new JLabel();
         Login = new JButton();
         Remembermebox = new JCheckBox();
+        error = new JLabel();
 
         //======== this ========
         setBackground(Color.white);
@@ -151,10 +167,10 @@ public class LoginPortal extends JPanel {
         label1.setForeground(Color.black);
         label1.setFont(label1.getFont().deriveFont(label1.getFont().getStyle() | Font.BOLD, label1.getFont().getSize() + 2f));
 
-        //---- Nametext ----
-        Nametext.setBackground(Color.white);
-        Nametext.setForeground(Color.black);
-        Nametext.setBorder(LineBorder.createBlackLineBorder());
+        //---- username ----
+        username.setBackground(Color.white);
+        username.setForeground(Color.black);
+        username.setBorder(LineBorder.createBlackLineBorder());
 
         //---- Password ----
         Password.setText("PASSWORD:");
@@ -162,10 +178,10 @@ public class LoginPortal extends JPanel {
         Password.setFont(Password.getFont().deriveFont(Password.getFont().getStyle() | Font.BOLD, Password.getFont().getSize() + 2f));
         Password.setForeground(Color.black);
 
-        //---- passwordField1 ----
-        passwordField1.setForeground(Color.black);
-        passwordField1.setBackground(Color.white);
-        passwordField1.setBorder(LineBorder.createBlackLineBorder());
+        //---- password ----
+        password.setForeground(Color.black);
+        password.setBackground(Color.white);
+        password.setBorder(LineBorder.createBlackLineBorder());
 
         //---- button1 ----
         button1.setText("REGISTER");
@@ -193,6 +209,11 @@ public class LoginPortal extends JPanel {
         Remembermebox.setForeground(new Color(0, 0, 102));
         Remembermebox.setBorderPainted(true);
 
+        //---- error ----
+        error.setText("Invalid Username or Password");
+        error.setForeground(Color.red);
+        error.setIcon(new ImageIcon(getClass().getResource("/bits/oops/project/error.png")));
+
         GroupLayout layout = new GroupLayout(this);
         setLayout(layout);
         layout.setHorizontalGroup(
@@ -200,19 +221,8 @@ public class LoginPortal extends JPanel {
                 .addGroup(layout.createSequentialGroup()
                     .addGroup(layout.createParallelGroup()
                         .addGroup(layout.createSequentialGroup()
-                            .addGap(114, 114, 114)
-                            .addComponent(LoginPortal, GroupLayout.PREFERRED_SIZE, 166, GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createSequentialGroup()
                             .addGap(45, 45, 45)
                             .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGroup(layout.createParallelGroup()
-                                        .addComponent(label1, GroupLayout.PREFERRED_SIZE, 91, GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(Password, GroupLayout.PREFERRED_SIZE, 91, GroupLayout.PREFERRED_SIZE))
-                                    .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(Nametext)
-                                        .addComponent(passwordField1, GroupLayout.PREFERRED_SIZE, 202, GroupLayout.PREFERRED_SIZE)))
                                 .addGroup(layout.createSequentialGroup()
                                     .addGap(17, 17, 17)
                                     .addGroup(layout.createParallelGroup()
@@ -222,7 +232,20 @@ public class LoginPortal extends JPanel {
                                             .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                             .addGroup(layout.createParallelGroup()
                                                 .addComponent(newhere)
-                                                .addComponent(button1))))))))
+                                                .addComponent(button1)))))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGroup(layout.createParallelGroup()
+                                        .addComponent(label1, GroupLayout.PREFERRED_SIZE, 91, GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(Password, GroupLayout.PREFERRED_SIZE, 91, GroupLayout.PREFERRED_SIZE))
+                                    .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addGroup(layout.createParallelGroup()
+                                        .addComponent(error)
+                                        .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(username)
+                                            .addComponent(password, GroupLayout.PREFERRED_SIZE, 202, GroupLayout.PREFERRED_SIZE))))))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(114, 114, 114)
+                            .addComponent(LoginPortal, GroupLayout.PREFERRED_SIZE, 166, GroupLayout.PREFERRED_SIZE)))
                     .addContainerGap(50, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -230,14 +253,16 @@ public class LoginPortal extends JPanel {
                 .addGroup(layout.createSequentialGroup()
                     .addContainerGap()
                     .addComponent(LoginPortal, GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)
-                    .addGap(30, 30, 30)
+                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(error)
+                    .addGap(8, 8, 8)
                     .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                        .addComponent(Nametext, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                        .addComponent(username, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                         .addComponent(label1, GroupLayout.PREFERRED_SIZE, 28, GroupLayout.PREFERRED_SIZE))
                     .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
                     .addGroup(layout.createParallelGroup()
                         .addComponent(Password, GroupLayout.PREFERRED_SIZE, 29, GroupLayout.PREFERRED_SIZE)
-                        .addComponent(passwordField1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                        .addComponent(password, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
                     .addGap(18, 18, 18)
                     .addComponent(newhere)
                     .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
@@ -246,7 +271,7 @@ public class LoginPortal extends JPanel {
                         .addComponent(Login))
                     .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
                     .addComponent(Remembermebox)
-                    .addContainerGap(55, Short.MAX_VALUE))
+                    .addContainerGap(57, Short.MAX_VALUE))
         );
         // JFormDesigner - End of component initialization  //GEN-END:initComponents
     }
@@ -256,16 +281,17 @@ public class LoginPortal extends JPanel {
     }
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
-    // Generated using JFormDesigner Evaluation license - Shreeya Nelekar
+    // Generated using JFormDesigner Evaluation license - Prateek Agarwal
     private JLabel LoginPortal;
     private JLabel label1;
-    private JFormattedTextField Nametext;
+    private JFormattedTextField username;
     private JLabel Password;
-    private JPasswordField passwordField1;
+    private JPasswordField password;
     private JButton button1;
     private JLabel newhere;
     private JButton Login;
     private JCheckBox Remembermebox;
+    private JLabel error;
     // JFormDesigner - End of variables declaration  //GEN-END:variables
     User currentUser;
     JFrame parent;
