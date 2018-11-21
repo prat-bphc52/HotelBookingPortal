@@ -11,6 +11,7 @@ import javax.swing.*;
 import javax.swing.GroupLayout;
 import javax.swing.border.*;
 import javax.swing.plaf.basic.BasicBorders;
+import java.io.File;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 /*import com.jgoodies.forms.factories.*;
@@ -167,6 +168,15 @@ public class login_portal extends JPanel {
         // TODO add your code here
     }
 
+    private void AttachImage(ActionEvent e) {
+        JFileChooser chooser = new JFileChooser();
+        chooser.showOpenDialog(null);
+        File f = chooser.getSelectedFile();
+        String filename = ((File) f).getAbsolutePath();
+        Idprooffield.setText(filename);
+
+    }
+
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
         // Generated using JFormDesigner Evaluation license - Shreeya Nelekar
@@ -191,6 +201,10 @@ public class login_portal extends JPanel {
         contacterror = new JLabel();
         label1 = new JLabel();
         label2 = new JLabel();
+        Idproof = new JLabel();
+        label3 = new JLabel();
+        Idprooffield = new JTextField();
+        Attach = new JButton();
 
         //======== this ========
         setBackground(Color.white);
@@ -248,7 +262,6 @@ public class login_portal extends JPanel {
         //---- emailidtext ----
         emailidtext.setBackground(Color.white);
         emailidtext.setForeground(Color.black);
-        emailidtext.addActionListener(e -> emailidtextActionPerformed(e));
 
         //---- usernametext ----
         usernametext.setBackground(Color.white);
@@ -285,8 +298,6 @@ public class login_portal extends JPanel {
         Register.setFont(Register.getFont().deriveFont(Register.getFont().getStyle() | Font.BOLD, Register.getFont().getSize() + 2f));
         Register.setForeground(Color.white);
         Register.addActionListener(e -> RegisterActionPerformed(e));
-
-
 
         //---- nameerror ----
         nameerror.setText("Please enter name");
@@ -333,42 +344,75 @@ public class login_portal extends JPanel {
         label2.setForeground(new Color(51, 153, 0));
         label2.setFont(label2.getFont().deriveFont(label2.getFont().getStyle() | Font.BOLD, label2.getFont().getSize() + 3f));
 
+        //---- Idproof ----
+        Idproof.setText("ID PROOF:");
+        Idproof.setBackground(Color.white);
+        Idproof.setFont(Idproof.getFont().deriveFont(Idproof.getFont().getStyle() | Font.BOLD, Idproof.getFont().getSize() + 2f));
+        Idproof.setForeground(Color.black);
+
+        //---- label3 ----
+        label3.setText("Upload the image here.");
+        label3.setBackground(Color.white);
+        label3.setFont(label3.getFont().deriveFont(label3.getFont().getSize() + 2f));
+        label3.setForeground(new Color(0, 0, 102));
+
+        //---- Idprooffield ----
+        Idprooffield.setBackground(Color.white);
+        Idprooffield.setForeground(Color.black);
+        Idprooffield.setFont(Idprooffield.getFont().deriveFont(Idprooffield.getFont().getSize() + 2f));
+
+        //---- Attach ----
+        Attach.setText("ATTACH");
+        Attach.setBackground(new Color(0, 51, 102));
+        Attach.setFont(Attach.getFont().deriveFont(Attach.getFont().getStyle() | Font.BOLD, Attach.getFont().getSize() + 2f));
+        Attach.setForeground(Color.white);
+        Attach.addActionListener(e -> AttachImage(e));
+
         GroupLayout layout = new GroupLayout(this);
         setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup()
                 .addGroup(layout.createSequentialGroup()
-                    .addGroup(layout.createParallelGroup()
-                        .addGroup(GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                            .addGap(31, 31, 31)
-                            .addComponent(Name, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE)
-                            .addGap(18, 18, 18)
-                            .addComponent(nametext, GroupLayout.PREFERRED_SIZE, 254, GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup()
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGap(33, 33, 33)
-                                    .addGroup(layout.createParallelGroup()
-                                        .addComponent(Contact)
-                                        .addComponent(Username)
-                                        .addComponent(Password, GroupLayout.PREFERRED_SIZE, 96, GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(Address, GroupLayout.PREFERRED_SIZE, 88, GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(Register)))
-                                .addGroup(GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                    .addContainerGap()
-                                    .addComponent(Email, GroupLayout.PREFERRED_SIZE, 102, GroupLayout.PREFERRED_SIZE)))
-                            .addGap(18, 18, 18)
-                            .addGroup(layout.createParallelGroup()
-                                .addComponent(label1, GroupLayout.PREFERRED_SIZE, 230, GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
+                        .addGroup(layout.createParallelGroup()
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(9, 9, 9)
+                                .addComponent(Register)
+                                .addGap(18, 18, 18)
+                                .addComponent(label1, GroupLayout.PREFERRED_SIZE, 230, GroupLayout.PREFERRED_SIZE))
+                            .addComponent(label2, GroupLayout.PREFERRED_SIZE, 371, GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup()
+                            .addGroup(GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGap(31, 31, 31)
+                                .addComponent(Name, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(nametext, GroupLayout.PREFERRED_SIZE, 254, GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(37, 37, 37)
+                                .addComponent(RegistrationPortal, GroupLayout.PREFERRED_SIZE, 286, GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup()
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(33, 33, 33)
+                                        .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(Contact, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(Username)
+                                            .addComponent(Password, GroupLayout.PREFERRED_SIZE, 96, GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(Address, GroupLayout.PREFERRED_SIZE, 88, GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(Idproof, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                    .addGroup(GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addContainerGap()
+                                        .addComponent(Email, GroupLayout.PREFERRED_SIZE, 102, GroupLayout.PREFERRED_SIZE)))
+                                .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(GroupLayout.Alignment.TRAILING, false)
                                     .addComponent(passwordField1, GroupLayout.Alignment.LEADING)
                                     .addComponent(usernametext, GroupLayout.Alignment.LEADING)
                                     .addComponent(emailidtext)
                                     .addComponent(contacttext)
-                                    .addComponent(addresstext, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 250, GroupLayout.PREFERRED_SIZE))))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(37, 37, 37)
-                            .addComponent(RegistrationPortal, GroupLayout.PREFERRED_SIZE, 286, GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(addresstext, GroupLayout.Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
+                                    .addComponent(label3, GroupLayout.Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
+                                    .addComponent(Idprooffield, GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
+                                    .addComponent(Attach, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 108, GroupLayout.PREFERRED_SIZE)))))
                     .addGap(44, 44, 44)
                     .addGroup(layout.createParallelGroup()
                         .addComponent(nameerror, GroupLayout.DEFAULT_SIZE, 238, Short.MAX_VALUE)
@@ -379,10 +423,6 @@ public class login_portal extends JPanel {
                                 .addComponent(passworderror, GroupLayout.Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 232, Short.MAX_VALUE)
                                 .addComponent(contacterror, GroupLayout.DEFAULT_SIZE, 232, Short.MAX_VALUE))
                             .addContainerGap())))
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(24, 24, 24)
-                    .addComponent(label2, GroupLayout.PREFERRED_SIZE, 371, GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(290, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup()
@@ -420,12 +460,20 @@ public class login_portal extends JPanel {
                         .addComponent(Address, GroupLayout.PREFERRED_SIZE, 26, GroupLayout.PREFERRED_SIZE)
                         .addComponent(addresstext, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
                     .addGap(18, 18, 18)
+                    .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
+                        .addComponent(Idproof, GroupLayout.DEFAULT_SIZE, 29, Short.MAX_VALUE)
+                        .addComponent(label3, GroupLayout.DEFAULT_SIZE, 29, Short.MAX_VALUE))
+                    .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(Idprooffield, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                    .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(Attach)
+                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
                     .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                         .addComponent(Register)
                         .addComponent(label1))
                     .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
                     .addComponent(label2)
-                    .addContainerGap(250, Short.MAX_VALUE))
+                    .addGap(117, 117, 117))
         );
         // JFormDesigner - End of component initialization  //GEN-END:initComponents
     }
@@ -454,6 +502,10 @@ public class login_portal extends JPanel {
     private JLabel contacterror;
     private JLabel label1;
     private JLabel label2;
+    private JLabel Idproof;
+    private JLabel label3;
+    private JTextField Idprooffield;
+    private JButton Attach;
     // JFormDesigner - End of variables declaration  //GEN-END:variables
     User registeredUser;
 }
