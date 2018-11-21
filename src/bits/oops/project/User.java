@@ -7,6 +7,7 @@ public class User {
     String password;
     String Contact;
     String Address;
+    String id_path;
     public User(){
 
     }

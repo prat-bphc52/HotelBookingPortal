@@ -10,8 +10,8 @@ new FormModel {
 				name: "dialogPane"
 				"border": new javax.swing.border.EmptyBorder( 12, 12, 12, 12 )
 				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-					"$horizontalGroup": "par l {seq {space :::p, par t {comp label4:::p::p, comp label1:::p::p, comp label3:::p::p}, space u:::p, par l {comp age:::p::p, comp name:::p:258:p, par t:l {comp error::t:p:116:p, comp contact:::p:165:p}}, space :0:43:x}}"
-					"$verticalGroup": "par l {seq l {space :::p, par b {comp name::b:p::p, comp label4::b:p::p}, space :p:7:p, par b {comp age::b:p:28:p, comp label1::b:p::p}, space :::p, par b {comp label3::b:p::p, comp contact::b:p::p}, space s:::p, comp error:::p::p, space ::77:x}}"
+					"$horizontalGroup": "par l {seq {space :::p, par l {seq {par t {comp label4:::p::p, comp label1:::p::p, comp label3:::p::p}, space u:::p, par l:::p {comp name::::258:x, comp contact::l:p:165:p, comp age::l::258:x}, space :0:43:x}, seq l {comp error::::362:x, space :::p}}}}"
+					"$verticalGroup": "par l {seq l {space :::p, par b {comp name::b:p::p, comp label4::b:p::p}, space :p:7:p, par b {comp label1::b:p::p, comp age::b:p:28:p}, space :::p, par b {comp label3::b:p::p, comp contact::b:p::p}, space s:::p, comp error:::p:20:p, space ::57:x}}"
 				} ) {
 					name: "contentPanel"
 					add( new FormComponent( "javax.swing.JLabel" ) {

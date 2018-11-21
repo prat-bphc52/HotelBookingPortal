@@ -623,8 +623,143 @@ public class MysqlCon {
         }
     void clear_waitlist(String timestamp, String ref)
     {
+        try {
+            con = DriverManager.getConnection("jdbc:mysql://localhost/OOPS", "root", "draco");
+            smt = con.createStatement();
+            ResultSet rs;
+            rs=smt.executeQuery("SELECT * FROM mydb.BOOKINGS where REF = '"+ref+"';");
+            String s1= rs.getString("TIMESTAMP");
+            ResultSet r2 = smt.executeQuery("Select * FROM mydb.BOOKINGS;");
+            int a=0;
+            while(r2.next())
+            {
+                String s2 = r2.getString("TIMESTAMP");
+                long timestamp1 = Long.parseLong(s1);
+                long timestamp2 = Long.parseLong(s2);
+                if(timestamp2 != timestamp1)
+                {
+                    Bookings b1 = new Bookings();
+
+                    b1.uid=r2.getString("UID");
+                    b1.hid=r2.getString("HID");
+                    b1.ref=r2.getString("REF");
+                    String adults_string=r2.getString("ADULTS");
+                    b1.adults = new JSONArray(adults_string);
+                    b1.child=new JSONArray(r2.getString("CHILD"));
+                    b1.rooms=new JSONObject(r2.getString("ROOMS"));
+                    DateFormat d = new SimpleDateFormat("yyyy-mm-dd");
+                    b1.check_in_date = d.parse(rs.getString("CHECK_IN_DATE"));
+                    b1.check_out_date = d.parse(rs.getString("CHECK_OUT_DATE"));
+                    b1.cost=r2.getFloat("COST");
+                    b1.timestamp=Long.parseLong(r2.getString("TIMESTAMP"));
+                    b1.status = r2.getInt("STATUS");
+                    b1.adult_count = r2.getInt("ADULT_COUNT");
+                    b1.child_count=r2.getInt("CHILD_COUNT");
+                    try {
+                        b1.rating = r2.getInt("RATING");
+                    }
+                    catch(Exception e)
+                    {
+                        b1.rating = -1;
+                    }
+                    try {
+                        b1.review = r2.getString("REVIEW");
+                    }
+                    catch(Exception e)
+                    {
+                        b1.review = null;
+                    }
+                    if(b1.status == 0)
+                        b1.waitlist=new JSONObject(r2.getString("WAITLIST"));
+                    else
+                        b1.waitlist=null;
+
+
+                        int i = check(b1);
+                        if (i == 1)
+                            continue;
+                        if (i == 0)
+                            book_now_modify(b1);
+
+
+
+                    }
+                }
+
+
+
+            }
+            catch(Exception e)
+            {
+
+            }
+
 
     }
+    void book_now_modify(Bookings b1)
+    {
+        try {
+            con = DriverManager.getConnection("jdbc:mysql://localhost/OOPS", "root", "draco");
+            smt = con.createStatement();
+            ResultSet rs;
+            int status = 0;
+            Date CHECK_IN2 = b1.check_in_date;
+            long timestamp = Calendar.getInstance().getTimeInMillis();
+            b1.timestamp = timestamp;
+            String timestamp2 = "" + timestamp;
+            b1.ref = b1.hid + timestamp;
+            ArrayList<String> a1 = new ArrayList<>();
+            while (b1.rooms.keys().hasNext()) {
+                String x = b1.rooms.keys().next().toString();
+                a1.add(x);
+            }
+
+
+            DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd");
+            b1.status =1;
+            while (CHECK_IN2.compareTo(b1.check_out_date) < 0) {
+                String str1 = dateFormat.format(CHECK_IN2);
+                String str2 = dateFormat.format(b1.check_out_date);
+
+                for (int i = 0; i < a1.size(); i++) {
+                    rs = smt.executeQuery("SELECT * from ROOM where HID= ' " + b1.hid + " ' AND RID = '" + a1.get(i) + "'; ");
+                    rs.next();
+                    String s1 = rs.getString("BOOKINGS");
+                    JSONObject object = new JSONObject(s1);
+                    String s;
+                    try {
+                        String find_value = object.getString(str1);
+                        str1 = "$." + str1;
+                        s = "" + Integer.parseInt(find_value) + Integer.parseInt(b1.rooms.getString(a1.get(i)));
+                    } catch (Exception e) {
+                        str1 = "$." + str1;
+                        s = b1.rooms.getString(a1.get(i));
+                    }
+                    int r = smt.executeUpdate("UPDATE ROOM SET BOOKINGS = JSON_SET(BOOKINGS, '" + str1 + "' , '" + s + "'  where HID= ' " + b1.hid + " ' AND RID = '" + a1.get(i) + "'; ");
+
+
+                    // if (Integer.parseInt(str1) + a1.get(i).number > rs.getInt("TOTALROOMS")) {
+                    // status = 1;
+
+                }
+                Calendar c = Calendar.getInstance();
+                c.setTime(CHECK_IN2);
+                c.add(Calendar.DATE, 1);
+                CHECK_IN2 = c.getTime();
+
+            }
+            String str1 = dateFormat.format(b1.check_in_date);
+            String str2 = dateFormat.format(b1.check_out_date);
+            smt.executeUpdate("DELETE FROM BOOKINGS WHERE REF = '"+b1.ref+"';");
+            int row = smt.executeUpdate("INSERT INTO BOOKINGS (REF, UID, HID, ADULTS, CHILD, ROOMS, CHECK_IN, CHECK_OUT, COST, TIMESTAMP, STATUS) VALUES ('" + b1.ref + "','" + b1.uid + "','" + b1.hid + "','" +b1.adults + "','" + b1.child + "', '" + str1 + "', '" + str2 + "' , " + b1.cost + ", '" + timestamp2 + "', "+1+");");
+
+        }
+        catch(Exception e)
+        {
+            System.out.print(e);
+        }
+    }
+
     int check(Bookings b1)
     {
         try {

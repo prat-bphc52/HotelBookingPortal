@@ -4,8 +4,8 @@ new FormModel {
 	contentType: "form/swing"
 	root: new FormRoot {
 		add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-			"$horizontalGroup": "par l {seq {par l {comp panel1:::p::p, seq l {space :p:59:p, comp status:::p:279:p}, seq l {space :p:114:p, comp addguestdetails:::p::p}, seq l {space :p:17:p, par l {seq l {par t {comp label1:::p::p, comp label3:::p::p, comp label2::t:p::p}, space :::p, par l {comp cardnumber:::p:180:p, comp nameoncard::l:p:137:p, comp cvv::l:p:54:p}}, seq l {space :p:99:p, comp proceedtopay:::p::p}}}}, space :p:62:p}}"
-			"$verticalGroup": "par l {seq {comp panel1:::p::p, space :p:27:p, comp status:::p::p, space :::p, comp addguestdetails:::p::p, space :p:16:p, par b {comp label1::b:p::p, comp cardnumber::b:p::p}, space :p:18:p, par b {comp label2::b:p::p, comp nameoncard::b:p::p}, space :p:28:p, par b {comp label3::b:p::p, comp cvv::b:p::p}, space ::22:x, comp proceedtopay:::p::p, space :p:17:p}}"
+			"$horizontalGroup": "par l {seq {par l {seq {par l {comp panel1:::p::p, seq l {space :p:17:p, par l {seq l {par t {comp label2::t:p::p, comp label1:::p::p, seq t {comp label3:::p::p, space :p:8:p}}, space :::p, par l {comp nameoncard::l:p:137:p, comp cardnumber::l:p:180:p, comp cvv::l:p:54:p}}, seq l {space :p:91:p, comp proceedtopay:::p::p}}}, seq l {space :p:58:p, comp status:::p:279:p}, seq l {space :p:112:p, comp addguestdetails:::p::p}}, space :0:57:x}, seq l {space :::p, comp guest::::388:x}}, space :::p}}"
+			"$verticalGroup": "par l {seq {comp panel1:::p::p, space :p:15:p, comp status:::p::p, space :::p, comp addguestdetails:::p::p, space u:::p, comp guest:::p:26:p, space u:::p, par b {comp cardnumber::b:p::p, comp label1::b:p::p}, space :::p, par b {comp nameoncard::b:p::p, comp label2::b:p::p}, space :::p, par b {comp cvv::b:p::p, comp label3::b:p::p}, space s:::p, comp proceedtopay:::p::p, space ::33:x}}"
 		} ) {
 			name: "this"
 			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class javax.swing.BoxLayout ) ) {
@@ -45,6 +45,10 @@ new FormModel {
 			} )
 			add( new FormComponent( "javax.swing.JPasswordField" ) {
 				name: "cvv"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "guest"
+				"text": "GUESTS : "
 			} )
 		}, new FormLayoutConstraints( null ) {
 			"location": new java.awt.Point( 0, 0 )

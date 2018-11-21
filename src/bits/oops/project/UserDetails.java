@@ -21,13 +21,21 @@ public class UserDetails extends JDialog {
     public static JSONArray child;
     public static int adult_count;
     public static int child_count;
+    int a=0;
+    Frame f;
+
     public UserDetails(Frame owner, int adult_count, int child_count) {
         super(owner);
+        f=owner;
         initComponents();
+        if(UserDetails.adults == null)
+            UserDetails.adults = new JSONArray();
+        if(UserDetails.child == null)
+            UserDetails.child = new JSONArray();
+
         this.adult_count = adult_count;
         this.child_count = child_count;
-        adults=new JSONArray();
-        child=new JSONArray();
+
     }
 
     public UserDetails(Dialog owner, int adult_count, int child_count) {
@@ -42,26 +50,42 @@ public class UserDetails extends JDialog {
         String ageText = age.getText();
         String contactText = contact.getText();
         JSONObject obj = new JSONObject();
+        System.out.print("user details enter");
 
         try {
             obj.put("name", nameText);
             obj.put("age", ageText);
             obj.put("contact", contactText);
-            if (Integer.parseInt(ageText) < 18)
+            System.out.println(obj);
+            System.out.print("size is  " + adults.length());
+            if (Integer.parseInt(ageText) < 18) {
                 child.put(obj);
-            else {
-                if(adults.length() == adult_count)
-                    error.setText("YOU HAVE ALREADY ADDED " + adult_count + " ADULTS.");
+                this.setVisible(false);
 
-                else
+                a=1;
+            }
+            else {
+                if(adults.length() == adult_count) {
+                    error.setText("YOU HAVE ALREADY ADDED " + adult_count + " ADULTS.");
+                    error.setVisible(true);
+                    System.out.print("limit reached");
+                }
+
+                else {
+                    System.out.print("adult details entered");
                     adults.put(obj);
+                    this.setVisible(false);
+                    System.out.print("size is  " + adults.length());
+                    a=1;
+                }
             }
         }
         catch(Exception ex)
         {
             System.out.println(ex);
         }
-        this.setVisible(false);
+
+
 
     }
 
@@ -124,18 +148,21 @@ public class UserDetails extends JDialog {
                     contentPanelLayout.createParallelGroup()
                         .addGroup(contentPanelLayout.createSequentialGroup()
                             .addContainerGap()
-                            .addGroup(contentPanelLayout.createParallelGroup(GroupLayout.Alignment.TRAILING)
-                                .addComponent(label4)
-                                .addComponent(label1)
-                                .addComponent(label3))
-                            .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
                             .addGroup(contentPanelLayout.createParallelGroup()
-                                .addComponent(age, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                .addComponent(name, GroupLayout.PREFERRED_SIZE, 258, GroupLayout.PREFERRED_SIZE)
-                                .addGroup(contentPanelLayout.createParallelGroup(GroupLayout.Alignment.TRAILING)
-                                    .addComponent(error, GroupLayout.PREFERRED_SIZE, 116, GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(contact, GroupLayout.PREFERRED_SIZE, 165, GroupLayout.PREFERRED_SIZE)))
-                            .addGap(0, 43, Short.MAX_VALUE))
+                                .addGroup(contentPanelLayout.createSequentialGroup()
+                                    .addGroup(contentPanelLayout.createParallelGroup(GroupLayout.Alignment.TRAILING)
+                                        .addComponent(label4)
+                                        .addComponent(label1)
+                                        .addComponent(label3))
+                                    .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addGroup(contentPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(name, GroupLayout.DEFAULT_SIZE, 258, Short.MAX_VALUE)
+                                        .addComponent(contact, GroupLayout.PREFERRED_SIZE, 165, GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(age, GroupLayout.DEFAULT_SIZE, 258, Short.MAX_VALUE))
+                                    .addGap(0, 43, Short.MAX_VALUE))
+                                .addGroup(contentPanelLayout.createSequentialGroup()
+                                    .addComponent(error, GroupLayout.DEFAULT_SIZE, 362, Short.MAX_VALUE)
+                                    .addContainerGap())))
                 );
                 contentPanelLayout.setVerticalGroup(
                     contentPanelLayout.createParallelGroup()
@@ -146,15 +173,15 @@ public class UserDetails extends JDialog {
                                 .addComponent(label4))
                             .addGap(7, 7, 7)
                             .addGroup(contentPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                .addComponent(age, GroupLayout.PREFERRED_SIZE, 28, GroupLayout.PREFERRED_SIZE)
-                                .addComponent(label1))
+                                .addComponent(label1)
+                                .addComponent(age, GroupLayout.PREFERRED_SIZE, 28, GroupLayout.PREFERRED_SIZE))
                             .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                             .addGroup(contentPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                                 .addComponent(label3)
                                 .addComponent(contact, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
                             .addGap(18, 18, 18)
-                            .addComponent(error)
-                            .addContainerGap(77, Short.MAX_VALUE))
+                            .addComponent(error, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
+                            .addContainerGap(57, Short.MAX_VALUE))
                 );
             }
             dialogPane.add(contentPanel, BorderLayout.CENTER);
