@@ -4,8 +4,8 @@ new FormModel {
 	contentType: "form/swing"
 	root: new FormRoot {
 		add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-			"$horizontalGroup": "par l {seq t {par l {seq {space :::p, comp hotel_img:::p::p, space :p:12:p, par l {comp location_label:::p::p, comp amenities_label:::p::p, comp panel1:::p:100:p, comp location_field::l:p:200:p}}, seq {space :p:24:p, comp hotel_name:::::p, space :::p, comp starCategory:::p::p}, seq l {space :::p, par l {comp label11:::p::p, comp desc_label::l:::p}}, seq t {space :::p, comp desc_field:::p:512:p}}, space :0:0:x, par l {comp rating_label:::p::p, seq {space :6:6:p, par l {comp rating4:::p::p, comp rating5:::p::p, comp rating3::l:p::p, comp rating2::l:p::p, comp rating1::l:p::p, comp reviewPanel:::p:250:p}}}, space :p::p}, seq {space :::p, comp roomsPanel:::p::p, space :::p, comp loadingRooms:::::p, space :::x}}"
-			"$verticalGroup": "par l {seq l {par l {seq {space :p:15:p, par b {comp hotel_name::b:p::p, comp rating_label::b:p::p}}, seq t {space :::p, comp starCategory:::p::p}}, par l {seq l {par b {comp location_label::b:p::p, comp rating5::b:p:27:p}, space :::p, par l {seq {comp location_field:::::p, space u:::p, comp amenities_label:::p:25:p, space :::p, comp panel1:::p:100:p}, seq l {comp rating4:::p:27:p, space :::p, comp rating3:::p:27:p, space :::p, comp rating2:::p::p, space :::p, comp rating1:::p:27:p, space s:::p, comp reviewPanel:::p:132:p}}}, seq l {space :::p, comp hotel_img:::p::p, space s:::p, comp desc_label:::p:28:p}}, space :::p, comp desc_field:::p::p, space s:::p, comp label11:::p::p, space s:::p, par l {comp loadingRooms:::p::p, comp roomsPanel:::p::p}, space ::202:x}}"
+			"$horizontalGroup": "par l {seq {par l {seq {par l {seq {space :::p, comp hotel_img:::p::p, space :p:12:p, par l {comp location_label:::p::p, comp amenities_label:::p::p, comp panel1:::p:100:p, comp location_field::l:p:298:p}}, seq {space :p:24:p, comp hotel_name:::::p, space :::p, comp starCategory:::p::p}, seq l {space :::p, comp desc_label:::::p}}, space :0:273:x}, seq {space :::p, par l {comp desc_field::l:p:600:p, seq l {comp label11:::p::p, space :::p, comp loadingRooms:::::p}, comp roomsPanel::l:p:600:p}, space :::x}}, par l {comp rating_label:::p::p, comp proceed::t:p::p, seq l {space :6:6:p, par l {comp errorProceed:::p:150:p, par l:::p {comp rating4:::p::p, comp rating5:::p::p, comp rating3::l:p::p, comp rating2::l:p::p, comp rating1::l:p::p, comp reviewPanel::::250:x, comp bookingSection::l:::x}}}}, space :::p}}"
+			"$verticalGroup": "par l {seq l {par l {seq {space :p:15:p, par b {comp hotel_name::b:p::p, comp rating_label::b:p::p}}, seq t {space :::p, comp starCategory:::p::p}}, par l {seq l {space :::p, comp hotel_img:::p::p, space s:::p, comp desc_label:::p:28:p, space :::p, comp desc_field:::p::p, space s:::p, par b {comp label11::b:p::p, comp loadingRooms::b:p::p}, space :::p, comp roomsPanel:::p:141:p, space ::89:x}, seq l {par b {comp location_label::b:p::p, comp rating5::b:p:27:p}, space :::p, par l {seq {comp location_field:::::p, space u:::p, comp amenities_label:::p:25:p, space :::p, comp panel1:::p:100:p}, seq l {comp rating4:::p:27:p, space :::p, comp rating3:::p:27:p, space :::p, comp rating2:::p::p, space :::p, comp rating1:::p:27:p, space s:::p, comp reviewPanel:::p:132:p}}, space s:::p, comp bookingSection:::p::p, space :::p, par b {comp proceed::b:p::p, comp errorProceed::b:p::p}, space :0:207:x}}}}"
 		} ) {
 			name: "this"
 			add( new FormComponent( "javax.swing.JLabel" ) {
@@ -164,9 +164,39 @@ new FormModel {
 				name: "loadingRooms"
 				"text": "Loading..."
 			} )
+			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.GridBagLayout ) {
+				"$columnSpecs": "0"
+				"$rowSpecs": "0, 0"
+				"$hGap": 5
+				"$vGap": 5
+				"$alignTop": true
+				"$alignLeft": true
+			} ) {
+				name: "bookingSection"
+				"border": new javax.swing.border.TitledBorder( null, "Booking Summary", 2, 2, new java.awt.Font( "Papyrus", 0, 16 ), null )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label1"
+					"text": "Start adding rooms from left panel"
+				}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) )
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "proceed"
+				"text": "PROCEED"
+				"background": new java.awt.Color( 255, 102, 0, 255 )
+				"border": new javax.swing.border.EtchedBorder( 1, null, null )
+				"foreground": sfield java.awt.Color white
+				"cursor": #Cursor0
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "checkAvailablity", true ) )
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "errorProceed"
+				"text": "<html>Number of adults and child do not match</html>"
+				"icon": new com.jformdesigner.model.SwingIcon( 0, "/bits/oops/project/error.png" )
+				"foreground": sfield java.awt.Color red
+			} )
 		}, new FormLayoutConstraints( null ) {
 			"location": new java.awt.Point( 0, 0 )
-			"size": new java.awt.Dimension( 840, 695 )
+			"size": new java.awt.Dimension( 935, 695 )
 		} )
 	}
 }

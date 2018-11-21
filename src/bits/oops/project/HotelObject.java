@@ -6,6 +6,7 @@ public class HotelObject {
     String hid,name,city,description,amenities,address,check_in_time,check_out_time;
     String[] rooms;
     int totalrooms,star_category;
+    double cost;
     ArrayList<Review> reviews;
     double getRating(){
         if(reviews==null || reviews.size()==0){

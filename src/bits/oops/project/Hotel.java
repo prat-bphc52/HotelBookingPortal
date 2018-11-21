@@ -4,6 +4,8 @@
 
 package bits.oops.project;
 
+import org.json.JSONObject;
+
 import java.awt.event.*;
 import javax.swing.*;
 import java.awt.*;
@@ -17,9 +19,14 @@ import javax.swing.border.*;
  */
 public class Hotel extends JPanel {
     int revPos;
-    public Hotel(HotelObject obj) {
+    ArrayList<NewRoomDisplay> roomsadded;
+    int adultsadded,childadded;
+    Bookings bookingData;
+    public Hotel(HotelObject obj, Bookings bookingData) {
         this.hotelData = obj;
+        this.bookingData=bookingData;
         initComponents();
+        errorProceed.setVisible(false);
         hotel_name.setText(hotelData.name);
         location_field.setText("<html>"+hotelData.address+"</html>");
         starCategory.setText("- "+hotelData.star_category+" Star");
@@ -38,17 +45,58 @@ public class Hotel extends JPanel {
         rating1.setText("1 -> "+ hotelData.get1ratings()+" %");
         roomsPanel.setVisible(false);
         loadingRooms.setVisible(true);
-//        rooms = MysqlCon.getInstance().display_rooms(hotelData.hid);
-//        for(RoomObject r:rooms){
-//            Room roomholder=new Room(r);
-//            roomsPanel.getViewport().add(roomholder);
-//            roomholder.bookButton.addActionListener(new ActionListener() {
-//                @Override
-//                public void actionPerformed(ActionEvent e) {
-//
-//                }
-//            });
-//        }
+        rooms = MysqlCon.getInstance().display_rooms(hotelData.hid);
+        roomsadded = new ArrayList<>();
+        for(RoomObject r:rooms){
+            Room roomholder=new Room(r);
+            roomsPanel.getViewport().add(roomholder);
+            roomholder.bookButton.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    final NewRoomDisplay roomView = new NewRoomDisplay(r);
+                    roomView.room_no.setText("Room "+roomsadded.size());
+                    roomView.title.setText(r.getTitle());
+                    roomsadded.add(roomView);
+                    roomView.adultfield.setText(r.getSize()+"");
+                    bookingSection.add(roomView,new GridBagConstraints(0, roomsadded.size(), 1, 1, 1.0, 1.0,
+                            GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+                            new Insets(0, 0, 0, 0), 0, 0));
+                    bookingSection.updateUI();
+                    if(roomsadded.size()>1)
+                        roomsadded.get(roomsadded.size()-2).remove.setEnabled(true);
+                    roomView.remove.addMouseListener(new MouseListener() {
+                        @Override
+                        public void mouseClicked(MouseEvent e) {
+                            roomsadded.remove(roomsadded.size()-1);
+                            if(roomsadded.size()!=0)
+                            roomsadded.get(roomsadded.size()-1).remove.setEnabled(true);
+                        }
+
+                        @Override
+                        public void mousePressed(MouseEvent e) {
+
+                        }
+
+                        @Override
+                        public void mouseReleased(MouseEvent e) {
+
+                        }
+
+                        @Override
+                        public void mouseEntered(MouseEvent e) {
+
+                        }
+
+                        @Override
+                        public void mouseExited(MouseEvent e) {
+
+                        }
+                    });
+                }
+            });
+        }
+        roomsPanel.updateUI();
+        roomsPanel.getViewport().updateUI();
         loadingRooms.setVisible(false);
         roomsPanel.setVisible(true);
         ArrayList<ReviewPanel> panels = new ArrayList<>();
@@ -91,6 +139,35 @@ public class Hotel extends JPanel {
         }
     }
 
+    private void checkAvailablity(ActionEvent e) {
+        bookingData.hid = hotelData.hid;
+        int a_count=0,c_count=0;
+        double cost=0;
+        bookingData.rooms=new JSONObject();
+        try {
+            for (NewRoomDisplay d : roomsadded) {
+                a_count += Integer.parseInt(d.adultfield.getText());
+                c_count += Integer.parseInt(d.childfield.getText());
+                cost += d.room.getPrice();
+                if (bookingData.rooms.has(d.room.getRid())) {
+                    bookingData.rooms.put(d.room.getRid(), bookingData.rooms.getInt(d.room.getRid()) + 1);
+                } else bookingData.rooms.put(d.room.getRid(), 1);
+            }
+        }
+        catch (Exception ex){
+            errorProceed.setVisible(true);
+            return;
+        }
+        if(a_count!=bookingData.adult_count || c_count!=bookingData.child_count){
+            errorProceed.setVisible(true);
+            return;
+        }
+        errorProceed.setVisible(false);
+        bookingData.cost = (int)cost;
+        int status = MysqlCon.getInstance().check(bookingData);
+
+    }
+
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
         // Generated using JFormDesigner Evaluation license - Prateek Agarwal
@@ -125,6 +202,10 @@ public class Hotel extends JPanel {
         label11 = new JLabel();
         starCategory = new JLabel();
         loadingRooms = new JLabel();
+        bookingSection = new JPanel();
+        label1 = new JLabel();
+        proceed = new JButton();
+        errorProceed = new JLabel();
 
         //======== this ========
 
@@ -263,53 +344,88 @@ public class Hotel extends JPanel {
         //---- loadingRooms ----
         loadingRooms.setText("Loading...");
 
+        //======== bookingSection ========
+        {
+            bookingSection.setBorder(new TitledBorder(null, "Booking Summary", TitledBorder.CENTER, TitledBorder.TOP,
+                new Font("Papyrus", Font.PLAIN, 16)));
+            bookingSection.setLayout(new GridBagLayout());
+            ((GridBagLayout)bookingSection.getLayout()).columnWidths = new int[] {0, 0};
+            ((GridBagLayout)bookingSection.getLayout()).rowHeights = new int[] {0, 0, 0};
+            ((GridBagLayout)bookingSection.getLayout()).columnWeights = new double[] {0.0, 1.0E-4};
+            ((GridBagLayout)bookingSection.getLayout()).rowWeights = new double[] {0.0, 0.0, 1.0E-4};
+
+            //---- label1 ----
+            label1.setText("Start adding rooms from left panel");
+            bookingSection.add(label1, new GridBagConstraints(0, 0, 1, 1, 0.0, 0.0,
+                GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+                new Insets(0, 0, 5, 0), 0, 0));
+        }
+
+        //---- proceed ----
+        proceed.setText("PROCEED");
+        proceed.setBackground(new Color(255, 102, 0));
+        proceed.setBorder(new EtchedBorder());
+        proceed.setForeground(Color.white);
+        proceed.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        proceed.addActionListener(e -> checkAvailablity(e));
+
+        //---- errorProceed ----
+        errorProceed.setText("<html>Number of adults and child do not match</html>");
+        errorProceed.setIcon(new ImageIcon(getClass().getResource("/bits/oops/project/error.png")));
+        errorProceed.setForeground(Color.red);
+
         GroupLayout layout = new GroupLayout(this);
         setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup()
-                .addGroup(GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGroup(layout.createSequentialGroup()
                     .addGroup(layout.createParallelGroup()
                         .addGroup(layout.createSequentialGroup()
-                            .addContainerGap()
-                            .addComponent(hotel_img, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                            .addGap(12, 12, 12)
                             .addGroup(layout.createParallelGroup()
-                                .addComponent(location_label)
-                                .addComponent(amenities_label)
-                                .addComponent(panel1, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE)
-                                .addComponent(location_field, GroupLayout.PREFERRED_SIZE, 200, GroupLayout.PREFERRED_SIZE)))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(24, 24, 24)
-                            .addComponent(hotel_name)
-                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(starCategory))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addContainerGap()
+                                    .addComponent(hotel_img, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                    .addGap(12, 12, 12)
+                                    .addGroup(layout.createParallelGroup()
+                                        .addComponent(location_label)
+                                        .addComponent(amenities_label)
+                                        .addComponent(panel1, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(location_field, GroupLayout.PREFERRED_SIZE, 298, GroupLayout.PREFERRED_SIZE)))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGap(24, 24, 24)
+                                    .addComponent(hotel_name)
+                                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(starCategory))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addContainerGap()
+                                    .addComponent(desc_label)))
+                            .addGap(0, 273, Short.MAX_VALUE))
                         .addGroup(layout.createSequentialGroup()
                             .addContainerGap()
                             .addGroup(layout.createParallelGroup()
-                                .addComponent(label11)
-                                .addComponent(desc_label)))
-                        .addGroup(GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                            .addContainerGap()
-                            .addComponent(desc_field, GroupLayout.PREFERRED_SIZE, 512, GroupLayout.PREFERRED_SIZE)))
-                    .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(desc_field, GroupLayout.PREFERRED_SIZE, 600, GroupLayout.PREFERRED_SIZE)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(label11)
+                                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(loadingRooms))
+                                .addComponent(roomsPanel, GroupLayout.PREFERRED_SIZE, 600, GroupLayout.PREFERRED_SIZE))
+                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(layout.createParallelGroup()
                         .addComponent(rating_label)
+                        .addComponent(proceed, GroupLayout.Alignment.TRAILING)
                         .addGroup(layout.createSequentialGroup()
                             .addGap(6, 6, 6)
                             .addGroup(layout.createParallelGroup()
-                                .addComponent(rating4)
-                                .addComponent(rating5)
-                                .addComponent(rating3)
-                                .addComponent(rating2)
-                                .addComponent(rating1)
-                                .addComponent(reviewPanel, GroupLayout.PREFERRED_SIZE, 250, GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(errorProceed, GroupLayout.PREFERRED_SIZE, 150, GroupLayout.PREFERRED_SIZE)
+                                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(rating4)
+                                    .addComponent(rating5)
+                                    .addComponent(rating3)
+                                    .addComponent(rating2)
+                                    .addComponent(rating1)
+                                    .addComponent(reviewPanel, GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
+                                    .addComponent(bookingSection, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
                     .addContainerGap())
-                .addGroup(layout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(roomsPanel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                    .addComponent(loadingRooms)
-                    .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup()
@@ -324,6 +440,20 @@ public class Hotel extends JPanel {
                             .addContainerGap()
                             .addComponent(starCategory)))
                     .addGroup(layout.createParallelGroup()
+                        .addGroup(layout.createSequentialGroup()
+                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(hotel_img, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                            .addGap(18, 18, 18)
+                            .addComponent(desc_label, GroupLayout.PREFERRED_SIZE, 28, GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(desc_field)
+                            .addGap(18, 18, 18)
+                            .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                .addComponent(label11)
+                                .addComponent(loadingRooms))
+                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(roomsPanel, GroupLayout.PREFERRED_SIZE, 141, GroupLayout.PREFERRED_SIZE)
+                            .addContainerGap(89, Short.MAX_VALUE))
                         .addGroup(layout.createSequentialGroup()
                             .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                                 .addComponent(location_label)
@@ -345,21 +475,14 @@ public class Hotel extends JPanel {
                                     .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                                     .addComponent(rating1, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE)
                                     .addGap(18, 18, 18)
-                                    .addComponent(reviewPanel, GroupLayout.PREFERRED_SIZE, 132, GroupLayout.PREFERRED_SIZE))))
-                        .addGroup(layout.createSequentialGroup()
-                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(hotel_img, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(reviewPanel, GroupLayout.PREFERRED_SIZE, 132, GroupLayout.PREFERRED_SIZE)))
                             .addGap(18, 18, 18)
-                            .addComponent(desc_label, GroupLayout.PREFERRED_SIZE, 28, GroupLayout.PREFERRED_SIZE)))
-                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                    .addComponent(desc_field)
-                    .addGap(18, 18, 18)
-                    .addComponent(label11)
-                    .addGap(18, 18, 18)
-                    .addGroup(layout.createParallelGroup()
-                        .addComponent(loadingRooms)
-                        .addComponent(roomsPanel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                    .addContainerGap(202, Short.MAX_VALUE))
+                            .addComponent(bookingSection, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                            .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                .addComponent(proceed)
+                                .addComponent(errorProceed, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                            .addGap(0, 207, Short.MAX_VALUE))))
         );
         // JFormDesigner - End of component initialization  //GEN-END:initComponents
     }
@@ -397,29 +520,33 @@ public class Hotel extends JPanel {
     private JLabel label11;
     private JLabel starCategory;
     private JLabel loadingRooms;
+    private JPanel bookingSection;
+    private JLabel label1;
+    private JButton proceed;
+    private JLabel errorProceed;
     // JFormDesigner - End of variables declaration  //GEN-END:variables
     HotelObject hotelData;
     ArrayList<RoomObject> rooms;
-    public static void main(String args[]){
-        JFrame frame=new JFrame();
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        HotelObject obj=new HotelObject();
-        obj.name="Taj Banjara";
-        obj.star_category = 5;
-        obj.address = "Road number 18, Banjara Hill, Hyderabad, Telangana";
-        obj.description = " Most popular 5-star hotel located in the heart of hyderabad city offering an amazing view of the Buddha Statue at Hussain Sagar Lake.";
-        obj.reviews = new ArrayList<>();
-        for(int i=0;i<5;i++){
-            Review r=new Review();
-            r.rating = 4;
-            for(int j=0;j<2;j++)
-                r.comment += "Review "+i;
-            obj.reviews.add(r);
-        }
-        Hotel hpanel = new Hotel(obj);
-        hpanel.setSize(1000,1000);
-        frame.add(hpanel);
-        frame.pack();
-        frame.setVisible(true);
-    }
+//    public static void main(String args[]){
+//        JFrame frame=new JFrame();
+//        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//        HotelObject obj=new HotelObject();
+//        obj.name="Taj Banjara";
+//        obj.star_category = 5;
+//        obj.address = "Road number 18, Banjara Hill, Hyderabad, Telangana";
+//        obj.description = " Most popular 5-star hotel located in the heart of hyderabad city offering an amazing view of the Buddha Statue at Hussain Sagar Lake.";
+//        obj.reviews = new ArrayList<>();
+//        for(int i=0;i<5;i++){
+//            Review r=new Review();
+//            r.rating = 4;
+//            for(int j=0;j<2;j++)
+//                r.comment += "Review "+i;
+//            obj.reviews.add(r);
+//        }
+//        Hotel hpanel = new Hotel(obj);
+//        hpanel.setSize(1000,1000);
+//        frame.add(hpanel);
+//        frame.pack();
+//        frame.setVisible(true);
+//    }
 }
