@@ -133,12 +133,12 @@ public class MysqlCon {
         }
 
     }
-     ArrayList<HotelTab> gethotels(String location, Date check_in, Date check_out)
+     ArrayList<Hotel_tab> gethotels(String location, Date check_in, Date check_out)
     {
         //location = "+" + location + "+";
         System.out.println("location sent " + location);
 
-        ArrayList<HotelTab> a1 = new ArrayList<>();
+        ArrayList<Hotel_tab> a1 = new ArrayList<>();
         try{
             con = DriverManager.getConnection("jdbc:mysql://localhost/mydb" , "root" , "draco");
             smt=con.createStatement();
@@ -147,27 +147,26 @@ public class MysqlCon {
             while(rs.next())
             {
                 System.out.print("reached here");
-                HotelTab h1 = new HotelTab();
+                Hotel_tab h1 = new Hotel_tab();
                 int hid = rs.getInt("HID");
-                //String name = rs.getString("NAME");
-                //String loc = rs.getString("ADDRESS");
-                //String amenities= rs.getString("AMENITIES");
-                //String description=rs.getString("DESCRIPTION");
-                //Time check_in_time = rs.getTime("CHECK_IN_TIME");
-                //Time check_out_time=rs.getTime("CHECK_OUT_TIME");
-                //int cost=rs.getInt("COST");
-                //int star = rs.getInt("HOTEL_STAR");
-                //String image = rs.getString("IMAGE");
-                //h1.Location.setText(loc);
-                //h1.amenities.setText(amenities);
-                //int nights = (int) Math.abs((check_in.getTime()-check_out.getTime())/86400000);
-                //h1.cost.setText("Rs " + nights*cost);
+                String name = rs.getString("NAME");
+                String loc = rs.getString("ADDRESS");
+                String amenities= rs.getString("AMENITIES");
+                String description=rs.getString("DESCRIPTION");
+                String check_in_time = rs.getString("CHECK_IN_TIME");
+                String check_out_time=rs.getString("CHECK_OUT_TIME");
+                float cost=rs.getFloat("COST");
+                int star = rs.getInt("HOTEL_STAR");
+                String image = rs.getString("IMAGE");
+                h1.Location.setText(loc);
+                h1.amenities.setText(amenities);
+               // int nights = (int) Math.abs((check_in.getTime()-check_out.getTime())/86400000);
+                h1.cost.setText("Rs " + cost);
                 h1.hotel_id.setText("" + hid);
                 //h1.image.setIcon(new ImageIcon(getClass().getResource(image))) ;
-                //h1.imagestar.setIcon(new ImageIcon(getClass().getResource("C:\\Users\\HP\\IdeaProjects\\f213\\src")));
-                //h1.name.setText(name);
-                //h1.nights.setText("For " + nights + " nights: Starting at");
-                //h1.stars.setText(""+star);
+                h1.name.setText(name);
+                h1.nights.setText(" Starting at");
+                h1.stars.setText(""+star);
                 a1.add(h1);
 
             }
@@ -332,29 +331,42 @@ public class MysqlCon {
             h.hid = hid;
             h.name = rs.getString("NAME");
             h.city = rs.getString("CITY");
-            h.description = rs.getString("DESCRIPTION");
+            try {
+                h.description = rs.getString("DESCRIPTION");
+            }
+            catch(Exception e)
+            {
+                h.description = null;
+            }
             h.amenities  = rs.getString("AMENITIES");
             h.address = rs.getString("ADDRESS");
             h.check_in_time = rs.getString("CHECK_IN_TIME");
             h.check_out_time = rs.getString("CHECK_OUT_TIME");
             h.totalrooms = rs.getInt("TOTALROOMS");
             h.star_category = rs.getInt("HOTEL_STAR");
-            h.rooms = rs.getString("ROOM").split(",");
-            String s = rs.getString("REVIEWS");
-            JSONObject obj = new JSONObject(s);
-            h.reviews = new ArrayList<>();
-            while (obj.keys().hasNext())
-            {
-                String x = obj.keys().next().toString();
-                JSONObject obj2 = new JSONObject(x);
-                Review r = new Review();
-                r.booking_id = x;
-                r.username = obj2.getString("username");
-                r.rating=obj.getInt("rating");
-                r.comment = obj.getString("comment");
-                h.reviews.add(r);
+            h.rooms = rs.getString("ROOMS").split("/");
+            try {
+                String s = rs.getString("REVIEWS");
+                JSONObject obj = new JSONObject(s);
+                h.reviews = new ArrayList<>();
+                while (obj.keys().hasNext())
+                {
+                    String x = obj.keys().next().toString();
+                    JSONObject obj2 = new JSONObject(x);
+                    Review r = new Review();
+                    r.booking_id = x;
+                    r.username = obj2.getString("username");
+                    r.rating=obj.getInt("rating");
+                    r.comment = obj.getString("comment");
+                    h.reviews.add(r);
 
+                }
             }
+            catch(Exception e)
+            {
+                h.reviews = null;
+            }
+
             return h;
 
 
@@ -362,6 +374,7 @@ public class MysqlCon {
         }
         catch(Exception e)
         {
+            System.out.print("exception is" + e);
             return null;
         }
     }
@@ -374,31 +387,46 @@ public class MysqlCon {
             ResultSet rs;
             rs = smt.executeQuery("SELECT * FROM mydb.HOTEL where HID = '" + hid + "'; ");
             rs.next();
-            String[] rooms = rs.getString("ROOMS").split(",");
+            String[] rooms = rs.getString("ROOMS").split("/");
+            System.out.print(rooms);
             for (String x : rooms) {
                 ResultSet r = smt.executeQuery("SELECT * FROM mydb.ROOM WHERE RID = '" + x + "' ; ");
-
-                String title = rs.getString("TITLE");
-                String rid = rs.getString("RID");
-                String description = rs.getString("DESCRIPTION");
-                String amenities = rs.getString("AMENITIES");
-                Double price = rs.getDouble("PRICE");
-                Double extra = rs.getDouble("EXTRA_PERSON_CHARGES");
-                int size = rs.getInt("SIZE");
-                int total = rs.getInt("TOTAL");
-                String book = rs.getString("BOOKINGS");
-                JSONObject bookings = new JSONObject(book);
-                String wait = rs.getString("WAITLIST");
-                JSONObject waitlist = new JSONObject(wait);
+                r.next();
+                System.out.print(r.toString());
+                String title = r.getString("TITLE");
+                String rid = r.getString("RID");
+                String description = r.getString("DESCRIPTION");
+                String amenities = r.getString("AMENITIES");
+                Double price = r.getDouble("PRICE");
+                Double extra = r.getDouble("EXTRA_PERSON_CHARGES");
+                int size = r.getInt("SIZE");
+                int total = r.getInt("TOTAL");
+                JSONObject bookings;
+                try {
+                    String book = r.getString("BOOKINGS");
+                    bookings = new JSONObject(book);
+                }
+                catch(Exception e)
+                {
+                    bookings=null;
+                }
+                JSONObject waitlist;
+                try {
+                    String wait = r.getString("WAITLIST");
+                    waitlist = new JSONObject(wait);
+                }
+                catch(Exception e)
+                {
+                    waitlist=null;
+                }
                 RoomObject room = new RoomObject(rid, title, hid, description, amenities, price, extra, size, total, bookings, waitlist);
                 a1.add(room);
-
-
             }
             return a1;
         }
         catch(Exception e)
         {
+            System.out.print("error is display_rooms" + e);
             return null;
         }
 
@@ -871,17 +899,21 @@ public class MysqlCon {
     }
     void edit_profile(User u)
     {
+        System.out.print("enter edit profile");
+
         try{
             con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mydb", "root", "draco");
             System.out.println("connection established");
             smt = con.createStatement();
             ResultSet rs;
             rs = smt.executeQuery("SELECT * FROM mydb.USER WHERE UID = '"+u.Username+"';");
-            smt.executeUpdate("UPDATE USER SET NAME = '"+u.Name+"';");
-            smt.executeUpdate("UPDATE USER SET EMAIL = '"+u.Emailid+"';");
-            smt.executeUpdate("UPDATE USER SET PHONE = '"+u.Contact+"';");
-            smt.executeUpdate("UPDATE USER SET ADDRESS = '"+u.Address+"';");
-            smt.executeUpdate("UPDATE USER SET PASSWORD = '"+u.password+"';");
+            if(rs.next())
+                System.out.print("match found");
+            smt.executeUpdate("UPDATE USER SET NAME = '"+u.Name+"' WHERE UID = '"+u.Username+"';");
+            smt.executeUpdate("UPDATE USER SET EMAIL = '"+u.Emailid+"' WHERE UID = '"+u.Username+"';");
+            smt.executeUpdate("UPDATE USER SET PHONE = '"+u.Contact+"' WHERE UID = '"+u.Username+"';");
+            smt.executeUpdate("UPDATE USER SET ADDRESS = '"+u.Address+"' WHERE UID = '"+u.Username+"';");
+            smt.executeUpdate("UPDATE USER SET PASSWORD = '"+u.password+"'WHERE UID = '"+u.Username+"';");
 
         }
         catch (Exception e)

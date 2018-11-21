@@ -20,7 +20,7 @@ public class container extends javax.swing.JPanel {
     /**
      * Creates new form container
      */
-    public container(ArrayList<HotelTab> a1) {
+    public container(ArrayList<Hotel_tab> a1) {
         initComponents();
          //JFrame f = new JFrame();
         //f.setSize(1000, 1000);

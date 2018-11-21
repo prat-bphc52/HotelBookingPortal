@@ -1,0 +1,80 @@
+JFDML JFormDesigner: "6.0.4.1.172" Java: "1.8.0_152-release" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+			"$horizontalGroup": "par l {seq {space :::p, par l {seq {par l {comp hotel_id:::p:67:p, seq {comp label4:::p:100:p, space s:::p, par l {comp Location:::p:105:p, comp amenities:::p:94:p}}}, space :p:446:p}, seq l {comp name:::p:186:p, space :::x, par l {seq l {comp stars:::p:39:p, space s:::p, comp imagestar:::p:71:p}, seq l {comp nights:::p:81:p, space u:::p, comp cost:::p:53:p}}, space :::p}}}}"
+			"$verticalGroup": "par l {seq {space :::p, comp hotel_id:::p:16:p, space s:::p, par b {comp nights::b:p::p, comp cost::b:p::p, comp name::b:p::p}, space :::p, par l {seq {space :p:11:p, par b {comp stars::b:p::p, comp imagestar::b:p::p}}, comp Location::l:p::p, par b {comp label4::b:p:100:p, comp amenities::b:p:24:p}}, space ::43:x}}"
+		} ) {
+			name: "this"
+			"border": new javax.swing.border.LineBorder( sfield java.awt.Color black, 1, false )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "Location"
+				"text": "LOCATION"
+				auxiliary() {
+					"JavaCodeGenerator.variableModifiers": 1
+				}
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "amenities"
+				"text": "AMENITIES"
+				auxiliary() {
+					"JavaCodeGenerator.variableModifiers": 1
+				}
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "cost"
+				"text": "cost"
+				auxiliary() {
+					"JavaCodeGenerator.variableModifiers": 1
+				}
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "nights"
+				"text": "Starting at:"
+				auxiliary() {
+					"JavaCodeGenerator.variableModifiers": 1
+				}
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "stars"
+				"text": "star"
+				auxiliary() {
+					"JavaCodeGenerator.variableModifiers": 1
+				}
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "hotel_id"
+				"text": "HOTEL ID"
+				auxiliary() {
+					"JavaCodeGenerator.variableModifiers": 1
+				}
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "name"
+				"text": "NAME"
+				auxiliary() {
+					"JavaCodeGenerator.variableModifiers": 1
+				}
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "imagestar"
+				"icon": new com.jformdesigner.model.SwingIcon( 0, "/bits/oops/project/star.png" )
+				auxiliary() {
+					"JavaCodeGenerator.variableModifiers": 1
+				}
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label4"
+				"text": "text"
+				auxiliary() {
+					"JavaCodeGenerator.variableModifiers": 1
+				}
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 0, 0 )
+			"size": new java.awt.Dimension( 675, 205 )
+		} )
+	}
+}
