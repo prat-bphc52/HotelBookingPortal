@@ -1,0 +1,63 @@
+JFDML JFormDesigner: "6.0.4.1.172" Java: "1.8.0_152-release" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+			"$horizontalGroup": "par l {seq {space :::p, par l {comp booking_data::::498:x, seq {par l {seq {comp label1:::p::p, space :::p, comp reference_ID:::p:100:p}, comp label2::l:p::p}, space ::168:x, comp booking_status:::p:150:p}, seq {par l {seq {comp label3:::p::p, space s:::p, comp dates:::p::p}, seq l {comp label4:::p::p, space u:::p, comp price:::p::p}}, space :0:376:x}, seq t {space :0:130:x, comp button2:::p:175:p, space s:::p, comp button1:::p:175:p}}, space :::p}}"
+			"$verticalGroup": "par l {seq {space :::p, par l {seq l {par b {comp label1::b:p::p, comp reference_ID::b:p::p}, space u:::p, comp label2:::p::p}, comp booking_status::l:p:40:p}, space :::p, comp booking_data:::p:93:p, space s:::p, par b {comp label3::b:p::p, comp dates::b:p::p}, space u:::p, par b {comp label4::b:p::p, comp price::b:p::p}, space ::35:x, par b {comp button1::b:p:35:p, comp button2::b:p:35:p}, space :::p}}"
+		} ) {
+			name: "this"
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label1"
+				"text": "Refernce ID : "
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "reference_ID"
+				"text": "text"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "booking_status"
+				"text": "Confirmed!"
+				"font": new java.awt.Font( "Open Sans", 1, 14 )
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label2"
+				"text": "Boooking Data  :"
+				"font": new java.awt.Font( "Open Sans", 1, 14 )
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "booking_data"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label3"
+				"text": "Dates    :"
+				"font": new java.awt.Font( "Open Sans", 1, 14 )
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "dates"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label4"
+				"text": "Total Price   :"
+				"font": new java.awt.Font( "Open Sans", 1, 14 )
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "price"
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "button1"
+				"text": "cancel"
+				addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "button1MouseClicked", true ) )
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "button2"
+				"text": "modify"
+				addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "button2MouseClicked", true ) )
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 0, 0 )
+			"size": new java.awt.Dimension( 510, 300 )
+		} )
+	}
+}
