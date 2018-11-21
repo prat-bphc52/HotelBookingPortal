@@ -234,6 +234,17 @@ public class LandingPage extends JPanel {
                     @Override
                     public void mouseClicked(MouseEvent e) {
                         System.out.print(t.name);
+                        HotelObject obj = MysqlCon.getInstance().display_hotel(t.hotel_id.getText());
+                        if(obj==null){
+                            return;
+                        }
+                        else{
+                            JFrame hotelHolder = new JFrame();
+                            Hotel hotel = new Hotel(obj,newBooking,hotelHolder);
+                            hotelHolder.add(hotel);
+                            hotelHolder.pack();
+                            hotelHolder.setVisible(true);
+                        }
                     }
 
                     @Override
@@ -331,7 +342,9 @@ public class LandingPage extends JPanel {
     }
 
     private void displayProfile(ActionEvent e) {
-
+        ProfileDisplay profileFrame = new ProfileDisplay(currentUser);
+        profileFrame.pack();
+        profileFrame.setVisible(true);
     }
 
     private void initComponents() {

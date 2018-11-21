@@ -349,9 +349,4 @@ public class ProfileDisplay extends JFrame {
     private JPanel panel2;
     private JScrollPane scrollPane1;
     // JFormDesigner - End of variables declaration  //GEN-END:variables
-    public static void main(String args[]){
-        ProfileDisplay disp = new ProfileDisplay(new User("abc","abc","abc","abc","abc","abc"));
-        disp.pack();
-        disp.setVisible(true);
-    }
 }

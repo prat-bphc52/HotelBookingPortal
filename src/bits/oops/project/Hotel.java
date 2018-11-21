@@ -18,13 +18,15 @@ import javax.swing.border.*;
  * @author unknown
  */
 public class Hotel extends JPanel {
+    JFrame parent;
     int revPos;
     ArrayList<NewRoomDisplay> roomsadded;
     int adultsadded,childadded;
     Bookings bookingData;
-    public Hotel(HotelObject obj, Bookings bookingData) {
+    public Hotel(HotelObject obj, Bookings bookingData, JFrame parent) {
         this.hotelData = obj;
         this.bookingData=bookingData;
+        this.parent=parent;
         initComponents();
         errorProceed.setVisible(false);
         hotel_name.setText(hotelData.name);
@@ -165,7 +167,8 @@ public class Hotel extends JPanel {
         errorProceed.setVisible(false);
         bookingData.cost = (int)cost;
         int status = MysqlCon.getInstance().check(bookingData);
-
+        BookingFrame bookingFrame = new BookingFrame(bookingData,status);
+        parent.setEnabled(false);
     }
 
     private void initComponents() {
