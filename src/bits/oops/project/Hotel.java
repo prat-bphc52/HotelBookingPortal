@@ -51,7 +51,7 @@ public class Hotel extends JPanel {
         roomsadded = new ArrayList<>();
         for(RoomObject r:rooms){
             Room roomholder=new Room(r);
-            roomsPanel.getViewport().add(roomholder);
+            roomsPanel.add(roomholder);
             roomholder.bookButton.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
@@ -65,10 +65,13 @@ public class Hotel extends JPanel {
                             new Insets(0, 0, 0, 0), 0, 0));
                     bookingSection.updateUI();
                     if(roomsadded.size()>1)
-                        roomsadded.get(roomsadded.size()-2).remove.setEnabled(true);
+                        roomsadded.get(roomsadded.size()-2).remove.setEnabled(false);
                     roomView.remove.addMouseListener(new MouseListener() {
                         @Override
                         public void mouseClicked(MouseEvent e) {
+                            System.out.println("Click removed button");
+                            bookingSection.remove(roomView);
+                            bookingSection.updateUI();
                             roomsadded.remove(roomsadded.size()-1);
                             if(roomsadded.size()!=0)
                             roomsadded.get(roomsadded.size()-1).remove.setEnabled(true);
@@ -98,10 +101,11 @@ public class Hotel extends JPanel {
             });
         }
         roomsPanel.updateUI();
-        roomsPanel.getViewport().updateUI();
         loadingRooms.setVisible(false);
         roomsPanel.setVisible(true);
         ArrayList<ReviewPanel> panels = new ArrayList<>();
+        if(hotelData.reviews==null)
+            hotelData.reviews=new ArrayList<>();
         for(Review r:hotelData.reviews){
             System.out.println("Adding" +r.comment);
             panels.add(new ReviewPanel(r));
@@ -201,7 +205,7 @@ public class Hotel extends JPanel {
         a7 = new JLabel();
         a8 = new JLabel();
         a9 = new JLabel();
-        roomsPanel = new JScrollPane();
+        roomsPanel = new JPanel();
         label11 = new JLabel();
         starCategory = new JLabel();
         loadingRooms = new JLabel();
@@ -334,6 +338,17 @@ public class Hotel extends JPanel {
         //======== roomsPanel ========
         {
             roomsPanel.setBorder(LineBorder.createBlackLineBorder());
+
+            GroupLayout roomsPanelLayout = new GroupLayout(roomsPanel);
+            roomsPanel.setLayout(roomsPanelLayout);
+            roomsPanelLayout.setHorizontalGroup(
+                roomsPanelLayout.createParallelGroup()
+                    .addGap(0, 598, Short.MAX_VALUE)
+            );
+            roomsPanelLayout.setVerticalGroup(
+                roomsPanelLayout.createParallelGroup()
+                    .addGap(0, 139, Short.MAX_VALUE)
+            );
         }
 
         //---- label11 ----
@@ -411,7 +426,7 @@ public class Hotel extends JPanel {
                                     .addComponent(label11)
                                     .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                                     .addComponent(loadingRooms))
-                                .addComponent(roomsPanel, GroupLayout.PREFERRED_SIZE, 600, GroupLayout.PREFERRED_SIZE))
+                                .addComponent(roomsPanel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
                             .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(layout.createParallelGroup()
                         .addComponent(rating_label)
@@ -455,7 +470,7 @@ public class Hotel extends JPanel {
                                 .addComponent(label11)
                                 .addComponent(loadingRooms))
                             .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(roomsPanel, GroupLayout.PREFERRED_SIZE, 141, GroupLayout.PREFERRED_SIZE)
+                            .addComponent(roomsPanel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                             .addContainerGap(89, Short.MAX_VALUE))
                         .addGroup(layout.createSequentialGroup()
                             .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
@@ -519,7 +534,7 @@ public class Hotel extends JPanel {
     private JLabel a7;
     private JLabel a8;
     private JLabel a9;
-    private JScrollPane roomsPanel;
+    private JPanel roomsPanel;
     private JLabel label11;
     private JLabel starCategory;
     private JLabel loadingRooms;

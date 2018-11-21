@@ -20,6 +20,7 @@ import javax.swing.border.*;
  * @author unknown
  */
 public class LandingPage extends JPanel {
+    ProfileDisplay profileFrame;
     public LandingPage(JFrame parent) {
         this.parent = parent;
         initComponents();
@@ -221,7 +222,7 @@ public class LandingPage extends JPanel {
             newBooking.check_out_date = c_out;
             newBooking.adult_count = Integer.parseInt(adult.getSelectedItem().toString());
             newBooking.child_count = Integer.parseInt(child.getSelectedItem().toString());
-            ArrayList<HotelTab> hlist= MysqlCon.getInstance().gethotels(cityChooser.getSelectedItem().toString(),c_in,c_out);
+            ArrayList<Hotel_tab> hlist= MysqlCon.getInstance().gethotels(cityChooser.getSelectedItem().toString(),c_in,c_out);
             container hotel_list = new container(hlist);
             JScrollPane pane=new JScrollPane();
             pane.getViewport().add(hotel_list);
@@ -229,11 +230,10 @@ public class LandingPage extends JPanel {
             parent.add(pane);
             parent.pack();
             parent.setVisible(true);
-            for(HotelTab t:hlist){
+            for(Hotel_tab t:hlist){
                 t.addMouseListener(new MouseListener() {
                     @Override
                     public void mouseClicked(MouseEvent e) {
-                        System.out.print(t.name);
                         HotelObject obj = MysqlCon.getInstance().display_hotel(t.hotel_id.getText());
                         if(obj==null){
                             return;
@@ -342,7 +342,8 @@ public class LandingPage extends JPanel {
     }
 
     private void displayProfile(ActionEvent e) {
-        ProfileDisplay profileFrame = new ProfileDisplay(currentUser);
+        if(profileFrame==null)
+            profileFrame = new ProfileDisplay(currentUser);
         profileFrame.pack();
         profileFrame.setVisible(true);
     }

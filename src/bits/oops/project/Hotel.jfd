@@ -4,8 +4,8 @@ new FormModel {
 	contentType: "form/swing"
 	root: new FormRoot {
 		add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-			"$horizontalGroup": "par l {seq {par l {seq {par l {seq {space :::p, comp hotel_img:::p::p, space :p:12:p, par l {comp location_label:::p::p, comp amenities_label:::p::p, comp panel1:::p:100:p, comp location_field::l:p:298:p}}, seq {space :p:24:p, comp hotel_name:::::p, space :::p, comp starCategory:::p::p}, seq l {space :::p, comp desc_label:::::p}}, space :0:273:x}, seq {space :::p, par l {comp desc_field::l:p:600:p, seq l {comp label11:::p::p, space :::p, comp loadingRooms:::::p}, comp roomsPanel::l:p:600:p}, space :::x}}, par l {comp rating_label:::p::p, comp proceed::t:p::p, seq l {space :6:6:p, par l {comp errorProceed:::p:150:p, par l:::p {comp rating4:::p::p, comp rating5:::p::p, comp rating3::l:p::p, comp rating2::l:p::p, comp rating1::l:p::p, comp reviewPanel::::250:x, comp bookingSection::l:::x}}}}, space :::p}}"
-			"$verticalGroup": "par l {seq l {par l {seq {space :p:15:p, par b {comp hotel_name::b:p::p, comp rating_label::b:p::p}}, seq t {space :::p, comp starCategory:::p::p}}, par l {seq l {space :::p, comp hotel_img:::p::p, space s:::p, comp desc_label:::p:28:p, space :::p, comp desc_field:::p::p, space s:::p, par b {comp label11::b:p::p, comp loadingRooms::b:p::p}, space :::p, comp roomsPanel:::p:141:p, space ::89:x}, seq l {par b {comp location_label::b:p::p, comp rating5::b:p:27:p}, space :::p, par l {seq {comp location_field:::::p, space u:::p, comp amenities_label:::p:25:p, space :::p, comp panel1:::p:100:p}, seq l {comp rating4:::p:27:p, space :::p, comp rating3:::p:27:p, space :::p, comp rating2:::p::p, space :::p, comp rating1:::p:27:p, space s:::p, comp reviewPanel:::p:132:p}}, space s:::p, comp bookingSection:::p::p, space :::p, par b {comp proceed::b:p::p, comp errorProceed::b:p::p}, space :0:207:x}}}}"
+			"$horizontalGroup": "par l {seq {par l {seq {par l {seq {space :::p, comp hotel_img:::p::p, space :p:12:p, par l {comp location_label:::p::p, comp amenities_label:::p::p, comp panel1:::p:100:p, comp location_field::l:p:298:p}}, seq {space :p:24:p, comp hotel_name:::::p, space :::p, comp starCategory:::p::p}, seq l {space :::p, comp desc_label:::::p}}, space :0:273:x}, seq {space :::p, par l {comp desc_field::l:p:600:p, seq l {comp label11:::p::p, space :::p, comp loadingRooms:::::p}, comp roomsPanel::l:p::p}, space :::x}}, par l {comp rating_label:::p::p, comp proceed::t:p::p, seq l {space :6:6:p, par l {comp errorProceed:::p:150:p, par l:::p {comp rating4:::p::p, comp rating5:::p::p, comp rating3::l:p::p, comp rating2::l:p::p, comp rating1::l:p::p, comp reviewPanel::::250:x, comp bookingSection::l:::x}}}}, space :::p}}"
+			"$verticalGroup": "par l {seq l {par l {seq {space :p:15:p, par b {comp hotel_name::b:p::p, comp rating_label::b:p::p}}, seq t {space :::p, comp starCategory:::p::p}}, par l {seq l {space :::p, comp hotel_img:::p::p, space s:::p, comp desc_label:::p:28:p, space :::p, comp desc_field:::p::p, space s:::p, par b {comp label11::b:p::p, comp loadingRooms::b:p::p}, space :::p, comp roomsPanel:::p::p, space ::89:x}, seq l {par b {comp location_label::b:p::p, comp rating5::b:p:27:p}, space :::p, par l {seq {comp location_field:::::p, space u:::p, comp amenities_label:::p:25:p, space :::p, comp panel1:::p:100:p}, seq l {comp rating4:::p:27:p, space :::p, comp rating3:::p:27:p, space :::p, comp rating2:::p::p, space :::p, comp rating1:::p:27:p, space s:::p, comp reviewPanel:::p:132:p}}, space s:::p, comp bookingSection:::p::p, space :::p, par b {comp proceed::b:p::p, comp errorProceed::b:p::p}, space :0:207:x}}}}"
 		} ) {
 			name: "this"
 			add( new FormComponent( "javax.swing.JLabel" ) {
@@ -146,7 +146,10 @@ new FormModel {
 					name: "a9"
 				} )
 			} )
-			add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+				"$horizontalGroup": "par l {space :0:598:x}"
+				"$verticalGroup": "par l {space :0:139:x}"
+			} ) {
 				name: "roomsPanel"
 				"border": new javax.swing.border.LineBorder( sfield java.awt.Color black, 1, false )
 			} )
