@@ -30,11 +30,21 @@ public class login_portal extends JPanel {
     public login_portal(JFrame parent) {
         this.parent=parent;
         initComponents();
+        nameerror.setVisible(false);
+        emailerror.setVisible(false);
+        passworderror.setVisible(false);
+        usernameerror.setVisible(false);
+        contacterror.setVisible(false);
+        label1.setVisible(false);
+        label2.setVisible(false);
+        registeredUser=null;
     }
 
     private void RegisterActionPerformed(ActionEvent e) {
         // TODO add your code here
-         boolean flag=false;
+        boolean flag=false;
+        label1.setVisible(false);
+        label2.setVisible(false);
         if(nametext.getText().equals("")) {
                 flag=true;
                 nameerror.setVisible(true);
@@ -47,6 +57,7 @@ public class login_portal extends JPanel {
         }
         else emailerror.setVisible(false);*/
        emailidtextActionPerformed(emailidtext);
+       flag=true;
 
         if(usernametext.getText().equals("")) {
             flag=true;
@@ -60,6 +71,7 @@ public class login_portal extends JPanel {
         }
         else passworderror.setVisible(false);*/
       passwordtextActionPerformed(passwordField1);
+      flag=true;
 
       /*  if(contacttext.getText().equals("")) {
             flag=true;
@@ -68,10 +80,23 @@ public class login_portal extends JPanel {
         }
         else contacterror.setVisible(false);*/contacttextcheck(contacttext);
         if(flag) {
-            label2.setVisible(true);
             return;
         }
-        //call Rashi's function
+        else{
+            Register.setText("Hang on");
+            Register.setEnabled(false);
+        }
+        int status = MysqlCon.getInstance().register(usernametext.getText(),nametext.getText(),emailidtext.getText(),contacttext.getText(),addresstext.getText(),passwordField1.getPassword().toString());
+        if(status==1){//registered
+            label2.setVisible(true);
+            registeredUser = new User(usernametext.getText(),nametext.getText(),emailidtext.getText(),contacttext.getText(),addresstext.getText(),passwordField1.getPassword().toString());
+            parent.dispose();
+        }
+        else {
+            label1.setVisible(true);
+            Register.setText("Register");
+            Register.setEnabled(true);
+        }
 
     }
 
@@ -137,65 +162,10 @@ public class login_portal extends JPanel {
         return matches1;
     }
 
+
     private void emailidtextActionPerformed(ActionEvent e) {
         // TODO add your code here
     }
-
-    private void OpenLogin(ActionEvent e) {
-        JFrame loginFrame = new JFrame();
-        login_portal loginwindow = new login_portal(loginFrame);
-        loginwindow.setVisible(true);
-        loginFrame.add(loginwindow);
-        loginFrame.pack();
-        this.parent.setEnabled(false);
-        loginFrame.setVisible(true);
-        loginFrame.addWindowListener(new WindowListener() {
-            @Override
-            public void windowOpened(WindowEvent e) {
-
-            }
-
-            @Override
-            public void windowClosing(WindowEvent e) {
-
-            }
-
-            @Override
-            public void windowClosed(WindowEvent e) {
-
-            }
-
-            @Override
-            public void windowIconified(WindowEvent e) {
-
-            }
-
-            @Override
-            public void windowDeiconified(WindowEvent e) {
-
-            }
-
-            @Override
-            public void windowActivated(WindowEvent e) {
-
-            }
-
-            @Override
-            public void windowDeactivated(WindowEvent e) {
-
-            }
-        });
-    }
-
-
-
-
-
-
-
-
-
-
 
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
@@ -314,11 +284,9 @@ public class login_portal extends JPanel {
         Register.setBackground(new Color(0, 51, 102));
         Register.setFont(Register.getFont().deriveFont(Register.getFont().getStyle() | Font.BOLD, Register.getFont().getSize() + 2f));
         Register.setForeground(Color.white);
-        Register.addActionListener(e -> {
-			RegisterActionPerformed(e);
-			RegisterActionPerformed(e);
-			OpenLogin(e);
-		});
+        Register.addActionListener(e -> RegisterActionPerformed(e));
+
+
 
         //---- nameerror ----
         nameerror.setText("Please enter name");
@@ -487,13 +455,5 @@ public class login_portal extends JPanel {
     private JLabel label1;
     private JLabel label2;
     // JFormDesigner - End of variables declaration  //GEN-END:variables
-
-  //  public static void main(String[] args) {
-       // JFrame frame = new JFrame("login_portal");
-       // frame.setContentPane(new login_portal().);
-        //frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-      //  frame.pack();
-       // frame.setVisible(true);
-
-  //
+    User registeredUser;
 }
